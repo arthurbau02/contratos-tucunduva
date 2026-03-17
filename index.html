@@ -15,11 +15,28 @@
   --red:#b83030;--red-bg:#fceaea;
   --ora:#b85c00;--ora-bg:#fef3e2;
   --grn:#2d6a3f;--grn-bg:#e8f5ed;
-  --r:10px;--sw:220px;
+  --r:10px;--sw:224px;
   --font:"DM Sans",sans-serif;--mono:"DM Mono",monospace;
 }
 body{font-family:var(--font);background:var(--bg);color:var(--tx);font-size:14px;line-height:1.5;min-height:100vh}
 .lay{display:flex;min-height:100vh}
+/* LOGIN */
+.login-wrap{display:none;position:fixed;inset:0;background:var(--bg);z-index:500;align-items:center;justify-content:center}
+.login-wrap.on{display:flex}
+.login-box{background:var(--surf);border:.5px solid var(--bdr);border-radius:16px;padding:40px 36px;width:380px;box-shadow:0 8px 40px rgba(0,0,0,.08)}
+.login-logo{display:flex;align-items:center;gap:12px;margin-bottom:28px}
+.login-ico{width:44px;height:44px;background:var(--ac);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.login-ico svg{width:22px;height:22px}
+.login-h{font-size:18px;font-weight:600;letter-spacing:-.3px}
+.login-s{font-size:12px;color:var(--tx3);margin-top:2px}
+.lbl{font-size:11px;font-weight:600;color:var(--tx3);text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:5px}
+.linp{width:100%;font-size:14px;padding:10px 12px;border:.5px solid var(--bdr2);border-radius:8px;background:var(--surf);color:var(--tx);font-family:var(--font);margin-bottom:14px;transition:border .15s}
+.linp:focus{outline:none;border-color:var(--ac)}
+.lbtn{width:100%;padding:11px;background:var(--ac);color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;font-family:var(--font);transition:background .15s;margin-top:4px}
+.lbtn:hover{background:#153d73}
+.lerro{background:var(--red-bg);color:var(--red);font-size:12px;padding:9px 12px;border-radius:6px;margin-bottom:12px;display:none}
+.lerro.on{display:block}
+.lver{font-size:11px;color:var(--tx3);text-align:center;margin-top:20px;font-family:var(--mono)}
 /* SIDEBAR */
 .sb{width:var(--sw);background:var(--surf);border-right:1px solid var(--bdr);display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:50}
 .brand{padding:20px 18px 14px;border-bottom:1px solid var(--bdr)}
@@ -35,6 +52,8 @@ body{font-family:var(--font);background:var(--bg);color:var(--tx);font-size:14px
 .nbg{margin-left:auto;font-size:10px;font-weight:600;background:var(--red-bg);color:var(--red);padding:1px 6px;border-radius:20px;font-family:var(--mono)}
 .sft{padding:12px 18px;border-top:1px solid var(--bdr);font-size:11px;color:var(--tx3);font-family:var(--mono)}
 .sft span{display:block}
+.logout-btn{display:flex;align-items:center;gap:6px;padding:6px 8px;border-radius:7px;cursor:pointer;font-size:12px;color:var(--tx3);margin-top:6px;border:none;background:none;font-family:var(--font);width:100%;transition:all .15s}
+.logout-btn:hover{background:var(--bg);color:var(--tx)}
 /* MAIN */
 .main{margin-left:var(--sw);flex:1;display:flex;flex-direction:column;min-height:100vh}
 .top{background:var(--surf);border-bottom:1px solid var(--bdr);padding:13px 26px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:40}
@@ -48,10 +67,10 @@ body{font-family:var(--font);background:var(--bg);color:var(--tx);font-size:14px
 .ndot{position:absolute;top:6px;right:6px;width:7px;height:7px;background:var(--red);border-radius:50%;border:1.5px solid white}
 .btn-ghost{background:none;border:none;cursor:pointer;padding:4px 8px;border-radius:6px;font-size:12px;color:var(--tx3);transition:all .12s;font-family:var(--font)}
 .btn-ghost:hover{background:var(--bg);color:var(--tx)}
-.btn-danger{color:var(--red)}.btn-danger:hover{background:var(--red-bg);color:var(--red)}
+.btn-danger:hover{background:var(--red-bg);color:var(--red)}
 .ct{padding:22px 26px;flex:1}
 .view{display:none}.view.on{display:block;animation:fi .2s ease}
-@keyframes fi{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+@keyframes fi{from{opacity:0;transform:translateY(5px)}to{opacity:1}}
 /* METRICS */
 .mrow{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px}
 .mc{background:var(--surf);border:1px solid var(--bdr);border-radius:var(--r);padding:15px 17px}
@@ -63,7 +82,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--tx);font-size:14px
 .card{background:var(--surf);border:1px solid var(--bdr);border-radius:var(--r);margin-bottom:15px}
 .ch{padding:13px 17px;border-bottom:1px solid var(--bdr);display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
 .ct2{font-size:13px;font-weight:600}
-/* ALERT ROWS */
+/* ROWS */
 .ar{display:flex;align-items:flex-start;gap:11px;padding:11px 17px;border-bottom:1px solid var(--bdr);transition:background .1s}
 .ar:last-child{border-bottom:none}.ar.click{cursor:pointer}.ar.click:hover{background:var(--bg)}
 .dot{width:8px;height:8px;border-radius:50%;margin-top:5px;flex-shrink:0}
@@ -91,12 +110,10 @@ tbody tr:hover td{background:var(--bg)}
 .frow{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
 .frow input,.frow select{font-size:13px;padding:7px 11px;border:1px solid var(--bdr2);border-radius:8px;background:var(--surf);color:var(--tx);font-family:var(--font)}
 .frow input:focus,.frow select:focus{outline:none;border-color:var(--ac)}
-.frow input{min-width:220px}
-.fcnt{font-size:11px;color:var(--tx3);margin-left:auto;font-family:var(--mono)}
+.frow input{min-width:200px}.fcnt{font-size:11px;color:var(--tx3);margin-left:auto;font-family:var(--mono)}
 /* PROGRESS */
 .pb-r{margin-bottom:12px}
 .pb-l{display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px}
-.pb-l span:last-child{font-weight:600;font-family:var(--mono)}
 .pb-b{height:4px;background:var(--bdr);border-radius:2px;overflow:hidden}
 .pb-f{height:100%;border-radius:2px;transition:width .4s}
 .tc{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:15px}
@@ -120,6 +137,7 @@ tbody tr:hover td{background:var(--bg)}
 .fgi input:focus,.fgi select:focus,.fgi textarea:focus{outline:none;border-color:var(--ac)}
 .fgi textarea{resize:vertical;min-height:68px;line-height:1.5}
 .fsec{font-size:11px;font-weight:600;color:var(--tx3);text-transform:uppercase;letter-spacing:.08em;padding-bottom:8px;border-bottom:1px solid var(--bdr);grid-column:1/-1;margin-top:4px}
+.fgi-hint{font-size:11px;color:var(--tx3);margin-top:3px}
 /* NOTIF PANEL */
 .np{position:fixed;top:0;right:-365px;bottom:0;width:355px;background:var(--surf);border-left:1px solid var(--bdr);z-index:80;transition:right .22s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column}
 .np.on{right:0}
@@ -136,18 +154,16 @@ tbody tr:hover td{background:var(--bg)}
 .tgt::after{content:"";position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:white;transition:transform .2s;box-shadow:0 1px 3px rgba(0,0,0,.2)}
 .tgl input:checked+.tgt{background:var(--ac)}
 .tgl input:checked+.tgt::after{transform:translateX(16px)}
-/* INFO BANNER */
+/* BANNER */
 .ib{padding:11px 15px;border-radius:8px;font-size:12px;line-height:1.6;margin-bottom:13px}
 .ib.bl{background:var(--ac-bg);color:var(--ac);border-left:3px solid var(--ac)}
 .ib.rd{background:var(--red-bg);color:var(--red);border-left:3px solid var(--red)}
-.ib.or{background:var(--ora-bg);color:var(--ora);border-left:3px solid var(--ora)}
 .ib strong{font-weight:600}
-/* RESPONSÁVEL CARD */
+/* RESP CARD */
 .rc{background:var(--surf);border:1px solid var(--bdr);border-radius:var(--r);padding:14px 16px;display:flex;align-items:center;gap:12px;margin-bottom:8px;transition:box-shadow .15s}
 .rc:hover{box-shadow:0 2px 8px rgba(0,0,0,.07)}
-.rc-av{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:600;flex-shrink:0}
-.rc-av.F{background:var(--ac-bg);color:var(--ac)}
-.rc-av.G{background:var(--grn-bg);color:var(--grn)}
+.rc-av{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;flex-shrink:0}
+.rc-av.F{background:var(--ac-bg);color:var(--ac)}.rc-av.G{background:var(--grn-bg);color:var(--grn)}
 .rc-info{flex:1;min-width:0}
 .rc-nome{font-size:13px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .rc-email{font-size:11px;color:var(--tx3);font-family:var(--mono);margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -162,61 +178,29 @@ tbody tr:hover td{background:var(--bg)}
 /* TOAST */
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:#1a1917;color:#fff;padding:10px 20px;border-radius:8px;font-size:13px;font-weight:500;z-index:999;opacity:0;transition:all .25s;pointer-events:none}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-/* TELA DE LOGIN */
-.login-screen{display:none;position:fixed;inset:0;background:var(--bg);z-index:500;align-items:center;justify-content:center;flex-direction:column}
-.login-screen.ativo{display:flex}
-.login-box{background:var(--surf);border:.5px solid var(--bdr);border-radius:16px;padding:40px 36px;width:380px;box-shadow:0 8px 40px rgba(0,0,0,.08)}
-.login-logo{display:flex;align-items:center;gap:12px;margin-bottom:28px}
-.login-logo-icon{width:44px;height:44px;background:var(--ac);border-radius:12px;display:flex;align-items:center;justify-content:center}
-.login-logo-icon svg{width:22px;height:22px}
-.login-titulo{font-size:18px;font-weight:600;letter-spacing:-.3px}
-.login-subtitulo{font-size:12px;color:var(--tx3);margin-top:2px}
-.login-label{font-size:11px;font-weight:600;color:var(--tx3);text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:5px}
-.login-input{width:100%;font-size:14px;padding:10px 12px;border:.5px solid var(--bdr2);border-radius:8px;background:var(--surf);color:var(--tx);font-family:var(--font);margin-bottom:14px;transition:border .15s}
-.login-input:focus{outline:none;border-color:var(--ac)}
-.login-btn{width:100%;padding:11px;background:var(--ac);color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;font-family:var(--font);transition:background .15s;margin-top:4px}
-.login-btn:hover{background:#153d73}
-.login-erro{background:var(--red-bg);color:var(--red);font-size:12px;padding:9px 12px;border-radius:6px;margin-bottom:12px;display:none}
-.login-erro.vis{display:block}
-.login-versao{font-size:11px;color:var(--tx3);text-align:center;margin-top:20px;font-family:var(--mono)}
-.logout-btn{display:flex;align-items:center;gap:6px;padding:7px 10px;border-radius:8px;cursor:pointer;font-size:12px;color:var(--tx3);margin-top:auto;transition:all .15s;border:none;background:none;font-family:var(--font);width:100%}
-.logout-btn:hover{background:var(--bg);color:var(--tx)}
 @media(max-width:900px){.sb{display:none}.main{margin-left:0}.mrow{grid-template-columns:1fr 1fr}.tc{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════════════════════════ -->
-<!-- TELA DE LOGIN                                              -->
-<!-- ═══════════════════════════════════════════════════════════ -->
-<div class="login-screen ativo" id="login-screen">
+<!-- LOGIN -->
+<div class="login-wrap on" id="login-wrap">
   <div class="login-box">
     <div class="login-logo">
-      <div class="login-logo-icon">
-        <svg viewBox="0 0 16 16" fill="none"><rect x="2" y="1" width="12" height="14" rx="2" stroke="white" stroke-width="1.3"/><line x1="5" y1="5" x2="11" y2="5" stroke="white" stroke-width="1.1" stroke-linecap="round"/><line x1="5" y1="8" x2="11" y2="8" stroke="white" stroke-width="1.1" stroke-linecap="round"/><line x1="5" y1="11" x2="8" y2="11" stroke="white" stroke-width="1.1" stroke-linecap="round"/></svg>
-      </div>
-      <div>
-        <div class="login-titulo">ContratosRS</div>
-        <div class="login-subtitulo">Prefeitura Municipal de Tucunduva/RS</div>
-      </div>
+      <div class="login-ico"><svg viewBox="0 0 16 16" fill="none"><rect x="2" y="1" width="12" height="14" rx="2" stroke="white" stroke-width="1.3"/><line x1="5" y1="5" x2="11" y2="5" stroke="white" stroke-width="1.1" stroke-linecap="round"/><line x1="5" y1="8" x2="11" y2="8" stroke="white" stroke-width="1.1" stroke-linecap="round"/><line x1="5" y1="11" x2="8" y2="11" stroke="white" stroke-width="1.1" stroke-linecap="round"/></svg></div>
+      <div><div class="login-h">ContratosRS</div><div class="login-s">Prefeitura Municipal de Tucunduva/RS</div></div>
     </div>
-
-    <div class="login-erro" id="login-erro">Usuário ou senha incorretos.</div>
-
-    <label class="login-label" for="login-usuario">Usuário</label>
-    <input class="login-input" type="text" id="login-usuario" placeholder="seu.usuario" autocomplete="username" onkeydown="if(event.key==='Enter') fazerLogin()">
-
-    <label class="login-label" for="login-senha">Senha</label>
-    <input class="login-input" type="password" id="login-senha" placeholder="••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter') fazerLogin()">
-
-    <button class="login-btn" onclick="fazerLogin()">Entrar</button>
-
-    <div class="login-versao">Gestão de Contratos · PMT · v1.2</div>
+    <div class="lerro" id="lerro">Usuário ou senha incorretos.</div>
+    <label class="lbl" for="lu">Usuário</label>
+    <input class="linp" type="text" id="lu" placeholder="seu.usuario" autocomplete="username" onkeydown="if(event.key==='Enter')login()">
+    <label class="lbl" for="ls">Senha</label>
+    <input class="linp" type="password" id="ls" placeholder="••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')login()">
+    <button class="lbtn" onclick="login()">Entrar</button>
+    <div class="lver">Gestão de Contratos · PMT · v2.0</div>
   </div>
 </div>
-<!-- ═══════════════════════════════════════════════════════════ -->
-<div class="lay">
 
+<div class="lay">
 <!-- SIDEBAR -->
 <aside class="sb">
   <div class="brand">
@@ -233,16 +217,17 @@ tbody tr:hover td{background:var(--bg)}
     <div class="nsec">Gestão</div>
     <div class="ni" onclick="ir('contratos',this)"><svg viewBox="0 0 16 16" fill="none"><rect x="2" y="1" width="12" height="14" rx="2" stroke="currentColor" stroke-width="1.2"/><line x1="5" y1="5" x2="11" y2="5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="5" y1="8" x2="11" y2="8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="5" y1="11" x2="8" y2="11" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>Contratos</div>
     <div class="ni" onclick="ir('responsaveis',this)"><svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="5" r="3" stroke="currentColor" stroke-width="1.2"/><path d="M2 14c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>Gestores e Fiscais</div>
+    <div class="ni" onclick="ir('secretarias',this)"><svg viewBox="0 0 16 16" fill="none"><rect x="1.5" y="3" width="13" height="10" rx="2" stroke="currentColor" stroke-width="1.2"/><line x1="5" y1="3" x2="5" y2="13" stroke="currentColor" stroke-width="1.2"/><line x1="1.5" y1="7" x2="14.5" y2="7" stroke="currentColor" stroke-width="1.2"/></svg>Secretarias</div>
     <div class="nsec">Sistema</div>
     <div class="ni" onclick="ir('notif',this)"><svg viewBox="0 0 16 16" fill="none"><rect x="1.5" y="3.5" width="13" height="10" rx="2" stroke="currentColor" stroke-width="1.2"/><path d="M1.5 6l6.5 4 6.5-4" stroke="currentColor" stroke-width="1.2"/></svg>Notificações</div>
     <div class="ni" onclick="ir('relat',this)"><svg viewBox="0 0 16 16" fill="none"><rect x="1.5" y="1.5" width="13" height="13" rx="2" stroke="currentColor" stroke-width="1.2"/><line x1="4" y1="10" x2="4" y2="13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="7" y1="7" x2="7" y2="13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="10" y1="9" x2="10" y2="13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="13" y1="5" x2="13" y2="13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>Relatórios</div>
   </nav>
   <div class="sft">
-    <span>PMT · v1.2 · 2026</span>
-    <span id="dt-ref">TCE/RS dados reais</span>
+    <span>PMT · v2.0 · 2026</span>
+    <span id="dt-ref"></span>
     <div style="margin-top:8px;padding-top:8px;border-top:.5px solid var(--bdr)">
-      <div style="font-size:11px;color:var(--tx2);margin-bottom:4px" id="login-nome-sidebar">—</div>
-      <button class="logout-btn" onclick="fazerLogout()">
+      <div style="font-size:11px;color:var(--tx2);margin-bottom:4px" id="sb-user">—</div>
+      <button class="logout-btn" onclick="logout()">
         <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M6 2H3a1 1 0 00-1 1v10a1 1 0 001 1h3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M11 11l3-3-3-3M14 8H6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
         Sair do sistema
       </button>
@@ -259,7 +244,6 @@ tbody tr:hover td{background:var(--bg)}
       <button class="btn btn-p" onclick="abrirNovoContrato()"><svg width="12" height="12" viewBox="0 0 16 16" fill="none"><line x1="8" y1="2" x2="8" y2="14" stroke="white" stroke-width="2" stroke-linecap="round"/><line x1="2" y1="8" x2="14" y2="8" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>Novo Contrato</button>
     </div>
   </header>
-
   <div class="ct">
 
     <!-- DASHBOARD -->
@@ -271,12 +255,12 @@ tbody tr:hover td{background:var(--bg)}
         <div class="mc G"><div class="mc-l">Valor total vigente</div><div class="mc-v" id="m-val" style="font-size:17px">—</div><div class="mc-s">Contratos ativos</div></div>
       </div>
       <div class="card">
-        <div class="ch"><div class="ct2">⚠ Contratos críticos — vencimento iminente</div><button class="btn btn-s" onclick="ir('alertas',document.querySelectorAll('.ni')[1])">Ver todos</button></div>
+        <div class="ch"><div class="ct2">⚠ Contratos críticos</div><button class="btn btn-s" onclick="ir('alertas',document.querySelectorAll('.ni')[1])">Ver todos</button></div>
         <div id="dash-crit"></div>
       </div>
       <div class="tc">
         <div class="card" style="margin:0"><div class="ch"><div class="ct2">Situação geral</div></div><div style="padding:15px 17px" id="dash-prog"></div></div>
-        <div class="card" style="margin:0"><div class="ch"><div class="ct2">Responsáveis sem e-mail</div><button class="btn btn-s" onclick="ir('responsaveis',document.querySelectorAll('.ni')[4])">Cadastrar</button></div><div id="dash-semmail"></div></div>
+        <div class="card" style="margin:0"><div class="ch"><div class="ct2">Responsáveis sem e-mail</div><button class="btn btn-s" onclick="ir('responsaveis',document.querySelectorAll('.ni')[3])">Cadastrar</button></div><div id="dash-semmail"></div></div>
       </div>
     </section>
 
@@ -294,7 +278,7 @@ tbody tr:hover td{background:var(--bg)}
         <select id="f-fiscal" onchange="filtrar()"><option value="">Todos os fiscais</option></select>
         <select id="f-gestor" onchange="filtrar()"><option value="">Todos os gestores</option></select>
         <select id="f-ano" onchange="filtrar()"><option value="">Todos os anos</option></select>
-        <span class="fcnt" id="f-cnt">— contratos</span>
+        <span class="fcnt" id="f-cnt"></span>
       </div>
       <div class="card"><div class="tw">
         <table>
@@ -307,20 +291,24 @@ tbody tr:hover td{background:var(--bg)}
     <!-- GESTORES E FISCAIS -->
     <section class="view" id="v-responsaveis">
       <div class="frow">
-        <input type="text" id="f-resp" placeholder="Buscar por nome, CPF ou e-mail..." oninput="renderResponsaveis()">
-        <select id="f-cargo" onchange="renderResponsaveis()">
-          <option value="">Todos os cargos</option><option value="Fiscal">Fiscal</option><option value="Gestor">Gestor</option>
-        </select>
-        <select id="f-resp-st" onchange="renderResponsaveis()">
-          <option value="">Todos</option><option value="ok">Com e-mail</option><option value="sem">Sem e-mail</option>
-        </select>
+        <input type="text" id="f-resp" placeholder="Buscar por nome, CPF ou e-mail..." oninput="renderResp()">
+        <select id="f-cargo" onchange="renderResp()"><option value="">Todos os cargos</option><option value="Fiscal">Fiscal</option><option value="Gestor">Gestor</option></select>
+        <select id="f-resp-st" onchange="renderResp()"><option value="">Todos</option><option value="ok">Com e-mail</option><option value="sem">Sem e-mail</option></select>
         <span class="fcnt" id="f-resp-cnt"></span>
-        <button class="btn btn-p" onclick="abrirModalResp(null)">
-          <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><line x1="8" y1="2" x2="8" y2="14" stroke="white" stroke-width="2" stroke-linecap="round"/><line x1="2" y1="8" x2="14" y2="8" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
-          Cadastrar responsável
-        </button>
+        <button class="btn btn-p" onclick="abrirModalResp(null)"><svg width="12" height="12" viewBox="0 0 16 16" fill="none"><line x1="8" y1="2" x2="8" y2="14" stroke="white" stroke-width="2" stroke-linecap="round"/><line x1="2" y1="8" x2="14" y2="8" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>Cadastrar responsável</button>
       </div>
       <div id="resp-lista"></div>
+    </section>
+
+    <!-- SECRETARIAS -->
+    <section class="view" id="v-secretarias">
+      <div class="ib bl"><strong>Secretarias:</strong> Cadastre o e-mail de cada secretaria. Quando um gestor ou fiscal estiver vinculado a uma secretaria, o e-mail da secretaria também receberá os alertas automaticamente.</div>
+      <div class="frow">
+        <input type="text" id="f-secr" placeholder="Buscar secretaria..." oninput="renderSecr()">
+        <span class="fcnt" id="f-secr-cnt"></span>
+        <button class="btn btn-p" onclick="abrirModalSecr(null)"><svg width="12" height="12" viewBox="0 0 16 16" fill="none"><line x1="8" y1="2" x2="8" y2="14" stroke="white" stroke-width="2" stroke-linecap="round"/><line x1="2" y1="8" x2="14" y2="8" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>Nova Secretaria</button>
+      </div>
+      <div id="secr-lista"></div>
     </section>
 
     <!-- NOTIFICAÇÕES -->
@@ -353,10 +341,7 @@ tbody tr:hover td{background:var(--bg)}
           <div style="padding:17px">
             <div class="fgi" style="margin-bottom:11px"><label>Tipo</label><select><option>Contratos por vencimento</option><option>Contratos por fiscal</option><option>Contratos por gestor</option><option>Contratos vencendo em 90 dias</option></select></div>
             <div class="fgi" style="margin-bottom:16px"><label>Formato</label><select><option>PDF</option><option>Excel (.xlsx)</option><option>CSV</option></select></div>
-            <div style="display:flex;gap:8px">
-              <button class="btn btn-p" onclick="toast('Relatório gerado!')">Gerar e baixar</button>
-              <button class="btn" onclick="toast('Enviado por e-mail!')">Enviar por e-mail</button>
-            </div>
+            <div style="display:flex;gap:8px"><button class="btn btn-p" onclick="toast('Relatório gerado!')">Gerar e baixar</button><button class="btn" onclick="toast('Enviado por e-mail!')">Enviar por e-mail</button></div>
           </div>
         </div>
         <div class="card" style="margin:0"><div class="ch"><div class="ct2">Resumo — TCE/RS</div></div><div style="padding:15px 17px" id="rel-res"></div></div>
@@ -367,61 +352,56 @@ tbody tr:hover td{background:var(--bg)}
 </main>
 </div>
 
-<!-- MODAL RESPONSÁVEL (cadastrar/editar) -->
+<!-- MODAL RESPONSÁVEL -->
 <div class="ovl" id="ovl-resp" onclick="fecharOvl('ovl-resp',event)">
   <div class="modal">
-    <div class="mh">
-      <div class="mt" id="resp-modal-titulo">Cadastrar responsável</div>
-      <button class="mcl" onclick="fecharModal('ovl-resp')">✕</button>
-    </div>
+    <div class="mh"><div class="mt" id="resp-tit">Cadastrar responsável</div><button class="mcl" onclick="fecharOvl2('ovl-resp')">✕</button></div>
     <div class="mb">
       <div class="fg">
+        <div class="fgi ff"><label>Nome completo</label><input type="text" id="r-nome" placeholder="Ex: João Pedro Mendes"></div>
+        <div class="fgi"><label>Cargo</label><select id="r-cargo"><option value="Fiscal">Fiscal</option><option value="Gestor">Gestor</option></select></div>
+        <div class="fgi"><label>CPF (somente números)</label><input type="text" id="r-cpf" placeholder="00000000000" maxlength="11"></div>
+        <div class="fgi ff"><label>E-mail institucional</label><input type="email" id="r-email" placeholder="servidor@tucunduva.rs.gov.br"></div>
+        <div class="fgi"><label>Telefone (opcional)</label><input type="text" id="r-tel" placeholder="(55) 99999-9999"></div>
+        <div class="fgi"><label>Setor / Secretaria</label><input type="text" id="r-setor" placeholder="Ex: Sec. de Obras"></div>
         <div class="fgi ff">
-          <label>Nome completo</label>
-          <input type="text" id="resp-nome" placeholder="Ex: João Pedro Mendes">
-        </div>
-        <div class="fgi">
-          <label>Cargo</label>
-          <select id="resp-cargo">
-            <option value="Fiscal">Fiscal</option>
-            <option value="Gestor">Gestor</option>
-          </select>
-        </div>
-        <div class="fgi">
-          <label>CPF (somente números)</label>
-          <input type="text" id="resp-cpf" placeholder="00000000000" maxlength="11">
-        </div>
-        <div class="fgi ff">
-          <label>E-mail institucional</label>
-          <input type="email" id="resp-email" placeholder="servidor@tucunduva.rs.gov.br">
-        </div>
-        <div class="fgi ff">
-          <label>Telefone (opcional)</label>
-          <input type="text" id="resp-tel" placeholder="(55) 99999-9999">
-        </div>
-        <div class="fgi ff">
-          <label>Setor / Secretaria (opcional)</label>
-          <input type="text" id="resp-setor" placeholder="Ex: Secretaria de Obras">
+          <label>Secretaria (para notificações)</label>
+          <select id="r-secretaria"><option value="">— sem vínculo —</option></select>
+          <div class="fgi-hint">Alertas serão enviados também para o e-mail da secretaria vinculada</div>
         </div>
       </div>
     </div>
-    <div class="mf">
-      <button class="btn" onclick="fecharModal('ovl-resp')">Cancelar</button>
-      <button class="btn btn-p" onclick="salvarResponsavel()">Salvar</button>
+    <div class="mf"><button class="btn" onclick="fecharOvl2('ovl-resp')">Cancelar</button><button class="btn btn-p" onclick="salvarResp()">Salvar</button></div>
+  </div>
+</div>
+
+<!-- MODAL SECRETARIA -->
+<div class="ovl" id="ovl-secr" onclick="fecharOvl('ovl-secr',event)">
+  <div class="modal">
+    <div class="mh"><div class="mt" id="secr-tit">Nova Secretaria</div><button class="mcl" onclick="fecharOvl2('ovl-secr')">✕</button></div>
+    <div class="mb">
+      <div class="fg">
+        <div class="fgi ff"><label>Nome da Secretaria</label><input type="text" id="s-nome" placeholder="Ex: Secretaria Municipal de Saúde"></div>
+        <div class="fgi"><label>Sigla</label><input type="text" id="s-sigla" placeholder="Ex: SMS"></div>
+        <div class="fgi"><label>E-mail institucional</label><input type="email" id="s-email" placeholder="saude@tucunduva.rs.gov.br"></div>
+        <div class="fgi ff"><label>Responsável principal (opcional)</label><input type="text" id="s-resp" placeholder="Nome do Secretário(a)"></div>
+        <div class="fgi ff"><label>Observações (opcional)</label><textarea id="s-obs"></textarea></div>
+      </div>
     </div>
+    <div class="mf"><button class="btn" onclick="fecharOvl2('ovl-secr')">Cancelar</button><button class="btn btn-p" onclick="salvarSecr()">Salvar</button></div>
   </div>
 </div>
 
 <!-- MODAL NOVO CONTRATO -->
 <div class="ovl" id="ovl-cont" onclick="fecharOvl('ovl-cont',event)">
   <div class="modal modal-lg">
-    <div class="mh"><div class="mt">Novo Contrato</div><button class="mcl" onclick="fecharModal('ovl-cont')">✕</button></div>
+    <div class="mh"><div class="mt">Novo Contrato</div><button class="mcl" onclick="fecharOvl2('ovl-cont')">✕</button></div>
     <div class="mb">
       <div class="fg">
         <div class="fsec">Identificação</div>
         <div class="fgi"><label>Número</label><input type="text" placeholder="001/2026"></div>
         <div class="fgi"><label>Modalidade</label><select><option>Pregão Eletrônico</option><option>Concorrência</option><option>Dispensa</option><option>Inexigibilidade</option><option>Chamamento</option></select></div>
-        <div class="fgi ff"><label>Objeto</label><input type="text" placeholder="Descrição do objeto"></div>
+        <div class="fgi ff"><label>Objeto</label><input type="text"></div>
         <div class="fsec">Contratada</div>
         <div class="fgi ff"><label>Razão social</label><input type="text"></div>
         <div class="fgi"><label>CNPJ</label><input type="text" placeholder="00.000.000/0000-00"></div>
@@ -430,35 +410,21 @@ tbody tr:hover td{background:var(--bg)}
         <div class="fgi"><label>Início</label><input type="date"></div>
         <div class="fgi"><label>Vencimento</label><input type="date"></div>
         <div class="fsec">Responsáveis</div>
-        <div class="fgi">
-          <label>Gestor</label>
-          <select id="nc-gestor"><option value="">— selecione —</option></select>
-        </div>
-        <div class="fgi">
-          <label>Fiscal</label>
-          <select id="nc-fiscal"><option value="">— selecione —</option></select>
-        </div>
+        <div class="fgi"><label>Gestor</label><select id="nc-gestor"><option value="">— selecione —</option></select></div>
+        <div class="fgi"><label>Fiscal</label><select id="nc-fiscal"><option value="">— selecione —</option></select></div>
         <div class="fgi ff"><label>Observações</label><textarea></textarea></div>
       </div>
     </div>
-    <div class="mf">
-      <button class="btn" onclick="fecharModal('ovl-cont')">Cancelar</button>
-      <button class="btn btn-p" onclick="salvarContrato()">Salvar e ativar alertas</button>
-    </div>
+    <div class="mf"><button class="btn" onclick="fecharOvl2('ovl-cont')">Cancelar</button><button class="btn btn-p" onclick="fecharOvl2('ovl-cont');toast('Contrato salvo!')">Salvar</button></div>
   </div>
 </div>
 
 <!-- MODAL CONFIRMAR EXCLUSÃO -->
 <div class="ovl" id="ovl-del" onclick="fecharOvl('ovl-del',event)">
   <div class="modal" style="width:380px">
-    <div class="mh"><div class="mt">Remover responsável</div><button class="mcl" onclick="fecharModal('ovl-del')">✕</button></div>
-    <div class="mb">
-      <p style="font-size:13px;color:var(--tx2);line-height:1.6">Tem certeza que deseja remover <strong id="del-nome"></strong>? Esta ação não pode ser desfeita.</p>
-    </div>
-    <div class="mf">
-      <button class="btn" onclick="fecharModal('ovl-del')">Cancelar</button>
-      <button class="btn" style="background:var(--red);color:#fff;border-color:var(--red)" onclick="confirmarExclusao()">Remover</button>
-    </div>
+    <div class="mh"><div class="mt">Remover responsável</div><button class="mcl" onclick="fecharOvl2('ovl-del')">✕</button></div>
+    <div class="mb"><p style="font-size:13px;color:var(--tx2);line-height:1.6">Tem certeza que deseja remover <strong id="del-nome"></strong>?</p></div>
+    <div class="mf"><button class="btn" onclick="fecharOvl2('ovl-del')">Cancelar</button><button class="btn" style="background:var(--red);color:#fff;border-color:var(--red)" onclick="confirmarDel()">Remover</button></div>
   </div>
 </div>
 
@@ -466,408 +432,217 @@ tbody tr:hover td{background:var(--bg)}
 <div class="np" id="npainel">
   <div class="nph">
     <div style="font-size:14px;font-weight:600">Notificações</div>
-    <div style="display:flex;align-items:center;gap:8px">
-      <span class="pill pR" id="np-cnt">0</span>
-      <button class="mcl" onclick="toggleNP()">✕</button>
-    </div>
+    <div style="display:flex;align-items:center;gap:8px"><span class="pill pR" id="np-cnt">0</span><button class="mcl" onclick="toggleNP()">✕</button></div>
   </div>
   <div class="npl" id="np-lista"></div>
 </div>
 
 <!-- TOAST -->
-<div class="toast" id="toast"></div>
+<div class="toast" id="toast-el"></div>
 
 <script>
+// ══════════════════════════════════════════════════════════════
+//  DADOS — gerados automaticamente pelo script Python
+// ══════════════════════════════════════════════════════════════
 const CONTRATOS = [{"num":"32/2025","obj":"Inexigibilidade de Licitação nº 11/2025 - Contratação da Instituição Educacional Obra Missionária Si","forn":"ASSOCIACAO EDUCACIONAL OBRAMIS","cnpj":"89501381000104","venc":"24/03/2026","inicio":"24/03/2025","dias":8,"val":171736.72,"modal":"Pregão","nm_fiscal":"009.***.***.22","email_fiscal":"","cpf_fiscal":"009.***.***.22","nm_gestor":"587.***.***.49","email_gestor":"","cpf_gestor":"587.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1183469,25,62100&cs=1NVg3W5BJnKD_jXS32-Ch5sb9BxM","st":"Crítico"},{"num":"4/2025","obj":"REGISTRO DE PREÇOS PARA EVENTUAL AQUISIÇÃO DE  PEDRAS BRITAS DE N.º 0 (ZERO) OU PEDRISCO, Nº 01 E Nº","forn":"nan","cnpj":"nan","venc":"24/03/2026","inicio":"24/03/2025","dias":8,"val":255385.0,"modal":"PCE","nm_fiscal":"003.***.***.20","email_fiscal":"","cpf_fiscal":"003.***.***.20","nm_gestor":"006.***.***.02","email_gestor":"","cpf_gestor":"006.***.***.02","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1185306,25,62100&cs=1tVSt2keDet6Vc4EGS5gTKv1d1Vo","st":"Crítico"},{"num":"76/2024","obj":"Contratação de empresa para assessoria ambiental para coleta de resíduos sólidos, nos termos do art.","forn":"SCHUSTER ASSESSORIA AMBIENTAL LTDA","cnpj":"47336609000108","venc":"01/04/2026","inicio":"31/10/2024","dias":16,"val":6300.0,"modal":"PRD","nm_fiscal":"028.***.***.30","email_fiscal":"","cpf_fiscal":"028.***.***.30","nm_gestor":"006.***.***.02","email_gestor":"","cpf_gestor":"006.***.***.02","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1143926,25,62100&cs=1d0XBOFEbAHMmVaISvGDkivJ6TaY","st":"Crítico"},{"num":"9/2021","obj":"AQUISIÇÃO DE VAGA EM LAR DE ACOLHIMENTO PARA ADOLESCENTE, PELO PERÍODO DE 12 MESES.","forn":"LAR BOM PASTOR DE IVAGACI E ESCOLA PROFISSIONAL","cnpj":"87685616000121","venc":"02/04/2026","inicio":"01/04/2021","dias":17,"val":26280.0,"modal":"Pregão","nm_fiscal":"003.***.***.43","email_fiscal":"","cpf_fiscal":"003.***.***.43","nm_gestor":"","email_gestor":"","cpf_gestor":"","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:797877,21,62100&cs=17nWhTe51NBUAobNNgWkNHR-2bOs","st":"Crítico"},{"num":"5/2021","obj":"CONTRATAÇÃO DE SERVIÇOS MÉDICOS HOSPITALARES ESPECIALIZADOS, VISANDO À GARANTIA DA ATENÇÃO INTEGRAL ","forn":"ASSOCIAÇÃO BENEFICENTE OSWALDO CRUZ DE HORIZONTINA","cnpj":"21194889000165","venc":"02/04/2026","inicio":"01/04/2021","dias":17,"val":108000.0,"modal":"Pregão","nm_fiscal":"018.***.***.40","email_fiscal":"","cpf_fiscal":"018.***.***.40","nm_gestor":"","email_gestor":"","cpf_gestor":"","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:793859,21,62100&cs=1M_6pvPNaHojT1t1ac7yw5Ql5uro","st":"Crítico"},{"num":"22/2024","obj":"CONTRATAÇÃO DE 08 VAGAS  PARA ATENDIMENTO DE ALUNOS EM ESCOLA DE EDUCAÇÃO ESPECIAL","forn":"ASSOCIAÇÃO DE PAIS E AMIGOS EXCEPCIONAIS DE S ROSA","cnpj":"95823175000105","venc":"04/04/2026","inicio":"04/04/2024","dias":19,"val":85817.28,"modal":"Pregão","nm_fiscal":"009.***.***.22","email_fiscal":"","cpf_fiscal":"009.***.***.22","nm_gestor":"587.***.***.49","email_gestor":"","cpf_gestor":"587.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1081866,25,62100&cs=1ePi3tJTD9cfDFWEG7-SbgGTpZiQ","st":"Crítico"},{"num":"33/2025","obj":"Contratação de empresa especializada para implantação de telefonia fixa IP com Central PABX em nuvem","forn":"BRPHONIA PROVEDOR IP LTDA","cnpj":"10431131000187","venc":"09/04/2026","inicio":"09/04/2025","dias":24,"val":8028.0,"modal":"PRD","nm_fiscal":"007.***.***.00","email_fiscal":"","cpf_fiscal":"007.***.***.00","nm_gestor":"031.***.***.79","email_gestor":"","cpf_gestor":"031.***.***.79","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1190044,25,62100&cs=10I9gO1ROz5dVrJo66ZRoJEQ1XyE","st":"Crítico"},{"num":"1/2023","obj":"CHAMAMENTO PÚBLICO PARA CREDENCIAMENTO DE INSTITUIÇÕES FINANCEIRAS NO MUNICÍPIO DE TUCUNDUVA - RS, V","forn":"BANCO DO ESTADO DO RIO GRANDE DO SUL S. A.","cnpj":"92702067000196","venc":"14/04/2026","inicio":"14/04/2023","dias":29,"val":13260.0,"modal":"Chamamento","nm_fiscal":"005.***.***.20","email_fiscal":"","cpf_fiscal":"005.***.***.20","nm_gestor":"","email_gestor":"","cpf_gestor":"","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:983377,21,62100&cs=1Gd96n9lVMP_n_O4ZtfLfvbSjuSA","st":"Crítico"},{"num":"7/2021","obj":"CONTRATAÇÃO DE SERVIÇOS HOSPITALARES.","forn":"ASSOCIAÇAO HOSPITALAR TUCUNDUVA E NOVO MACHADO","cnpj":"08139573000102","venc":"18/04/2026","inicio":"16/04/2021","dias":33,"val":541110.24,"modal":"Pregão","nm_fiscal":"649.***.***.49","email_fiscal":"","cpf_fiscal":"649.***.***.49","nm_gestor":"","email_gestor":"","cpf_gestor":"","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:797876,21,62100&cs=1coQfXdWsSg58lqtmwC7feUxLrH4","st":"Atenção"},{"num":"2/2023","obj":"CHAMAMENTO PÚBLICO PARA CREDENCIAMENTO DE INSTITUIÇÕES FINANCEIRAS NO MUNICÍPIO DE TUCUNDUVA - RS, V","forn":"COOPERATIVA DE CREDITO, POUPANCA E INVESTIMENTO UNIAO - SICREDI UNIAO RS/ES","cnpj":"88894548000173","venc":"27/04/2026","inicio":"27/04/2023","dias":42,"val":17200.0,"modal":"Chamamento","nm_fiscal":"005.***.***.20","email_fiscal":"","cpf_fiscal":"005.***.***.20","nm_gestor":"","email_gestor":"","cpf_gestor":"","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:984938,21,62100&cs=1K_oAL2_FqhbkiuT9lLGfEoGmevU","st":"Atenção"},{"num":"100/2023","obj":"LOCAÇÃO DE IMÓVEL PREDIAL PARA A SECRETARIA MUNICIPAL DE SAÚDE","forn":"nan","cnpj":"02944874098","venc":"03/05/2026","inicio":"03/05/2023","dias":48,"val":55900.8,"modal":"PRD","nm_fiscal":"979.***.***.72","email_fiscal":"","cpf_fiscal":"979.***.***.72","nm_gestor":"","email_gestor":"","cpf_gestor":"","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:993543,21,62100&cs=1cZGotSB5-UJqaBN4NpTFu31-Y78","st":"Atenção"},{"num":"101/2025","obj":"Dispensa de Licitação nº 38/2025 - Contratação de Profissional ou Empresa especializada em Tecnologi","forn":"BR MASTER PROVEDOR DE INTERNET LTDA","cnpj":"09626857000196","venc":"05/05/2026","inicio":"05/11/2025","dias":50,"val":6500.0,"modal":"PRD","nm_fiscal":"007.***.***.00","email_fiscal":"","cpf_fiscal":"007.***.***.00","nm_gestor":"031.***.***.79","email_gestor":"","cpf_gestor":"031.***.***.79","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1262887,25,62100&cs=1Ml5KKuQKS2o_mlqD9n_4Y-LAz-I","st":"Atenção"},{"num":"3/2023","obj":"CHAMAMENTO PÚBLICO PARA CREDENCIAMENTO DE INSTITUIÇÕES FINANCEIRAS NO MUNICÍPIO DE TUCUNDUVA - RS, V","forn":"CAIXA ECONOMICA FEDERAL","cnpj":"00360305000104","venc":"10/05/2026","inicio":"10/05/2023","dias":55,"val":14040.0,"modal":"Chamamento","nm_fiscal":"005.***.***.20","email_fiscal":"","cpf_fiscal":"005.***.***.20","nm_gestor":"","email_gestor":"","cpf_gestor":"","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:989624,21,62100&cs=1qAGBQ0SVb_JsU0wtykknWprhbnA","st":"Atenção"},{"num":"25/2024","obj":"Contratação de vaga em lar de acolhimento Marlene Pires Hamerski por inexigibilidade de licitação, n","forn":"MARLENE PIRES HAMERSKI - ME","cnpj":"19821387000175","venc":"15/05/2026","inicio":"15/05/2024","dias":60,"val":38971.2,"modal":"Pregão","nm_fiscal":"005.***.***.92","email_fiscal":"","cpf_fiscal":"005.***.***.92","nm_gestor":"649.***.***.49","email_gestor":"","cpf_gestor":"649.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1091540,25,62100&cs=1_tNwdiGTtbWhTksabF4V-6uzrTg","st":"Atenção"},{"num":"12/2021","obj":"AQUISIÇÃO DE VAGA EM LAR DE ACOLHIMENTO PARA IDOSA, PELO PERÍODO DE 12 MESES.","forn":"ASSOCIAÇÃO MISSIONÁRIA DE BENEFICÊNCIA","cnpj":"80234826000588","venc":"16/05/2026","inicio":"14/05/2021","dias":61,"val":13200.0,"modal":"Pregão","nm_fiscal":"003.***.***.43","email_fiscal":"","cpf_fiscal":"003.***.***.43","nm_gestor":"","email_gestor":"","cpf_gestor":"","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:837545,21,62100&cs=1VjjgTQpjr_ZFu4OinIT3s9S9URQ","st":"Atenção"},{"num":"111/2023","obj":"CONTRATAÇÃO DE EMPRESA ESPECIALIZADA EM SERVIÇO DE INSEMINAÇÃO ARTIFICIAL DE BOVINOS.","forn":"SANDRA ANDREIA MATTEI LITTMANN - ME","cnpj":"11149221000142","venc":"23/05/2026","inicio":"23/05/2023","dias":68,"val":12360.0,"modal":"PRP","nm_fiscal":"022.***.***.38","email_fiscal":"","cpf_fiscal":"022.***.***.38","nm_gestor":"","email_gestor":"","cpf_gestor":"","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:993550,21,62100&cs=1u_CFed--BxlO7i-X54FYh000aE0","st":"Atenção"},{"num":"5/2025","obj":"PREGÃO ELETRÔNICO Nº 04_2025 - REGISTRO DE PREÇOS PARA EVENTUAL AQUISIÇÃO DE TROFÉUS E MEDALHAS.","forn":"nan","cnpj":"nan","venc":"23/05/2026","inicio":"23/05/2025","dias":68,"val":14857.0,"modal":"PCE","nm_fiscal":"010.***.***.32","email_fiscal":"","cpf_fiscal":"010.***.***.32","nm_gestor":"587.***.***.49","email_gestor":"","cpf_gestor":"587.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1204866,25,62100&cs=1U34-l2Bt75br67kAZiQh8kSBUPg","st":"Atenção"},{"num":"6/2025","obj":"PREGÃO ELETRÔNICO Nº 04_2025 - REGISTRO DE PREÇOS PARA EVENTUAL AQUISIÇÃO DE TROFÉUS E MEDALHAS.","forn":"nan","cnpj":"nan","venc":"23/05/2026","inicio":"23/05/2025","dias":68,"val":15340.5,"modal":"PCE","nm_fiscal":"010.***.***.32","email_fiscal":"","cpf_fiscal":"010.***.***.32","nm_gestor":"587.***.***.49","email_gestor":"","cpf_gestor":"587.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1204865,25,62100&cs=109MimareXjyOVWHGFibn0sGHmoE","st":"Atenção"},{"num":"7/2025","obj":"PREGÃO ELETRÔNICO Nº 04_2025 - REGISTRO DE PREÇOS PARA EVENTUAL AQUISIÇÃO DE TROFÉUS E MEDALHAS.","forn":"nan","cnpj":"nan","venc":"23/05/2026","inicio":"23/05/2025","dias":68,"val":17976.0,"modal":"PCE","nm_fiscal":"010.***.***.32","email_fiscal":"","cpf_fiscal":"010.***.***.32","nm_gestor":"587.***.***.49","email_gestor":"","cpf_gestor":"587.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1205607,25,62100&cs=1au-6mxaRxxe9xfIRpDuPagkFo-o","st":"Atenção"},{"num":"28/2024","obj":"AQUISIÇÃO DE VAGA DE ACOLHIMENTO NA INSTITUIÇÃO NO LAR BOM PASTOR DE IVAGACI POR MEIO DE INEXIGIBILI","forn":"LAR BOM PASTOR DE IVAGACI E ESCOLA PROFISSIONAL","cnpj":"87685616000121","venc":"24/05/2026","inicio":"23/05/2024","dias":69,"val":35400.0,"modal":"Pregão","nm_fiscal":"012.***.***.02","email_fiscal":"","cpf_fiscal":"012.***.***.02","nm_gestor":"474.***.***.34","email_gestor":"","cpf_gestor":"474.***.***.34","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1095406,25,62100&cs=1Q9uHoh1ZGAwvgbT1B09gMkKOj-Q","st":"Atenção"},{"num":"46/2025","obj":"PREGÃO ELETRÔNICO Nº 05/2025 - CONTRATAÇÃO DE EMPRESA(S) SEGURADORA(S) PARA COBERTURA DE SEGURO VEIC","forn":"SEGUROS SURA S.A.","cnpj":"33065699000127","venc":"29/05/2026","inicio":"29/05/2025","dias":74,"val":13230.0,"modal":"PCE","nm_fiscal":"956.***.***.49","email_fiscal":"","cpf_fiscal":"956.***.***.49","nm_gestor":"712.***.***.49","email_gestor":"","cpf_gestor":"712.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1210303,25,62100&cs=1i8NpHxGmv-nd_b-AZWV8ouSBWuc","st":"Atenção"},{"num":"115/2023","obj":"Inexigibilidade de licitação com a empresa GM Consultoria em Planejamento e Gestão LTDA, nos termos ","forn":"GM CONSULTORIA EM PLANEJAMENTO E GESTAO LTDA","cnpj":"40892981000143","venc":"31/05/2026","inicio":"02/06/2023","dias":76,"val":24640.0,"modal":"Pregão","nm_fiscal":"979.***.***.72","email_fiscal":"","cpf_fiscal":"979.***.***.72","nm_gestor":"","email_gestor":"","cpf_gestor":"","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:996766,21,62100&cs=1CcJbf2oU0pQyJJFwox_JGctvsuA","st":"Atenção"},{"num":"8/2025","obj":"PREGÃO ELETRÔNICO Nº 06_2025 - REGISTRO DE PREÇOS PARA EVENTUAL AQUISIÇÃO DE PEDRAS GRANÍTICAS, BASÁ","forn":"nan","cnpj":"nan","venc":"02/06/2026","inicio":"02/06/2025","dias":78,"val":75600.0,"modal":"PCE","nm_fiscal":"649.***.***.20","email_fiscal":"","cpf_fiscal":"649.***.***.20","nm_gestor":"006.***.***.02","email_gestor":"","cpf_gestor":"006.***.***.02","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1210306,25,62100&cs=1xYNRo8lsqliRP5AR5MlDg765xIs","st":"Atenção"},{"num":"47/2025","obj":"Inexigibilidade de Licitação nº 13/2025 - Aquisição de vaga para idoso em lar de acolhimento Marlene","forn":"MARLENE PIRES HAMERSKI - ME","cnpj":"19821387000175","venc":"02/06/2026","inicio":"29/05/2025","dias":78,"val":24280.8,"modal":"Pregão","nm_fiscal":"003.***.***.43","email_fiscal":"","cpf_fiscal":"003.***.***.43","nm_gestor":"474.***.***.34","email_gestor":"","cpf_gestor":"474.***.***.34","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1207702,25,62100&cs=1uFMSuB5f4CcxNLdx3mw9mecHyEI","st":"Atenção"},{"num":"48/2025","obj":"Inexigibilidade de Licitação nº 14/2025 - Aquisição de vaga para idoso em lar de acolhimento Marlene","forn":"MARLENE PIRES HAMERSKI - ME","cnpj":"19821387000175","venc":"03/06/2026","inicio":"30/05/2025","dias":79,"val":24124.8,"modal":"Pregão","nm_fiscal":"003.***.***.43","email_fiscal":"","cpf_fiscal":"003.***.***.43","nm_gestor":"474.***.***.34","email_gestor":"","cpf_gestor":"474.***.***.34","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1207703,25,62100&cs=1J7qI58gZz2YDdmMaSiSjGQqgXcc","st":"Atenção"},{"num":"4/2023","obj":"CHAMAMENTO PÚBLICO PARA CREDENCIAMENTO DE INSTITUIÇÕES FINANCEIRAS NO MUNICÍPIO DE TUCUNDUVA - RS, V","forn":"BANCO DO BRASIL SA","cnpj":"00000000000191","venc":"05/06/2026","inicio":"12/06/2023","dias":81,"val":13260.0,"modal":"Chamamento","nm_fiscal":"005.***.***.20","email_fiscal":"","cpf_fiscal":"005.***.***.20","nm_gestor":"","email_gestor":"","cpf_gestor":"","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:998467,21,62100&cs=1cuObVOrrr9Gl5HTFZ63t4r6fh5w","st":"Atenção"},{"num":"50/2025","obj":"Dispensa de Licitação nº 18/2025 - Contratação de Empresa especializada na prestação de serviço para","forn":"DR SEGURANCA E MEDICINA DO TRABALHO LTDA","cnpj":"35993465000175","venc":"09/06/2026","inicio":"09/06/2025","dias":85,"val":7220.0,"modal":"PRD","nm_fiscal":"018.***.***.99","email_fiscal":"","cpf_fiscal":"018.***.***.99","nm_gestor":"031.***.***.79","email_gestor":"","cpf_gestor":"031.***.***.79","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1210304,25,62100&cs=1S6rQTkT7tvE44lZ7kvJUbmHm0Tw","st":"Atenção"},{"num":"153/2022","obj":"Contratação de Empresa para Fornecimento de Internet","forn":"LOG INFORMATICA LTDA","cnpj":"11647730000103","venc":"30/06/2026","inicio":"01/07/2022","dias":106,"val":61995.0,"modal":"PRP","nm_fiscal":"007.***.***.00","email_fiscal":"","cpf_fiscal":"007.***.***.00","nm_gestor":"","email_gestor":"","cpf_gestor":"","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:906464,21,62100&cs=1nwt1sVVkQonrwUzEqMQH_244iiY","st":"Vigente"},{"num":"9/2025","obj":"PREGÃO ELETRÔNICO Nº 07/2025 - REGISTRO DE PREÇOS PARA EVENTUAL AQUISIÇÃO DE CONCRETO USINADO.","forn":"nan","cnpj":"nan","venc":"30/06/2026","inicio":"30/06/2025","dias":106,"val":257980.0,"modal":"PCE","nm_fiscal":"669.***.***.34","email_fiscal":"","cpf_fiscal":"669.***.***.34","nm_gestor":"006.***.***.02","email_gestor":"","cpf_gestor":"006.***.***.02","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1217401,25,62100&cs=1TaQQUN8pLgwIoFqXbnqw8WrsUIM","st":"Vigente"},{"num":"60/2025","obj":"Inexigibilidade de Licitação nº 16/2025 - Contratação de Assessoramento Técnico especializado na áre","forn":"GESTOR UM CONSULTORIA PREVIDENCIARIA LTDA","cnpj":"43739124000104","venc":"04/07/2026","inicio":"04/07/2025","dias":110,"val":10300.0,"modal":"Pregão","nm_fiscal":"020.***.***.55","email_fiscal":"","cpf_fiscal":"020.***.***.55","nm_gestor":"031.***.***.79","email_gestor":"","cpf_gestor":"031.***.***.79","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1219500,25,62100&cs=1aBsNWnXAJZ9FvI1s4PXlrRj3d7M","st":"Vigente"},{"num":"1/2026","obj":"Dispensa de Licitação nº 45/2025 - Contratação de empresa especializada em consultoria técnica de TI","forn":"SCHUTZ & DALLA PORTA TECNOLOGIA DA INFORMACAO LTDA","cnpj":"21844446000172","venc":"07/07/2026","inicio":"07/01/2026","dias":113,"val":8900.0,"modal":"PRD","nm_fiscal":"007.***.***.00","email_fiscal":"","cpf_fiscal":"007.***.***.00","nm_gestor":"031.***.***.79","email_gestor":"","cpf_gestor":"031.***.***.79","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1282940,25,62100&cs=1Dv6iw6cVAeX2Hmml8FwBlQtMVMM","st":"Vigente"},{"num":"41/2024","obj":"AQUISIÇÃO DE 03 VAGAS PARA ATENDIMENTO DE ALUNOS EM ESCOLA ESPECIAL, NOS TERMOS DO ARTIGO 74, INCISO","forn":"ASSOCIACAO DE PAIS E AMIGOS DOS DEFICIENTES AUDITIVOS.","cnpj":"90479106000102","venc":"11/07/2026","inicio":"05/07/2024","dias":117,"val":79056.0,"modal":"Pregão","nm_fiscal":"009.***.***.22","email_fiscal":"","cpf_fiscal":"009.***.***.22","nm_gestor":"587.***.***.49","email_gestor":"","cpf_gestor":"587.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1107574,25,62100&cs=1kVpgXlNEHt-miep7xnfp_0v3wvo","st":"Vigente"},{"num":"64/2025","obj":"Inexigibilidade de Licitação nº 22/2025 - Contratação de Empresa especializada para fornecimento de ","forn":"KODEFY DESENVOLVIMENTO DE APPS LTDA","cnpj":"41426978000105","venc":"16/07/2026","inicio":"16/07/2025","dias":122,"val":9500.0,"modal":"Pregão","nm_fiscal":"025.***.***.22","email_fiscal":"","cpf_fiscal":"025.***.***.22","nm_gestor":"031.***.***.79","email_gestor":"","cpf_gestor":"031.***.***.79","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1222396,25,62100&cs=1U9KI2swMHf4IrNjx75XpVHvoG-Q","st":"Vigente"},{"num":"5/2023","obj":"CHAMAMENTO PÚBLICO PARA CREDENCIAMENTO DE PESSOA(S) JURÍDICA(S) VISANDO A REALIZAÇÃO DE EXAMES LABOR","forn":"LABORATORIO SAO VICENTE LTDA","cnpj":"89431100000348","venc":"26/07/2026","inicio":"26/07/2023","dias":132,"val":509607.72,"modal":"Chamamento","nm_fiscal":"031.***.***.50","email_fiscal":"","cpf_fiscal":"031.***.***.50","nm_gestor":"","email_gestor":"","cpf_gestor":"","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1019039,25,62100&cs=1DjSu4Gm7xD8Y9hDKlj31PVnVc84","st":"Vigente"},{"num":"10/2025","obj":"PREGÃO ELETRÔNICO Nº 11_2025 - REGISTRO DE PREÇOS PARA EVENTUAL AQUISIÇÃO DE GÊNEROS ALIMENTÍCIOS PA","forn":"nan","cnpj":"nan","venc":"29/07/2026","inicio":"29/07/2025","dias":135,"val":186524.51,"modal":"PCE","nm_fiscal":"653.***.***.49","email_fiscal":"","cpf_fiscal":"653.***.***.49","nm_gestor":"587.***.***.49","email_gestor":"","cpf_gestor":"587.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1226824,25,62100&cs=1_AnvHOur6Ykf3vDENnlhpNJFU_Y","st":"Vigente"},{"num":"12/2025","obj":"PREGÃO ELETRÔNICO Nº 11_2025 - REGISTRO DE PREÇOS PARA EVENTUAL AQUISIÇÃO DE GÊNEROS ALIMENTÍCIOS PA","forn":"nan","cnpj":"nan","venc":"29/07/2026","inicio":"29/07/2025","dias":135,"val":165401.56,"modal":"PCE","nm_fiscal":"653.***.***.49","email_fiscal":"","cpf_fiscal":"653.***.***.49","nm_gestor":"587.***.***.49","email_gestor":"","cpf_gestor":"587.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1226825,25,62100&cs=1Hv-nnie5yrDSdQeu3jBsY_p9GUU","st":"Vigente"},{"num":"11/2025","obj":"PREGÃO ELETRÔNICO Nº 11_2025 - REGISTRO DE PREÇOS PARA EVENTUAL AQUISIÇÃO DE GÊNEROS ALIMENTÍCIOS PA","forn":"nan","cnpj":"nan","venc":"29/07/2026","inicio":"29/07/2025","dias":135,"val":75301.45,"modal":"PCE","nm_fiscal":"653.***.***.49","email_fiscal":"","cpf_fiscal":"653.***.***.49","nm_gestor":"587.***.***.49","email_gestor":"","cpf_gestor":"587.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1226823,25,62100&cs=1AQ-vWN7kKdlvX47gu8ssaEblyf0","st":"Vigente"},{"num":"117/2025","obj":"Dispensa de Licitação nº 47/2025 - Contratação de Empresa para confecção, montagem e instalação de m","forn":"INDUSTRIA DE MOVEIS E ABERTURAS BORTOLUZZI LTDA","cnpj":"97295968000124","venc":"31/07/2026","inicio":"16/12/2025","dias":137,"val":9476.0,"modal":"PRD","nm_fiscal":"000.***.***.90","email_fiscal":"","cpf_fiscal":"000.***.***.90","nm_gestor":"474.***.***.34","email_gestor":"","cpf_gestor":"474.***.***.34","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1276298,25,62100&cs=1iCNRKBcK2NgWnCeMOMl1cq1ItjU","st":"Vigente"},{"num":"32/2021","obj":"AQUISIÇÃO DE VAGA EM LAR DE ACOLHIMENTO PARA IDOSA, PELO PERÍODO DE 12 MESES.","forn":"MARLENE PIRES HAMERSKI - ME","cnpj":"19821387000175","venc":"24/08/2026","inicio":"19/08/2021","dias":161,"val":13200.0,"modal":"Pregão","nm_fiscal":"003.***.***.43","email_fiscal":"","cpf_fiscal":"003.***.***.43","nm_gestor":"","email_gestor":"","cpf_gestor":"","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:822321,21,62100&cs=1C7JW5pNv40k8PFTvMCoz6fAGfNU","st":"Vigente"},{"num":"14/2025","obj":"PREGÃO ELETRÔNICO Nº 09/2025 - REGISTRO DE PREÇOS PARA EVENTUAL AQUISIÇÃO DE MEDICAMENTOS","forn":"nan","cnpj":"nan","venc":"27/08/2026","inicio":"25/08/2025","dias":164,"val":22570.0,"modal":"PCE","nm_fiscal":"982.***.***.91","email_fiscal":"","cpf_fiscal":"982.***.***.91","nm_gestor":"474.***.***.34","email_gestor":"","cpf_gestor":"474.***.***.34","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1236469,25,62100&cs=1VVmz2hMtmOgvd04mzwei5kl93aY","st":"Vigente"},{"num":"13/2025","obj":"PREGÃO ELETRÔNICO Nº 09/2025 - REGISTRO DE PREÇOS PARA EVENTUAL AQUISIÇÃO DE MEDICAMENTOS","forn":"nan","cnpj":"nan","venc":"27/08/2026","inicio":"27/08/2025","dias":164,"val":4563.0,"modal":"PCE","nm_fiscal":"982.***.***.91","email_fiscal":"","cpf_fiscal":"982.***.***.91","nm_gestor":"474.***.***.34","email_gestor":"","cpf_gestor":"474.***.***.34","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1236470,25,62100&cs=1H2_V-WTiN6MAgkLlVbNVBS_CWZ0","st":"Vigente"},{"num":"18/2025","obj":"PREGÃO ELETRÔNICO Nº 09/2025 - REGISTRO DE PREÇOS PARA EVENTUAL AQUISIÇÃO DE MEDICAMENTOS","forn":"nan","cnpj":"nan","venc":"28/08/2026","inicio":"28/08/2025","dias":165,"val":20491.5,"modal":"PCE","nm_fiscal":"982.***.***.91","email_fiscal":"","cpf_fiscal":"982.***.***.91","nm_gestor":"474.***.***.34","email_gestor":"","cpf_gestor":"474.***.***.34","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1236473,25,62100&cs=1LN4Iu4r82KOgOMOA2rXEVRf0Ycc","st":"Vigente"},{"num":"20/2025","obj":"PREGÃO ELETRÔNICO Nº 09/2025 - REGISTRO DE PREÇOS PARA EVENTUAL AQUISIÇÃO DE MEDICAMENTOS","forn":"nan","cnpj":"nan","venc":"28/08/2026","inicio":"25/08/2025","dias":165,"val":82517.0,"modal":"PCE","nm_fiscal":"982.***.***.91","email_fiscal":"","cpf_fiscal":"982.***.***.91","nm_gestor":"474.***.***.34","email_gestor":"","cpf_gestor":"474.***.***.34","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1238598,25,62100&cs=18jV9ol9ECuTGp1q_kHtdU9FC2QM","st":"Vigente"},{"num":"19/2025","obj":"PREGÃO ELETRÔNICO Nº 09/2025 - REGISTRO DE PREÇOS PARA EVENTUAL AQUISIÇÃO DE MEDICAMENTOS","forn":"nan","cnpj":"nan","venc":"28/08/2026","inicio":"28/08/2025","dias":165,"val":7877.8,"modal":"PCE","nm_fiscal":"982.***.***.91","email_fiscal":"","cpf_fiscal":"982.***.***.91","nm_gestor":"474.***.***.34","email_gestor":"","cpf_gestor":"474.***.***.34","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1236471,25,62100&cs=1rg6P8MiFlzZ2b1slytTpRoh_7Pg","st":"Vigente"},{"num":"15/2025","obj":"PREGÃO ELETRÔNICO Nº 09/2025 - REGISTRO DE PREÇOS PARA EVENTUAL AQUISIÇÃO DE MEDICAMENTOS","forn":"nan","cnpj":"nan","venc":"28/08/2026","inicio":"25/08/2025","dias":165,"val":5280.0,"modal":"PCE","nm_fiscal":"982.***.***.91","email_fiscal":"","cpf_fiscal":"982.***.***.91","nm_gestor":"474.***.***.34","email_gestor":"","cpf_gestor":"474.***.***.34","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1236472,25,62100&cs=1zNYND2Yk9sPgfgmGV2byQP3qUzY","st":"Vigente"},{"num":"21/2025","obj":"PREGÃO ELETRÔNICO Nº 09/2025 - REGISTRO DE PREÇOS PARA EVENTUAL AQUISIÇÃO DE MEDICAMENTOS","forn":"nan","cnpj":"nan","venc":"28/08/2026","inicio":"25/08/2025","dias":165,"val":10667.2,"modal":"PCE","nm_fiscal":"982.***.***.91","email_fiscal":"","cpf_fiscal":"982.***.***.91","nm_gestor":"474.***.***.34","email_gestor":"","cpf_gestor":"474.***.***.34","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1238600,25,62100&cs=10qfuE90V-kW0-pRnxi8To2WBogw","st":"Vigente"},{"num":"16/2025","obj":"PREGÃO ELETRÔNICO Nº 09/2025 - REGISTRO DE PREÇOS PARA EVENTUAL AQUISIÇÃO DE MEDICAMENTOS","forn":"nan","cnpj":"nan","venc":"28/08/2026","inicio":"25/08/2025","dias":165,"val":82939.1,"modal":"PCE","nm_fiscal":"982.***.***.91","email_fiscal":"","cpf_fiscal":"982.***.***.91","nm_gestor":"474.***.***.34","email_gestor":"","cpf_gestor":"474.***.***.34","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1238599,25,62100&cs=1qJH8WMCj90ldNsygulX8L5LlV8U","st":"Vigente"},{"num":"17/2025","obj":"PREGÃO ELETRÔNICO Nº 09/2025 - REGISTRO DE PREÇOS PARA EVENTUAL AQUISIÇÃO DE MEDICAMENTOS","forn":"nan","cnpj":"nan","venc":"28/08/2026","inicio":"25/08/2025","dias":165,"val":92040.0,"modal":"PCE","nm_fiscal":"982.***.***.91","email_fiscal":"","cpf_fiscal":"982.***.***.91","nm_gestor":"474.***.***.34","email_gestor":"","cpf_gestor":"474.***.***.34","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1238601,25,62100&cs=13wxzg-Ywo8ga2s_sMQAtgdcYo-c","st":"Vigente"},{"num":"84/2025","obj":"Inexigibilidade de Licitação nº 26/2025 - Aquisição de vaga em lar de acolhimento - Residencial Rena","forn":"CLINICA RENASCER LTDA","cnpj":"40378422000110","venc":"04/09/2026","inicio":"04/09/2025","dias":172,"val":47784.0,"modal":"Pregão","nm_fiscal":"005.***.***.92","email_fiscal":"","cpf_fiscal":"005.***.***.92","nm_gestor":"474.***.***.34","email_gestor":"","cpf_gestor":"474.***.***.34","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1241618,25,62100&cs=1s-9TgjFS4TqSteUbaMgis70f0TY","st":"Vigente"},{"num":"85/2025","obj":"Dispensa de Licitação nº 31/2025 - Contratação de Empresa para realização de Perícias Médicas em Ser","forn":"MASTERPLAN LTDA - EPP","cnpj":"10366026000101","venc":"05/09/2026","inicio":"05/09/2025","dias":173,"val":25450.0,"modal":"PRD","nm_fiscal":"018.***.***.99","email_fiscal":"","cpf_fiscal":"018.***.***.99","nm_gestor":"031.***.***.79","email_gestor":"","cpf_gestor":"031.***.***.79","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1241619,25,62100&cs=1ffLYOoesPCv5dy_Lmz5jJeYWYD0","st":"Vigente"},{"num":"23/2024","obj":"REGISTRO DE PREÇOS PARA EVENTUAL AQUISIÇÃO DE PAPEL FOLHA A4.","forn":"nan","cnpj":"nan","venc":"06/09/2026","inicio":"06/09/2024","dias":174,"val":76000.0,"modal":"PCE","nm_fiscal":"025.***.***.22","email_fiscal":"","cpf_fiscal":"025.***.***.22","nm_gestor":"031.***.***.79","email_gestor":"","cpf_gestor":"031.***.***.79","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1129351,25,62100&cs=13AZj0n7YoYNR-Uq9rFS4RCH-jmI","st":"Vigente"},{"num":"2/2021","obj":"CHAMAMENTO PÚBLICO PARA CREDENCIAMENTO DE PESSOA(S) JURÍDICA(S) VISANDO A REALIZAÇÃO DE EXAMES LABOR","forn":"LABORATÓRIO DE ANÁLISES CLÍNICAS BENEDETTI LTDA - ME","cnpj":"10896358000106","venc":"12/09/2026","inicio":"13/09/2021","dias":180,"val":505131.72,"modal":"Chamamento","nm_fiscal":"979.***.***.72","email_fiscal":"","cpf_fiscal":"979.***.***.72","nm_gestor":"","email_gestor":"","cpf_gestor":"","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:826078,21,62100&cs=1f23t-bN_AsDCBO7Mu9mbiHjzzgE","st":"Vigente"},{"num":"22/2025","obj":"PREGÃO ELETRÔNICO Nº 15/2025 - CONTRATAÇÃO DE EMPRESA ESPECIALIZADA VISANDO A LOCAÇÃO DE ESCAVADEIRA","forn":"nan","cnpj":"nan","venc":"18/09/2026","inicio":"18/09/2025","dias":186,"val":159000.0,"modal":"PCE","nm_fiscal":"003.***.***.20","email_fiscal":"","cpf_fiscal":"003.***.***.20","nm_gestor":"006.***.***.02","email_gestor":"","cpf_gestor":"006.***.***.02","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1246609,25,62100&cs=1tkB00f9aNSIFlGQ5pjiZeDzv3hQ","st":"Vigente"},{"num":"1/2022","obj":"CHAMAMENTO PÚBLICO PARA CREDENCIAMENTO DE INSTITUIÇÕES FINANCEIRAS E/OU CREDITÍCIAS QUE TENHAM INTER","forn":"COOPERATIVA DE CREDITO, POUPANCA E INVESTIMENTO UNIAO - SICREDI UNIAO RS/ES","cnpj":"88894548000173","venc":"18/09/2026","inicio":"16/09/2022","dias":186,"val":15000.0,"modal":"Chamamento","nm_fiscal":"029.***.***.21","email_fiscal":"","cpf_fiscal":"029.***.***.21","nm_gestor":"","email_gestor":"","cpf_gestor":"","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:933742,21,62100&cs=1RtfS_y1Vq-pHULx4enBGBIOKVnw","st":"Vigente"},{"num":"23/2025","obj":"PREGÃO ELETRÔNICO Nº 14/2025 - REGISTRO DE PREÇOS PARA EVENTUAL AQUISIÇÃO DE CBUQ - CONCRETO BETUMIN","forn":"nan","cnpj":"nan","venc":"19/09/2026","inicio":"19/09/2025","dias":187,"val":1995000.0,"modal":"PCE","nm_fiscal":"024.***.***.07","email_fiscal":"","cpf_fiscal":"024.***.***.07","nm_gestor":"006.***.***.02","email_gestor":"","cpf_gestor":"006.***.***.02","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1246610,25,62100&cs=1AW9tiS1TMkwAgu1tmveXy8pk0ME","st":"Vigente"},{"num":"65/2024","obj":"CONTRATAÇÃO DE EMPRESA(S) SEGURADORA(S) PARA COBERTURA DE SEGURO VEICULAR E DE PASSAGEIROS, VISANDO ","forn":"GENTE SEGURADORA S.A.","cnpj":"90180605000102","venc":"28/09/2026","inicio":"18/09/2024","dias":196,"val":25472.0,"modal":"PCE","nm_fiscal":"712.***.***.49","email_fiscal":"","cpf_fiscal":"712.***.***.49","nm_gestor":"031.***.***.79","email_gestor":"","cpf_gestor":"031.***.***.79","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1135038,25,62100&cs=1BU9LvG-0AukMRU6nXdYTd4B6z9k","st":"Vigente"},{"num":"26/2025","obj":"PREGÃO ELETRÔNICO Nº 17/2025 - REGISTRO DE PREÇOS PARA EVENTUAL E FUTURA AQUISIÇÃO DE APARELHOS DE A","forn":"nan","cnpj":"nan","venc":"15/10/2026","inicio":"15/10/2025","dias":213,"val":43340.0,"modal":"PCE","nm_fiscal":"018.***.***.57","email_fiscal":"","cpf_fiscal":"018.***.***.57","nm_gestor":"474.***.***.34","email_gestor":"","cpf_gestor":"474.***.***.34","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1256988,25,62100&cs=1f7EEiH5PT0qCXBna4yv2HcodP00","st":"Vigente"},{"num":"25/2025","obj":"PREGÃO ELETRÔNICO Nº 17/2025 - REGISTRO DE PREÇOS PARA EVENTUAL E FUTURA AQUISIÇÃO DE APARELHOS DE A","forn":"nan","cnpj":"nan","venc":"15/10/2026","inicio":"15/10/2025","dias":213,"val":67319.85,"modal":"PCE","nm_fiscal":"018.***.***.57","email_fiscal":"","cpf_fiscal":"018.***.***.57","nm_gestor":"474.***.***.34","email_gestor":"","cpf_gestor":"474.***.***.34","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1256989,25,62100&cs=13WgnMiI_P0VR9SEEREUZOkBjXAY","st":"Vigente"},{"num":"24/2025","obj":"PREGÃO ELETRÔNICO Nº 17/2025 - REGISTRO DE PREÇOS PARA EVENTUAL E FUTURA AQUISIÇÃO DE APARELHOS DE A","forn":"nan","cnpj":"nan","venc":"15/10/2026","inicio":"15/10/2025","dias":213,"val":112760.0,"modal":"PCE","nm_fiscal":"018.***.***.57","email_fiscal":"","cpf_fiscal":"018.***.***.57","nm_gestor":"474.***.***.34","email_gestor":"","cpf_gestor":"474.***.***.34","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1256990,25,62100&cs=1iZSzZpFFC7QCaImFLL_11YhEBQM","st":"Vigente"},{"num":"81/2024","obj":"Contratação de empresa para prestar consultoria em engenharia para elaboração de projeto de iluminaç","forn":"KOLF SERVICOS DE ENGENHARIA LTDA","cnpj":"07555412000137","venc":"21/10/2026","inicio":"02/12/2024","dias":219,"val":19200.0,"modal":"PRD","nm_fiscal":"028.***.***.30","email_fiscal":"","cpf_fiscal":"028.***.***.30","nm_gestor":"025.***.***.22","email_gestor":"","cpf_gestor":"025.***.***.22","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1155076,25,62100&cs=1JDvXah5DxAS0qbZVPtR9X_i3fL4","st":"Vigente"},{"num":"98/2025","obj":"Inexigibilidade de Licitação nº 31/2025 - Contratação da Empresa SSOLT INOVAÇÕES TECNOLÓGICAS para p","forn":"SSOLT INOVAÇÕES TECNOLÓGICAS LTDA","cnpj":"16479133000122","venc":"23/10/2026","inicio":"23/10/2025","dias":221,"val":30600.0,"modal":"Pregão","nm_fiscal":"007.***.***.00","email_fiscal":"","cpf_fiscal":"007.***.***.00","nm_gestor":"474.***.***.34","email_gestor":"","cpf_gestor":"474.***.***.34","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1256986,25,62100&cs=1qEkPGrKEbAxls6ZVIbnJXAXVDSA","st":"Vigente"},{"num":"69/2021","obj":"CONTRATAÇÃO DE EMPRESA ESPECIALIZADA PARA PRESTAÇÃO DE SERVIÇO DE COLETA, TRANSPORTE, TRATAMENTO E D","forn":"ECOLOG SERVICOS AMBIENTAIS LTDA","cnpj":"09360241000116","venc":"04/11/2026","inicio":"03/11/2021","dias":233,"val":2566.8,"modal":"PRD","nm_fiscal":"038.***.***.50","email_fiscal":"","cpf_fiscal":"038.***.***.50","nm_gestor":"","email_gestor":"","cpf_gestor":"","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:844726,21,62100&cs=1uSVjpkWFwpk7xzcfNHvTN86GpQU","st":"Vigente"},{"num":"102/2025","obj":"PREGÃO ELETRÔNICO Nº 12/2025 - CONTRATAÇÃO DE EMPRESA ESPECIALIZADA PARA ATIVIDADES DE COLETA, TRIAG","forn":"NR9 ENGENHARIA AMBIENTAL LTDA","cnpj":"21066617000180","venc":"05/11/2026","inicio":"05/11/2025","dias":234,"val":626976.6,"modal":"PCE","nm_fiscal":"005.***.***.03","email_fiscal":"","cpf_fiscal":"005.***.***.03","nm_gestor":"006.***.***.02","email_gestor":"","cpf_gestor":"006.***.***.02","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1262886,25,62100&cs=10jLioezbaSYbe01YaPCSZPytjBs","st":"Vigente"},{"num":"107/2025","obj":"Dispensa de Licitação nº 42/2025 - Contratação de Empresa para administração, gerenciamento, emissão","forn":"BANRISUL SOLUCOES EM PAGAMENTOS S.A. - INSTITUICAO DE PAGAMENTO","cnpj":"92934215000106","venc":"10/11/2026","inicio":"10/11/2025","dias":239,"val":0.0,"modal":"PRD","nm_fiscal":"018.***.***.99","email_fiscal":"","cpf_fiscal":"018.***.***.99","nm_gestor":"031.***.***.79","email_gestor":"","cpf_gestor":"031.***.***.79","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1266456,25,62100&cs=1ovkDBCcNEudEAJMxJSXyT3Ip8D4","st":"Vigente"},{"num":"114/2025","obj":"Dispensa de Licitação nº 43/2025 - Contratação de Empresa especializada para prestação de serviços d","forn":"MAV TECNOLOGIA LTDA","cnpj":"26181608000153","venc":"01/12/2026","inicio":"01/12/2025","dias":260,"val":3394.0,"modal":"PRD","nm_fiscal":"007.***.***.00","email_fiscal":"","cpf_fiscal":"007.***.***.00","nm_gestor":"031.***.***.79","email_gestor":"","cpf_gestor":"031.***.***.79","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1271077,25,62100&cs=1i7dIZ8Mlp9KN9jzpsJY-foJjvTk","st":"Vigente"},{"num":"27/2025","obj":"PREGÃO ELETRÔNICO Nº 20/2025 - REGISTRO DE PREÇOS PARA EVENTUAL E FUTURA AQUISIÇÃO DE ELETRODOMÉSTIC","forn":"nan","cnpj":"nan","venc":"04/12/2026","inicio":"04/12/2025","dias":263,"val":675.0,"modal":"PCE","nm_fiscal":"753.***.***.49","email_fiscal":"","cpf_fiscal":"753.***.***.49","nm_gestor":"587.***.***.49","email_gestor":"","cpf_gestor":"587.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1272832,25,62100&cs=1PdUEA30LHwxSqd0MuGR7E1kKgr8","st":"Vigente"},{"num":"28/2025","obj":"PREGÃO ELETRÔNICO Nº 20/2025 - REGISTRO DE PREÇOS PARA EVENTUAL E FUTURA AQUISIÇÃO DE ELETRODOMÉSTIC","forn":"nan","cnpj":"nan","venc":"04/12/2026","inicio":"04/12/2025","dias":263,"val":30386.0,"modal":"PCE","nm_fiscal":"753.***.***.49","email_fiscal":"","cpf_fiscal":"753.***.***.49","nm_gestor":"587.***.***.49","email_gestor":"","cpf_gestor":"587.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1272713,25,62100&cs=1B-eU_aC-cGC7tZep9TXvXQ4VU2Q","st":"Vigente"},{"num":"30/2025","obj":"PREGÃO ELETRÔNICO Nº 20/2025 - REGISTRO DE PREÇOS PARA EVENTUAL E FUTURA AQUISIÇÃO DE ELETRODOMÉSTIC","forn":"nan","cnpj":"nan","venc":"04/12/2026","inicio":"04/12/2025","dias":263,"val":5900.0,"modal":"PCE","nm_fiscal":"753.***.***.49","email_fiscal":"","cpf_fiscal":"753.***.***.49","nm_gestor":"587.***.***.49","email_gestor":"","cpf_gestor":"587.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1272830,25,62100&cs=1ybkUk56uJnDSid2Vph_Ii3UVQfM","st":"Vigente"},{"num":"29/2025","obj":"PREGÃO ELETRÔNICO Nº 20/2025 - REGISTRO DE PREÇOS PARA EVENTUAL E FUTURA AQUISIÇÃO DE ELETRODOMÉSTIC","forn":"nan","cnpj":"nan","venc":"05/12/2026","inicio":"05/12/2025","dias":264,"val":2950.0,"modal":"PCE","nm_fiscal":"753.***.***.49","email_fiscal":"","cpf_fiscal":"753.***.***.49","nm_gestor":"587.***.***.49","email_gestor":"","cpf_gestor":"587.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1272714,25,62100&cs=16nS64hQG4PduHl6WImdmzp0u6a8","st":"Vigente"},{"num":"31/2025","obj":"PREGÃO ELETRÔNICO Nº 20/2025 - REGISTRO DE PREÇOS PARA EVENTUAL E FUTURA AQUISIÇÃO DE ELETRODOMÉSTIC","forn":"nan","cnpj":"nan","venc":"05/12/2026","inicio":"05/12/2025","dias":264,"val":1793.27,"modal":"PCE","nm_fiscal":"753.***.***.49","email_fiscal":"","cpf_fiscal":"753.***.***.49","nm_gestor":"587.***.***.49","email_gestor":"","cpf_gestor":"587.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1272831,25,62100&cs=1pGC3tqrrxSZCmbNYoj4hRZJZE3c","st":"Vigente"},{"num":"192/2023","obj":"CONTRATAÇÃO DE VAGA DE ACOLHIMENTO DE MENOR DE INICIAS J.L.M.","forn":"LAR BOM PASTOR DE IVAGACI E ESCOLA PROFISSIONAL","cnpj":"87685616000121","venc":"08/12/2026","inicio":"06/12/2023","dias":267,"val":35400.0,"modal":"Pregão","nm_fiscal":"003.***.***.43","email_fiscal":"","cpf_fiscal":"003.***.***.43","nm_gestor":"","email_gestor":"","cpf_gestor":"","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1044969,25,62100&cs=1XTm8j0HtgfLUXA1jjwVBxi41bk4","st":"Vigente"},{"num":"34/2025","obj":"PREGÃO ELETRÔNICO Nº 21/2025 - REGISTRO DE PREÇOS PARA EVENTUAL E FUTURA AQUISIÇÃO DE EQUIPAMENTOS, ","forn":"nan","cnpj":"nan","venc":"10/12/2026","inicio":"10/12/2025","dias":269,"val":3184.0,"modal":"PCE","nm_fiscal":"035.***.***.16","email_fiscal":"","cpf_fiscal":"035.***.***.16","nm_gestor":"587.***.***.49","email_gestor":"","cpf_gestor":"587.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1275308,25,62100&cs=1IZuKjfVGUQuDt9tx41UvCpgr3Y4","st":"Vigente"},{"num":"33/2025","obj":"PREGÃO ELETRÔNICO Nº 21/2025 - REGISTRO DE PREÇOS PARA EVENTUAL E FUTURA AQUISIÇÃO DE EQUIPAMENTOS, ","forn":"nan","cnpj":"nan","venc":"10/12/2026","inicio":"10/12/2025","dias":269,"val":520.0,"modal":"PCE","nm_fiscal":"035.***.***.16","email_fiscal":"","cpf_fiscal":"035.***.***.16","nm_gestor":"587.***.***.49","email_gestor":"","cpf_gestor":"587.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1276308,25,62100&cs=1Aqh_ubSuRxRTFXevR0RJDtKeJHw","st":"Vigente"},{"num":"32/2025","obj":"PREGÃO ELETRÔNICO Nº 21/2025 - REGISTRO DE PREÇOS PARA EVENTUAL E FUTURA AQUISIÇÃO DE EQUIPAMENTOS, ","forn":"nan","cnpj":"nan","venc":"10/12/2026","inicio":"10/12/2025","dias":269,"val":16420.0,"modal":"PCE","nm_fiscal":"","email_fiscal":"","cpf_fiscal":"","nm_gestor":"587.***.***.49","email_gestor":"","cpf_gestor":"587.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1275309,25,62100&cs=180PvRQj_ouk4zhTyjj2g-jHvSYs","st":"Vigente"},{"num":"42/2025","obj":"PREGÃO ELETRÔNICO Nº 21/2025 - REGISTRO DE PREÇOS PARA EVENTUAL E FUTURA AQUISIÇÃO DE EQUIPAMENTOS, ","forn":"nan","cnpj":"nan","venc":"10/12/2026","inicio":"10/12/2025","dias":269,"val":5183.1,"modal":"PCE","nm_fiscal":"035.***.***.16","email_fiscal":"","cpf_fiscal":"035.***.***.16","nm_gestor":"587.***.***.49","email_gestor":"","cpf_gestor":"587.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1275315,25,62100&cs=1QNvljZ6-68qExurS1zBrZ8gWODg","st":"Vigente"},{"num":"39/2025","obj":"PREGÃO ELETRÔNICO Nº 21/2025 - REGISTRO DE PREÇOS PARA EVENTUAL E FUTURA AQUISIÇÃO DE EQUIPAMENTOS, ","forn":"nan","cnpj":"nan","venc":"10/12/2026","inicio":"10/12/2025","dias":269,"val":4760.0,"modal":"PCE","nm_fiscal":"035.***.***.16","email_fiscal":"","cpf_fiscal":"035.***.***.16","nm_gestor":"587.***.***.49","email_gestor":"","cpf_gestor":"587.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1275314,25,62100&cs=176oycNy1WdPd1Ws9fmNy_D_8TKc","st":"Vigente"},{"num":"36/2025","obj":"PREGÃO ELETRÔNICO Nº 21/2025 - REGISTRO DE PREÇOS PARA EVENTUAL E FUTURA AQUISIÇÃO DE EQUIPAMENTOS, ","forn":"nan","cnpj":"nan","venc":"10/12/2026","inicio":"10/12/2025","dias":269,"val":4081.2,"modal":"PCE","nm_fiscal":"035.***.***.16","email_fiscal":"","cpf_fiscal":"035.***.***.16","nm_gestor":"587.***.***.49","email_gestor":"","cpf_gestor":"587.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1275311,25,62100&cs=1cRbPej4D6OoTtCMNOldvpM1Ebdw","st":"Vigente"},{"num":"35/2025","obj":"PREGÃO ELETRÔNICO Nº 21/2025 - REGISTRO DE PREÇOS PARA EVENTUAL E FUTURA AQUISIÇÃO DE EQUIPAMENTOS, ","forn":"nan","cnpj":"nan","venc":"10/12/2026","inicio":"10/12/2025","dias":269,"val":5400.0,"modal":"PCE","nm_fiscal":"035.***.***.16","email_fiscal":"","cpf_fiscal":"035.***.***.16","nm_gestor":"587.***.***.49","email_gestor":"","cpf_gestor":"587.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1275310,25,62100&cs=1CWpBcTw0zIH40WS6ZWLBHtENtUA","st":"Vigente"},{"num":"37/2025","obj":"PREGÃO ELETRÔNICO Nº 21/2025 - REGISTRO DE PREÇOS PARA EVENTUAL E FUTURA AQUISIÇÃO DE EQUIPAMENTOS, ","forn":"nan","cnpj":"nan","venc":"10/12/2026","inicio":"10/12/2025","dias":269,"val":3400.0,"modal":"PCE","nm_fiscal":"035.***.***.16","email_fiscal":"","cpf_fiscal":"035.***.***.16","nm_gestor":"587.***.***.49","email_gestor":"","cpf_gestor":"587.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1275312,25,62100&cs=1if-Zdv6qranxSBnHd6Avlf5UDuw","st":"Vigente"},{"num":"38/2025","obj":"PREGÃO ELETRÔNICO Nº 21/2025 - REGISTRO DE PREÇOS PARA EVENTUAL E FUTURA AQUISIÇÃO DE EQUIPAMENTOS, ","forn":"nan","cnpj":"nan","venc":"10/12/2026","inicio":"10/12/2025","dias":269,"val":4848.51,"modal":"PCE","nm_fiscal":"035.***.***.16","email_fiscal":"","cpf_fiscal":"035.***.***.16","nm_gestor":"587.***.***.49","email_gestor":"","cpf_gestor":"587.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1275313,25,62100&cs=1C8fFL3xdEarkP0phXY-mYLrnPcU","st":"Vigente"},{"num":"40/2025","obj":"PREGÃO ELETRÔNICO Nº 21/2025 - REGISTRO DE PREÇOS PARA EVENTUAL E FUTURA AQUISIÇÃO DE EQUIPAMENTOS, ","forn":"nan","cnpj":"nan","venc":"10/12/2026","inicio":"10/12/2025","dias":269,"val":7950.0,"modal":"PCE","nm_fiscal":"035.***.***.16","email_fiscal":"","cpf_fiscal":"035.***.***.16","nm_gestor":"587.***.***.49","email_gestor":"","cpf_gestor":"587.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1276310,25,62100&cs=17d6R4TmqNPLmw01VX38oudUwwn8","st":"Vigente"},{"num":"41/2025","obj":"PREGÃO ELETRÔNICO Nº 21/2025 - REGISTRO DE PREÇOS PARA EVENTUAL E FUTURA AQUISIÇÃO DE EQUIPAMENTOS, ","forn":"nan","cnpj":"nan","venc":"10/12/2026","inicio":"10/12/2025","dias":269,"val":5803.85,"modal":"PCE","nm_fiscal":"035.***.***.16","email_fiscal":"","cpf_fiscal":"035.***.***.16","nm_gestor":"587.***.***.49","email_gestor":"","cpf_gestor":"587.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1276299,25,62100&cs=1mpKgXVls4CvZX1Y26LMVyUU28qQ","st":"Vigente"},{"num":"116/2025","obj":"Dispensa de Licitação nº 46/2025 - Contratação de empresa para produzir informativo institucional da","forn":"PEDRO HENRIQUE DE SOUZA","cnpj":"43954594000182","venc":"11/12/2026","inicio":"11/12/2025","dias":270,"val":11040.0,"modal":"PRD","nm_fiscal":"045.***.***.41","email_fiscal":"","cpf_fiscal":"045.***.***.41","nm_gestor":"031.***.***.79","email_gestor":"","cpf_gestor":"031.***.***.79","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1275307,25,62100&cs=1x7B9W1xvmZpx5zJayzOJvNuBwAs","st":"Vigente"},{"num":"48/2025","obj":"PREGÃO ELETRÔNICO Nº 18/2025 - REGISTRO DE PREÇOS PARA FUTURA E EVENTUAL AQUISIÇÃO DE MATERIAL DE EX","forn":"nan","cnpj":"nan","venc":"12/12/2026","inicio":"12/12/2025","dias":271,"val":3055.0,"modal":"PCE","nm_fiscal":"636.***.***.04","email_fiscal":"","cpf_fiscal":"636.***.***.04","nm_gestor":"587.***.***.49","email_gestor":"","cpf_gestor":"587.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1276303,25,62100&cs=1GwLNDvdvE10YQxHofPY2Rmd2wvU","st":"Vigente"},{"num":"49/2025","obj":"PREGÃO ELETRÔNICO Nº 18/2025 - REGISTRO DE PREÇOS PARA FUTURA E EVENTUAL AQUISIÇÃO DE MATERIAL DE EX","forn":"nan","cnpj":"nan","venc":"12/12/2026","inicio":"12/12/2025","dias":271,"val":7959.82,"modal":"PCE","nm_fiscal":"636.***.***.04","email_fiscal":"","cpf_fiscal":"636.***.***.04","nm_gestor":"587.***.***.49","email_gestor":"","cpf_gestor":"587.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1276304,25,62100&cs=1IL9OZ6wlerZdwa9pexITNyE8QZs","st":"Vigente"},{"num":"43/2025","obj":"PREGÃO ELETRÔNICO Nº 18/2025 - REGISTRO DE PREÇOS PARA FUTURA E EVENTUAL AQUISIÇÃO DE MATERIAL DE EX","forn":"nan","cnpj":"nan","venc":"12/12/2026","inicio":"12/12/2025","dias":271,"val":950.0,"modal":"PCE","nm_fiscal":"636.***.***.04","email_fiscal":"","cpf_fiscal":"636.***.***.04","nm_gestor":"587.***.***.49","email_gestor":"","cpf_gestor":"587.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1276300,25,62100&cs=1juD7u4FPRMm9HXEhLl0OnVtU6EM","st":"Vigente"},{"num":"53/2025","obj":"PREGÃO ELETRÔNICO Nº 18/2025 - REGISTRO DE PREÇOS PARA FUTURA E EVENTUAL AQUISIÇÃO DE MATERIAL DE EX","forn":"nan","cnpj":"nan","venc":"12/12/2026","inicio":"12/12/2025","dias":271,"val":12470.35,"modal":"PCE","nm_fiscal":"636.***.***.04","email_fiscal":"","cpf_fiscal":"636.***.***.04","nm_gestor":"587.***.***.49","email_gestor":"","cpf_gestor":"587.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1276307,25,62100&cs=1Ck7bpK5Dbdp9G6vOnCGzMWQeg5Y","st":"Vigente"},{"num":"44/2025","obj":"PREGÃO ELETRÔNICO Nº 18/2025 - REGISTRO DE PREÇOS PARA FUTURA E EVENTUAL AQUISIÇÃO DE MATERIAL DE EX","forn":"nan","cnpj":"nan","venc":"12/12/2026","inicio":"12/12/2025","dias":271,"val":10832.2,"modal":"PCE","nm_fiscal":"636.***.***.04","email_fiscal":"","cpf_fiscal":"636.***.***.04","nm_gestor":"587.***.***.49","email_gestor":"","cpf_gestor":"587.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1276309,25,62100&cs=1q_Z4WcafvqjPiVhYiQY6Iafrf4A","st":"Vigente"},{"num":"45/2025","obj":"PREGÃO ELETRÔNICO Nº 18/2025 - REGISTRO DE PREÇOS PARA FUTURA E EVENTUAL AQUISIÇÃO DE MATERIAL DE EX","forn":"nan","cnpj":"nan","venc":"12/12/2026","inicio":"12/12/2025","dias":271,"val":8545.18,"modal":"PCE","nm_fiscal":"636.***.***.04","email_fiscal":"","cpf_fiscal":"636.***.***.04","nm_gestor":"587.***.***.49","email_gestor":"","cpf_gestor":"587.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1276301,25,62100&cs=1i826cxVTAD1xVAlmDsGmDpwBATU","st":"Vigente"},{"num":"51/2025","obj":"PREGÃO ELETRÔNICO Nº 18/2025 - REGISTRO DE PREÇOS PARA FUTURA E EVENTUAL AQUISIÇÃO DE MATERIAL DE EX","forn":"nan","cnpj":"nan","venc":"12/12/2026","inicio":"12/12/2025","dias":271,"val":8341.45,"modal":"PCE","nm_fiscal":"636.***.***.04","email_fiscal":"","cpf_fiscal":"636.***.***.04","nm_gestor":"587.***.***.49","email_gestor":"","cpf_gestor":"587.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1276305,25,62100&cs=1XQDPtpsEx5d-SK-55gmHxWlP8vE","st":"Vigente"},{"num":"47/2025","obj":"PREGÃO ELETRÔNICO Nº 18/2025 - REGISTRO DE PREÇOS PARA FUTURA E EVENTUAL AQUISIÇÃO DE MATERIAL DE EX","forn":"nan","cnpj":"nan","venc":"12/12/2026","inicio":"12/12/2025","dias":271,"val":14245.85,"modal":"PCE","nm_fiscal":"636.***.***.04","email_fiscal":"","cpf_fiscal":"636.***.***.04","nm_gestor":"587.***.***.49","email_gestor":"","cpf_gestor":"587.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1276302,25,62100&cs=1gvvBbEEKVcxRyjgytH7BV5ZkrII","st":"Vigente"},{"num":"50/2025","obj":"PREGÃO ELETRÔNICO Nº 18/2025 - REGISTRO DE PREÇOS PARA FUTURA E EVENTUAL AQUISIÇÃO DE MATERIAL DE EX","forn":"nan","cnpj":"nan","venc":"12/12/2026","inicio":"12/12/2025","dias":271,"val":4985.25,"modal":"PCE","nm_fiscal":"636.***.***.04","email_fiscal":"","cpf_fiscal":"636.***.***.04","nm_gestor":"587.***.***.49","email_gestor":"","cpf_gestor":"587.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1277429,25,62100&cs=1S37AUsRJrXd6CDO2jUwoxDeploY","st":"Vigente"},{"num":"46/2025","obj":"PREGÃO ELETRÔNICO Nº 18/2025 - REGISTRO DE PREÇOS PARA FUTURA E EVENTUAL AQUISIÇÃO DE MATERIAL DE EX","forn":"nan","cnpj":"nan","venc":"12/12/2026","inicio":"12/12/2025","dias":271,"val":1761.0,"modal":"PCE","nm_fiscal":"636.***.***.04","email_fiscal":"","cpf_fiscal":"636.***.***.04","nm_gestor":"587.***.***.49","email_gestor":"","cpf_gestor":"587.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1276311,25,62100&cs=1WN8B98HukWyU37EnjmXziScimV8","st":"Vigente"},{"num":"52/2025","obj":"PREGÃO ELETRÔNICO Nº 18/2025 - REGISTRO DE PREÇOS PARA FUTURA E EVENTUAL AQUISIÇÃO DE MATERIAL DE EX","forn":"nan","cnpj":"nan","venc":"12/12/2026","inicio":"12/12/2025","dias":271,"val":7346.7,"modal":"PCE","nm_fiscal":"636.***.***.04","email_fiscal":"","cpf_fiscal":"636.***.***.04","nm_gestor":"587.***.***.49","email_gestor":"","cpf_gestor":"587.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1276306,25,62100&cs=1JrDoc5fH1p2Z4IZ_f0TmGNVSOI0","st":"Vigente"},{"num":"65/2025","obj":"PREGÃO ELETRÔNICO Nº 22/2025 - REGISTRO DE PREÇOS PARA EVENTUAL E FUTURA AQUISIÇÃO DE MATERIAL DE HI","forn":"nan","cnpj":"nan","venc":"22/12/2026","inicio":"22/12/2025","dias":281,"val":4727.09,"modal":"PCE","nm_fiscal":"018.***.***.57","email_fiscal":"","cpf_fiscal":"018.***.***.57","nm_gestor":"587.***.***.49","email_gestor":"","cpf_gestor":"587.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1280297,25,62100&cs=1_Qmixm-d8h9uVfISh7Elz2Mhj-Y","st":"Vigente"},{"num":"67/2025","obj":"PREGÃO ELETRÔNICO Nº 22/2025 - REGISTRO DE PREÇOS PARA EVENTUAL E FUTURA AQUISIÇÃO DE MATERIAL DE HI","forn":"nan","cnpj":"nan","venc":"22/12/2026","inicio":"22/12/2025","dias":281,"val":28357.6,"modal":"PCE","nm_fiscal":"018.***.***.57","email_fiscal":"","cpf_fiscal":"018.***.***.57","nm_gestor":"587.***.***.49","email_gestor":"","cpf_gestor":"587.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1280298,25,62100&cs=1WhtA20csBVlfEDhKOKTfe-r8dEY","st":"Vigente"},{"num":"68/2025","obj":"PREGÃO ELETRÔNICO Nº 22/2025 - REGISTRO DE PREÇOS PARA EVENTUAL E FUTURA AQUISIÇÃO DE MATERIAL DE HI","forn":"nan","cnpj":"nan","venc":"22/12/2026","inicio":"22/12/2025","dias":281,"val":10591.0,"modal":"PCE","nm_fiscal":"018.***.***.57","email_fiscal":"","cpf_fiscal":"018.***.***.57","nm_gestor":"587.***.***.49","email_gestor":"","cpf_gestor":"587.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1282932,25,62100&cs=1r7X8uBN-Yw9C7qPzMw62z_3sMPE","st":"Vigente"},{"num":"64/2025","obj":"PREGÃO ELETRÔNICO Nº 22/2025 - REGISTRO DE PREÇOS PARA EVENTUAL E FUTURA AQUISIÇÃO DE MATERIAL DE HI","forn":"nan","cnpj":"nan","venc":"22/12/2026","inicio":"22/12/2025","dias":281,"val":910.0,"modal":"PCE","nm_fiscal":"018.***.***.57","email_fiscal":"","cpf_fiscal":"018.***.***.57","nm_gestor":"587.***.***.49","email_gestor":"","cpf_gestor":"587.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1282933,25,62100&cs=1elCo9mOCF3p0LOrWWdSTWGGu9QI","st":"Vigente"},{"num":"57/2025","obj":"PREGÃO ELETRÔNICO Nº 22/2025 - REGISTRO DE PREÇOS PARA EVENTUAL E FUTURA AQUISIÇÃO DE MATERIAL DE HI","forn":"nan","cnpj":"nan","venc":"22/12/2026","inicio":"22/12/2025","dias":281,"val":2820.0,"modal":"PCE","nm_fiscal":"018.***.***.57","email_fiscal":"","cpf_fiscal":"018.***.***.57","nm_gestor":"587.***.***.49","email_gestor":"","cpf_gestor":"587.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1282934,25,62100&cs=1lXYoj1vjuSI2tQdaMLYcm1FJt60","st":"Vigente"},{"num":"58/2025","obj":"PREGÃO ELETRÔNICO Nº 22/2025 - REGISTRO DE PREÇOS PARA EVENTUAL E FUTURA AQUISIÇÃO DE MATERIAL DE HI","forn":"nan","cnpj":"nan","venc":"22/12/2026","inicio":"22/12/2025","dias":281,"val":21507.79,"modal":"PCE","nm_fiscal":"018.***.***.57","email_fiscal":"","cpf_fiscal":"018.***.***.57","nm_gestor":"587.***.***.49","email_gestor":"","cpf_gestor":"587.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1282939,25,62100&cs=1AE2XSFI69JwlTt79khoiSwN1gx0","st":"Vigente"},{"num":"62/2025","obj":"PREGÃO ELETRÔNICO Nº 22/2025 - REGISTRO DE PREÇOS PARA EVENTUAL E FUTURA AQUISIÇÃO DE MATERIAL DE HI","forn":"nan","cnpj":"nan","venc":"22/12/2026","inicio":"22/12/2025","dias":281,"val":14842.63,"modal":"PCE","nm_fiscal":"018.***.***.57","email_fiscal":"","cpf_fiscal":"018.***.***.57","nm_gestor":"587.***.***.49","email_gestor":"","cpf_gestor":"587.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1282936,25,62100&cs=1-Y0BatfFQckv0zq_LCCqFLEozzc","st":"Vigente"},{"num":"56/2025","obj":"PREGÃO ELETRÔNICO Nº 22/2025 - REGISTRO DE PREÇOS PARA EVENTUAL E FUTURA AQUISIÇÃO DE MATERIAL DE HI","forn":"nan","cnpj":"nan","venc":"22/12/2026","inicio":"22/12/2025","dias":281,"val":1035.0,"modal":"PCE","nm_fiscal":"018.***.***.57","email_fiscal":"","cpf_fiscal":"018.***.***.57","nm_gestor":"587.***.***.49","email_gestor":"","cpf_gestor":"587.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1282935,25,62100&cs=1yZM_2cZ5DeHugHXRZT9zMJQcLnY","st":"Vigente"},{"num":"63/2025","obj":"PREGÃO ELETRÔNICO Nº 22/2025 - REGISTRO DE PREÇOS PARA EVENTUAL E FUTURA AQUISIÇÃO DE MATERIAL DE HI","forn":"nan","cnpj":"nan","venc":"22/12/2026","inicio":"22/12/2025","dias":281,"val":3590.0,"modal":"PCE","nm_fiscal":"018.***.***.57","email_fiscal":"","cpf_fiscal":"018.***.***.57","nm_gestor":"587.***.***.49","email_gestor":"","cpf_gestor":"587.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1282937,25,62100&cs=1_WTDi1y3MSywj57mJMU2mvpA_YI","st":"Vigente"},{"num":"66/2025","obj":"PREGÃO ELETRÔNICO Nº 22/2025 - REGISTRO DE PREÇOS PARA EVENTUAL E FUTURA AQUISIÇÃO DE MATERIAL DE HI","forn":"nan","cnpj":"nan","venc":"22/12/2026","inicio":"22/12/2025","dias":281,"val":5595.1,"modal":"PCE","nm_fiscal":"018.***.***.57","email_fiscal":"","cpf_fiscal":"018.***.***.57","nm_gestor":"587.***.***.49","email_gestor":"","cpf_gestor":"587.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1282938,25,62100&cs=1Ap8bhgz4ys0coJZqiZjCWjfAU30","st":"Vigente"},{"num":"59/2025","obj":"PREGÃO ELETRÔNICO Nº 22/2025 - REGISTRO DE PREÇOS PARA EVENTUAL E FUTURA AQUISIÇÃO DE MATERIAL DE HI","forn":"nan","cnpj":"nan","venc":"22/12/2026","inicio":"22/12/2025","dias":281,"val":5550.0,"modal":"PCE","nm_fiscal":"018.***.***.57","email_fiscal":"","cpf_fiscal":"018.***.***.57","nm_gestor":"587.***.***.49","email_gestor":"","cpf_gestor":"587.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1280295,25,62100&cs=1mdgpn4iw5_Ho7wsoXqVtyk29MrQ","st":"Vigente"},{"num":"60/2025","obj":"PREGÃO ELETRÔNICO Nº 22/2025 - REGISTRO DE PREÇOS PARA EVENTUAL E FUTURA AQUISIÇÃO DE MATERIAL DE HI","forn":"nan","cnpj":"nan","venc":"22/12/2026","inicio":"22/12/2025","dias":281,"val":1247.5,"modal":"PCE","nm_fiscal":"018.***.***.57","email_fiscal":"","cpf_fiscal":"018.***.***.57","nm_gestor":"587.***.***.49","email_gestor":"","cpf_gestor":"587.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1282931,25,62100&cs=1Hftkw8RZljpdzwg5dZHyaTQuvWw","st":"Vigente"},{"num":"61/2025","obj":"PREGÃO ELETRÔNICO Nº 22/2025 - REGISTRO DE PREÇOS PARA EVENTUAL E FUTURA AQUISIÇÃO DE MATERIAL DE HI","forn":"nan","cnpj":"nan","venc":"22/12/2026","inicio":"22/12/2025","dias":281,"val":32510.09,"modal":"PCE","nm_fiscal":"018.***.***.57","email_fiscal":"","cpf_fiscal":"018.***.***.57","nm_gestor":"587.***.***.49","email_gestor":"","cpf_gestor":"587.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1280296,25,62100&cs=1RI7Qr9TdplYFP4T18ObZI6wy238","st":"Vigente"},{"num":"40/2024","obj":"REGISTRO DE PREÇOS PARA EVENTUAL AQUISIÇÃO DE MATERIAIS DE CONSTRUÇÃO.","forn":"nan","cnpj":"nan","venc":"24/12/2026","inicio":"24/12/2024","dias":283,"val":49984.0,"modal":"PCE","nm_fiscal":"005.***.***.10","email_fiscal":"","cpf_fiscal":"005.***.***.10","nm_gestor":"006.***.***.02","email_gestor":"","cpf_gestor":"006.***.***.02","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1159557,25,62100&cs=1T0X_gjyUCWzLHnHK1b3yXBync-0","st":"Vigente"},{"num":"69/2025","obj":"REGISTRO DE PREÇOS PARA AQUISIÇÃO DE UNIFORMES ESCOLARES.","forn":"nan","cnpj":"nan","venc":"24/12/2026","inicio":"24/12/2025","dias":283,"val":103600.0,"modal":"PCE","nm_fiscal":"636.***.***.04","email_fiscal":"","cpf_fiscal":"636.***.***.04","nm_gestor":"587.***.***.49","email_gestor":"","cpf_gestor":"587.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1280294,25,62100&cs=1yURmhtQlPRcZF9t9t4MhKH6Slok","st":"Vigente"},{"num":"38/2024","obj":"REGISTRO DE PREÇOS PARA EVENTUAL AQUISIÇÃO DE MATERIAIS DE CONSTRUÇÃO.","forn":"nan","cnpj":"nan","venc":"24/12/2026","inicio":"24/12/2024","dias":283,"val":193076.0,"modal":"PCE","nm_fiscal":"005.***.***.10","email_fiscal":"","cpf_fiscal":"005.***.***.10","nm_gestor":"006.***.***.02","email_gestor":"","cpf_gestor":"006.***.***.02","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1159555,25,62100&cs=1TCd76zH89tN_zn6u22BnbKKziYg","st":"Vigente"},{"num":"39/2024","obj":"REGISTRO DE PREÇOS PARA EVENTUAL AQUISIÇÃO DE MATERIAIS DE CONSTRUÇÃO.","forn":"nan","cnpj":"nan","venc":"24/12/2026","inicio":"24/12/2024","dias":283,"val":3892.0,"modal":"PCE","nm_fiscal":"005.***.***.10","email_fiscal":"","cpf_fiscal":"005.***.***.10","nm_gestor":"006.***.***.02","email_gestor":"","cpf_gestor":"006.***.***.02","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1159556,25,62100&cs=1QmYbFHAJ-Sre2IU9AIVTxrOgLSQ","st":"Vigente"},{"num":"202/2023","obj":"CONTRATAÇÃO DE EMPRESA SEGURADORA PARA PRESTAÇÃO DE SERVIÇOS DE SEGUROS DE PARTE DA FROTA DO MUNICÍP","forn":"GENTE SEGURADORA S.A.","cnpj":"90180605000102","venc":"27/12/2026","inicio":"27/12/2023","dias":286,"val":5790.0,"modal":"Pregão Eletr.","nm_fiscal":"712.***.***.49","email_fiscal":"","cpf_fiscal":"712.***.***.49","nm_gestor":"","email_gestor":"","cpf_gestor":"","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1053458,25,62100&cs=1MvqwlGDdAdAmV93Pga20ZAFye-0","st":"Vigente"},{"num":"204/2023","obj":"CONTRATAÇÃO DE EMPRESA SEGURADORA PARA PRESTAÇÃO DE SERVIÇOS DE SEGUROS DE PARTE DA FROTA DO MUNICÍP","forn":"GENTE SEGURADORA S.A.","cnpj":"90180605000102","venc":"27/12/2026","inicio":"27/12/2023","dias":286,"val":5000.0,"modal":"Pregão Eletr.","nm_fiscal":"598.***.***.20","email_fiscal":"","cpf_fiscal":"598.***.***.20","nm_gestor":"","email_gestor":"","cpf_gestor":"","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1053460,25,62100&cs=1xb4fRJ5BkEVI4IZdpQdTFeU4KnU","st":"Vigente"},{"num":"203/2023","obj":"CONTRATAÇÃO DE EMPRESA SEGURADORA PARA PRESTAÇÃO DE SERVIÇOS DE SEGUROS DE PARTE DA FROTA DO MUNICÍP","forn":"GENTE SEGURADORA S.A.","cnpj":"90180605000102","venc":"27/12/2026","inicio":"27/12/2023","dias":286,"val":1790.0,"modal":"Pregão Eletr.","nm_fiscal":"610.***.***.59","email_fiscal":"","cpf_fiscal":"610.***.***.59","nm_gestor":"","email_gestor":"","cpf_gestor":"","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1053459,25,62100&cs=1CEdk3___NE1NMKtniCPifS4wbdE","st":"Vigente"},{"num":"200/2023","obj":"CONTRATAÇÃO DE EMPRESA SEGURADORA PARA PRESTAÇÃO DE SERVIÇOS DE SEGUROS DE PARTE DA FROTA DO MUNICÍP","forn":"GENTE SEGURADORA S.A.","cnpj":"90180605000102","venc":"27/12/2026","inicio":"27/12/2023","dias":286,"val":1600.0,"modal":"Pregão Eletr.","nm_fiscal":"014.***.***.30","email_fiscal":"","cpf_fiscal":"014.***.***.30","nm_gestor":"","email_gestor":"","cpf_gestor":"","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1053456,25,62100&cs=1LLDD_twLbD-C1H4OovSZWi2Ynl0","st":"Vigente"},{"num":"109/2025","obj":"PREGÃO ELETRÔNICO Nº 15/2025 - CONTRATAÇÃO DE EMPRESA ESPECIALIZADA VISANDO A LOCAÇÃO DE ESCAVADEIRA","forn":"SIRLEI MIQUELON TERRAPLANAGEM LTDA","cnpj":"55596534000114","venc":"31/12/2026","inicio":"12/11/2025","dias":290,"val":132261.5,"modal":"PCE","nm_fiscal":"003.***.***.20","email_fiscal":"","cpf_fiscal":"003.***.***.20","nm_gestor":"006.***.***.02","email_gestor":"","cpf_gestor":"006.***.***.02","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1266454,25,62100&cs=1sOoFMvpUKtfxIp-P2jS8hVjVpUE","st":"Vigente"},{"num":"115/2025","obj":"Dispensa de Licitação nº 44/2025 - Aquisição de impressora Plotter 610mm (24\"), nos termos do artigo","forn":"MAURICIO L. RENZ & CIA LTDA","cnpj":"08302679000185","venc":"31/12/2026","inicio":"01/12/2025","dias":290,"val":4529.0,"modal":"PRD","nm_fiscal":"028.***.***.30","email_fiscal":"","cpf_fiscal":"028.***.***.30","nm_gestor":"006.***.***.02","email_gestor":"","cpf_gestor":"006.***.***.02","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1271078,25,62100&cs=1rqRSbaAUdRr4zesoHjBZWKKd5Ko","st":"Vigente"},{"num":"2/2026","obj":"Inexigibilidade de Licitação nº 01/2026 - Contratação de pessoa jurídica para prestação de serviços ","forn":"CECILIA SMANEOTO 40962806072","cnpj":"21744177000172","venc":"31/12/2026","inicio":"03/02/2026","dias":290,"val":3000.0,"modal":"Pregão","nm_fiscal":"009.***.***.22","email_fiscal":"","cpf_fiscal":"009.***.***.22","nm_gestor":"587.***.***.49","email_gestor":"","cpf_gestor":"587.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1290111,25,62100&cs=1cGda4jlOZTUB-br5KuxbAsJbOCI","st":"Vigente"},{"num":"96/2025","obj":"CONCORRÊNCIA ELETRÔNICA Nº 05_2025 - CONTRATAÇÃO DE EMPRESA ESPECIALIZADA PARA A EXECUÇÃO DE PROJETO","forn":"ENERBRAS INSTALACOES ELETRICAS LTDA","cnpj":"13885262000122","venc":"31/12/2026","inicio":"03/11/2025","dias":290,"val":122455.0,"modal":"CCE","nm_fiscal":"028.***.***.30","email_fiscal":"","cpf_fiscal":"028.***.***.30","nm_gestor":"006.***.***.02","email_gestor":"","cpf_gestor":"006.***.***.02","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1260065,25,62100&cs=1z_izuLxiW6HCVjVA85bA-F0NIis","st":"Vigente"},{"num":"74/2025","obj":"Dispensa de Licitação Emergencial nº 29/2025 - Contratação de Empresa Especializada para a elaboraçã","forn":"EDUARDO RODRIGUES LTDA","cnpj":"56055351000154","venc":"31/12/2026","inicio":"29/07/2025","dias":290,"val":14250.0,"modal":"PRD","nm_fiscal":"028.***.***.30","email_fiscal":"","cpf_fiscal":"028.***.***.30","nm_gestor":"031.***.***.79","email_gestor":"","cpf_gestor":"031.***.***.79","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1226827,25,62100&cs=1D4SDUPsT1tzZTaeG0_yYYUOAns8","st":"Vigente"},{"num":"5/2026","obj":"Inexigibilidade de Licitação nº 02/2026 - Contratação da Empresa Humanizar Assessoria Pedagógica Ltd","forn":"HUMANIZAR ASSESSORIA PEDAGOGICA LTDA","cnpj":"60421919000180","venc":"31/12/2026","inicio":"04/02/2026","dias":290,"val":25440.0,"modal":"Pregão","nm_fiscal":"574.***.***.15","email_fiscal":"","cpf_fiscal":"574.***.***.15","nm_gestor":"587.***.***.49","email_gestor":"","cpf_gestor":"587.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1290114,25,62100&cs=1XQJh35hLqgeHtY47XNip60kuB8E","st":"Vigente"},{"num":"6/2026","obj":"Inexigibilidade de Licitação nº 05/2026 - Contratação da Banda Rosas, visando a realização de palest","forn":"FERNANDO KLAFKI","cnpj":"40601201000169","venc":"31/12/2026","inicio":"04/02/2026","dias":290,"val":7900.0,"modal":"Pregão","nm_fiscal":"009.***.***.22","email_fiscal":"","cpf_fiscal":"009.***.***.22","nm_gestor":"587.***.***.49","email_gestor":"","cpf_gestor":"587.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1290113,25,62100&cs=1r-gI8-zfzMyhyINdv8nZJPx7YH4","st":"Vigente"},{"num":"4/2026","obj":"PREGÃO ELETRÔNICO Nº 02/2026 - AQUISIÇÃO DE EQUIPAMENTO AGRÍCOLA - SCRAPER 3,5M3.","forn":"CLEIA E K THUROW LTDA","cnpj":"16776641000172","venc":"31/12/2026","inicio":"03/02/2026","dias":290,"val":35500.0,"modal":"PCE","nm_fiscal":"006.***.***.21","email_fiscal":"","cpf_fiscal":"006.***.***.21","nm_gestor":"199.***.***.04","email_gestor":"","cpf_gestor":"199.***.***.04","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1290112,25,62100&cs=1b1yIS2MbW--0MRuP1EBYUrjC6p0","st":"Vigente"},{"num":"113/2025","obj":"PREGÃO ELETRÔNICO Nº 26/2025 - AQUISIÇÃO DE TRATOR CORTADOR DE GRAMA","forn":"FM PECAS E MAQUINAS LTDA","cnpj":"14233242000130","venc":"31/12/2026","inicio":"03/12/2025","dias":290,"val":23380.0,"modal":"PCE","nm_fiscal":"003.***.***.20","email_fiscal":"","cpf_fiscal":"003.***.***.20","nm_gestor":"006.***.***.02","email_gestor":"","cpf_gestor":"006.***.***.02","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1272495,25,62100&cs=13Y5lpxr65BqVuuSr-HQpZRTYcBQ","st":"Vigente"},{"num":"45/2025","obj":"PREGÃO ELETRÔNICO Nº 03/2025 - AQUISIÇÃO DE EQUIPAMENTOS AGRÍCOLAS.","forn":"CIDAMAQ MAQUINAS E IMPLEMENTOS AGRICOLAS LTDA","cnpj":"32396643000192","venc":"31/12/2026","inicio":"20/05/2025","dias":290,"val":40748.0,"modal":"PCE","nm_fiscal":"006.***.***.21","email_fiscal":"","cpf_fiscal":"006.***.***.21","nm_gestor":"377.***.***.34","email_gestor":"","cpf_gestor":"377.***.***.34","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1204864,25,62100&cs=1xQmpp8RFDJ6OVN--Wsp4ZUn8PRQ","st":"Vigente"},{"num":"79/2025","obj":"CONCORRÊNCIA ELETRÔNICA Nº 04/2025 - CONTRATAÇÃO DE EMPRESA ESPECIALIZADA VISANDO A EXECUÇÃO DE PROJ","forn":"ELETROTEC SISTEMAS DE ENERGIA LTDA","cnpj":"11796575000189","venc":"31/12/2026","inicio":"04/08/2025","dias":290,"val":116936.38,"modal":"CCE","nm_fiscal":"028.***.***.30","email_fiscal":"","cpf_fiscal":"028.***.***.30","nm_gestor":"587.***.***.49","email_gestor":"","cpf_gestor":"587.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1229218,25,62100&cs=1VdX6qcHLXbS7SE3HypqBVY6Sou0","st":"Vigente"},{"num":"106/2021","obj":"VAGA PARA ACOLHIMENTO DE ADOLESCENTE","forn":"LAR BOM PASTOR DE IVAGACI E ESCOLA PROFISSIONAL","cnpj":"87685616000121","venc":"31/12/2026","inicio":"01/01/2022","dias":290,"val":31200.0,"modal":"Pregão","nm_fiscal":"","email_fiscal":"","cpf_fiscal":"","nm_gestor":"005.***.***.92","email_gestor":"","cpf_gestor":"005.***.***.92","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:858696,21,62100&cs=1CfzYrQUc_jIQ8e1rFWdTw49Qpk8","st":"Vigente"},{"num":"18/2026","obj":"Inexigibilidade de Licitação  nº 07/2026 - Concessão de Patrocínio para viagem para o Campeonato Bra","forn":"ASSOCIACAO DE PATINAGEM TRANSNACAO","cnpj":"46889704000168","venc":"31/12/2026","inicio":"05/03/2026","dias":290,"val":1000.0,"modal":"Pregão","nm_fiscal":"838.***.***.15","email_fiscal":"","cpf_fiscal":"838.***.***.15","nm_gestor":"044.***.***.81","email_gestor":"","cpf_gestor":"044.***.***.81","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1301001,25,62100&cs=1sIflGBA6SI8--qLkwOfNBVQdLao","st":"Vigente"},{"num":"16/2026","obj":"Dispensa de Licitação nº 03/2026 - Contratação de Empresa especializada para organização, coordenaçã","forn":"TURRA EVENTOS ESPORTIVOS LTDA","cnpj":"60196082000113","venc":"31/12/2026","inicio":"19/02/2026","dias":290,"val":3700.0,"modal":"PRD","nm_fiscal":"044.***.***.81","email_fiscal":"","cpf_fiscal":"044.***.***.81","nm_gestor":"587.***.***.49","email_gestor":"","cpf_gestor":"587.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1295309,25,62100&cs=1dSD00K0IhaXkuKQPHDZpEf45S5U","st":"Vigente"},{"num":"12/2026","obj":"Dispensa de Licitação nº 01/2026 - Contratação de Empresa especializada para a prestação de serviços","forn":"53.084.953 MARLUCI AMES","cnpj":"53084953000141","venc":"31/12/2026","inicio":"11/02/2026","dias":290,"val":1500.0,"modal":"PRD","nm_fiscal":"009.***.***.22","email_fiscal":"","cpf_fiscal":"009.***.***.22","nm_gestor":"587.***.***.49","email_gestor":"","cpf_gestor":"587.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1293307,25,62100&cs=1sKazCdVH_xq4Mu0epbhtHo1fpUE","st":"Vigente"},{"num":"19/2026","obj":"Inexigibilidade de Licitação nº 10/2026 - Contratação da Empresa TopSer Consultoria e Desenvolviment","forn":"TOPSER - CONSULTORIA E DESENVOLVIMENTO LTDA.","cnpj":"20890587000169","venc":"31/12/2026","inicio":"05/03/2026","dias":290,"val":27064.0,"modal":"Pregão","nm_fiscal":"636.***.***.04","email_fiscal":"","cpf_fiscal":"636.***.***.04","nm_gestor":"587.***.***.49","email_gestor":"","cpf_gestor":"587.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1301000,25,62100&cs=1enHacEb6mPQZEgDbZKCvttzr9Nw","st":"Vigente"},{"num":"14/2026","obj":"Dispensa de Licitação nº 02/2026 - Contratação de Empresa especializada em serviços de desinsetizaçã","forn":"KOMBAT INSECT BRAZIL LTDA","cnpj":"11082394000190","venc":"31/12/2026","inicio":"17/02/2026","dias":290,"val":3544.0,"modal":"PRD","nm_fiscal":"009.***.***.22","email_fiscal":"","cpf_fiscal":"009.***.***.22","nm_gestor":"587.***.***.49","email_gestor":"","cpf_gestor":"587.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1295307,25,62100&cs=1jiuKyPdf3rJr34AQl34ET8v8LsU","st":"Vigente"},{"num":"8/2026","obj":"AQUISIÇÃO DE GÊNEROS ALIMENTÍCIOS DIRETAMENTE DA AGRICULTURA FAMILIAR E DO EMPREENDEDOR FAMILIAR RUR","forn":"nan","cnpj":"03111239020","venc":"31/12/2026","inicio":"11/02/2026","dias":290,"val":11961.21,"modal":"CPP","nm_fiscal":"653.***.***.49","email_fiscal":"","cpf_fiscal":"653.***.***.49","nm_gestor":"587.***.***.49","email_gestor":"","cpf_gestor":"587.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1295305,25,62100&cs=11tS3kNRLD4aD-XkMtg_FNT5bGR0","st":"Vigente"},{"num":"10/2026","obj":"AQUISIÇÃO DE GÊNEROS ALIMENTÍCIOS DIRETAMENTE DA AGRICULTURA FAMILIAR E DO EMPREENDEDOR FAMILIAR RUR","forn":"nan","cnpj":"44158980097","venc":"31/12/2026","inicio":"11/02/2026","dias":290,"val":2365.33,"modal":"CPP","nm_fiscal":"653.***.***.49","email_fiscal":"","cpf_fiscal":"653.***.***.49","nm_gestor":"587.***.***.49","email_gestor":"","cpf_gestor":"587.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1293223,25,62100&cs=1Il5sELyWai85wR87jxPpyyZR8Zo","st":"Vigente"},{"num":"11/2026","obj":"AQUISIÇÃO DE GÊNEROS ALIMENTÍCIOS DIRETAMENTE DA AGRICULTURA FAMILIAR E DO EMPREENDEDOR FAMILIAR RUR","forn":"COOPERATIVA DE VINHO FRONTEIRA NOROESTE E ECONOMIA SOLIDARIA - COOPERVINO","cnpj":"10348129000149","venc":"31/12/2026","inicio":"11/02/2026","dias":290,"val":1852.32,"modal":"CPP","nm_fiscal":"653.***.***.49","email_fiscal":"","cpf_fiscal":"653.***.***.49","nm_gestor":"587.***.***.49","email_gestor":"","cpf_gestor":"587.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1293222,25,62100&cs=1Uu4uVgZqWuW20G-j0-hwiZPT3Nc","st":"Vigente"},{"num":"20/2026","obj":"Dispensa de Licitação nº 06/2026 - Contratação de Empresa para confecção, montagem e instalação de p","forn":"DAYANE MARIA DOS SANTOS POTKOWA - MEI","cnpj":"55194791000120","venc":"31/12/2026","inicio":"11/03/2026","dias":290,"val":6140.0,"modal":"PRD","nm_fiscal":"","email_fiscal":"","cpf_fiscal":"","nm_gestor":"","email_gestor":"","cpf_gestor":"","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1303156,25,62100&cs=1JQwD-YB56l7TfF0vISwoLRwf_Sk","st":"Vigente"},{"num":"13/2026","obj":"Inexigibilidade de Licitação nº 06/2026 - Contratação da Banda Mariah para animação da 4ª Semana da ","forn":"BANDA MUSICAL MARIAH LTDA","cnpj":"44012779000130","venc":"31/12/2026","inicio":"17/02/2026","dias":290,"val":7500.0,"modal":"Pregão","nm_fiscal":"044.***.***.81","email_fiscal":"","cpf_fiscal":"044.***.***.81","nm_gestor":"587.***.***.49","email_gestor":"","cpf_gestor":"587.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1295306,25,62100&cs=13a9MMQtfaV7H4K7fSWA-eEu_z6o","st":"Vigente"},{"num":"15/2026","obj":"Dispensa de Licitação nº 04/2026 - Contratação de profissional habilitado (geólogo, engenheiro geólo","forn":"INTEGRA GEOLOGIA AMBIENTAL LTDA","cnpj":"28075541000106","venc":"31/12/2026","inicio":"18/02/2026","dias":290,"val":3450.0,"modal":"PRD","nm_fiscal":"038.***.***.50","email_fiscal":"","cpf_fiscal":"038.***.***.50","nm_gestor":"838.***.***.15","email_gestor":"","cpf_gestor":"838.***.***.15","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1295310,25,62100&cs=1VFRy87XYMt3baJDJjIrxz2w5XIM","st":"Vigente"},{"num":"9/2026","obj":"AQUISIÇÃO DE GÊNEROS ALIMENTÍCIOS DIRETAMENTE DA AGRICULTURA FAMILIAR E DO EMPREENDEDOR FAMILIAR RUR","forn":"nan","cnpj":"66547482049","venc":"31/12/2026","inicio":"11/02/2026","dias":290,"val":758.88,"modal":"CPP","nm_fiscal":"653.***.***.49","email_fiscal":"","cpf_fiscal":"653.***.***.49","nm_gestor":"587.***.***.49","email_gestor":"","cpf_gestor":"587.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1293308,25,62100&cs=1X3oujl7cK8X_qi7psZdxN5m3qv8","st":"Vigente"},{"num":"55/2025","obj":"PREGÃO ELETRÔNICO Nº 30/2025 - REGISTRO DE PREÇOS PARA EVENTUAL AQUISIÇÃO DE COMBUSTÍVEIS.","forn":"nan","cnpj":"nan","venc":"01/01/2027","inicio":"01/01/2026","dias":291,"val":748800.0,"modal":"PCE","nm_fiscal":"712.***.***.49","email_fiscal":"","cpf_fiscal":"712.***.***.49","nm_gestor":"031.***.***.79","email_gestor":"","cpf_gestor":"031.***.***.79","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1277428,25,62100&cs=1z_V_bkx0Fu_mvpctYuqaXUlv914","st":"Vigente"},{"num":"54/2025","obj":"PREGÃO ELETRÔNICO Nº 30/2025 - REGISTRO DE PREÇOS PARA EVENTUAL AQUISIÇÃO DE COMBUSTÍVEIS.","forn":"nan","cnpj":"nan","venc":"01/01/2027","inicio":"01/01/2026","dias":291,"val":836300.0,"modal":"PCE","nm_fiscal":"712.***.***.49","email_fiscal":"","cpf_fiscal":"712.***.***.49","nm_gestor":"031.***.***.79","email_gestor":"","cpf_gestor":"031.***.***.79","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1277427,25,62100&cs=11Nl1AUal6QtKBT0nX0TrRCvg2QM","st":"Vigente"},{"num":"1/2026","obj":"PREGÃO ELETRÔNICO Nº 27/2025 - REGISTRO DE PREÇOS PARA AQUISIÇÃO DE KITS ESCOLARES.","forn":"nan","cnpj":"nan","venc":"05/01/2027","inicio":"05/01/2026","dias":295,"val":17400.0,"modal":"PCE","nm_fiscal":"636.***.***.04","email_fiscal":"","cpf_fiscal":"636.***.***.04","nm_gestor":"587.***.***.49","email_gestor":"","cpf_gestor":"587.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1282941,25,62100&cs=1xyDbspUDq11oxSNEjQGf3iN6JZw","st":"Vigente"},{"num":"88/2024","obj":"Contratação da empresa ATHENA ATUARIAL para prestação de serviços técnicos de consultoria na área pr","forn":"ATHENA - CONSULTORIA & AUDITORIA S/S LTDA","cnpj":"04531195000157","venc":"07/01/2027","inicio":"07/01/2025","dias":297,"val":10000.0,"modal":"Pregão","nm_fiscal":"883.***.***.87","email_fiscal":"","cpf_fiscal":"883.***.***.87","nm_gestor":"598.***.***.34","email_gestor":"","cpf_gestor":"598.***.***.34","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1160752,25,62100&cs=1tJWIhWJ97Ybia0iZhGtoYCr60bk","st":"Vigente"},{"num":"2/2026","obj":"PREGÃO ELETRÔNICO Nº 28/2025 - REGISTRO DE PREÇOS PARA AQUISIÇÃO DE PNEUS.","forn":"nan","cnpj":"nan","venc":"09/01/2027","inicio":"09/01/2026","dias":299,"val":171360.0,"modal":"PCE","nm_fiscal":"006.***.***.21","email_fiscal":"","cpf_fiscal":"006.***.***.21","nm_gestor":"199.***.***.04","email_gestor":"","cpf_gestor":"199.***.***.04","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1282930,25,62100&cs=1-wAzDWoiRqTPfurwGS41I5mgq7A","st":"Vigente"},{"num":"3/2025","obj":"REGISTRO DE PREÇOS PARA EVENTUAL CONTRATAÇÃO DE SERVIÇOS DE ARBITRAGEM.","forn":"nan","cnpj":"nan","venc":"23/01/2027","inicio":"23/01/2025","dias":313,"val":231312.4,"modal":"PCE","nm_fiscal":"","email_fiscal":"","cpf_fiscal":"","nm_gestor":"587.***.***.49","email_gestor":"","cpf_gestor":"587.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1163453,25,62100&cs=1jie8kZFtV-TGsD2y_dbP3KNCvOo","st":"Vigente"},{"num":"3/2026","obj":"PREGÃO ELETRÔNICO Nº 24/2025 - REGISTRO DE PREÇOS PARA AQUISIÇÃO DE CESTAS BÁSICAS.","forn":"nan","cnpj":"nan","venc":"28/01/2027","inicio":"28/01/2026","dias":318,"val":51769.8,"modal":"PCE","nm_fiscal":"005.***.***.92","email_fiscal":"","cpf_fiscal":"005.***.***.92","nm_gestor":"474.***.***.34","email_gestor":"","cpf_gestor":"474.***.***.34","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1288367,25,62100&cs=1-jucBbVQXHFM26goZXAAWbx_AAM","st":"Vigente"},{"num":"5/2026","obj":"PREGÃO ELETRÔNICO Nº 28/2025 - REGISTRO DE PREÇOS PARA AQUISIÇÃO DE PNEUS.","forn":"nan","cnpj":"nan","venc":"29/01/2027","inicio":"29/01/2026","dias":319,"val":92668.0,"modal":"PCE","nm_fiscal":"006.***.***.21","email_fiscal":"","cpf_fiscal":"006.***.***.21","nm_gestor":"199.***.***.04","email_gestor":"","cpf_gestor":"199.***.***.04","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1288368,25,62100&cs=1F59tH6VURrFEz1nvHu2MOYdbzpc","st":"Vigente"},{"num":"10/2026","obj":"PREGÃO ELETRÔNICO Nº 28/2025 - REGISTRO DE PREÇOS PARA AQUISIÇÃO DE PNEUS.","forn":"nan","cnpj":"nan","venc":"29/01/2027","inicio":"29/01/2026","dias":319,"val":42620.0,"modal":"PCE","nm_fiscal":"006.***.***.21","email_fiscal":"","cpf_fiscal":"006.***.***.21","nm_gestor":"199.***.***.04","email_gestor":"","cpf_gestor":"199.***.***.04","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1288374,25,62100&cs=1RGD_Sbb8lHqAMTAK0cnszbZNhdk","st":"Vigente"},{"num":"4/2026","obj":"PREGÃO ELETRÔNICO Nº 28/2025 - REGISTRO DE PREÇOS PARA AQUISIÇÃO DE PNEUS.","forn":"nan","cnpj":"nan","venc":"29/01/2027","inicio":"29/01/2026","dias":319,"val":3792.0,"modal":"PCE","nm_fiscal":"006.***.***.21","email_fiscal":"","cpf_fiscal":"006.***.***.21","nm_gestor":"199.***.***.04","email_gestor":"","cpf_gestor":"199.***.***.04","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1288369,25,62100&cs=1bIKOMDzVuPJhlEyvrgYhzdpqtDQ","st":"Vigente"},{"num":"6/2026","obj":"PREGÃO ELETRÔNICO Nº 28/2025 - REGISTRO DE PREÇOS PARA AQUISIÇÃO DE PNEUS.","forn":"nan","cnpj":"nan","venc":"29/01/2027","inicio":"29/01/2026","dias":319,"val":110171.2,"modal":"PCE","nm_fiscal":"006.***.***.21","email_fiscal":"","cpf_fiscal":"006.***.***.21","nm_gestor":"199.***.***.04","email_gestor":"","cpf_gestor":"199.***.***.04","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1288370,25,62100&cs=1FeA21uCmk1jnybgI9vtq2-9SeQg","st":"Vigente"},{"num":"8/2026","obj":"PREGÃO ELETRÔNICO Nº 28/2025 - REGISTRO DE PREÇOS PARA AQUISIÇÃO DE PNEUS.","forn":"nan","cnpj":"nan","venc":"29/01/2027","inicio":"29/01/2026","dias":319,"val":34045.0,"modal":"PCE","nm_fiscal":"006.***.***.21","email_fiscal":"","cpf_fiscal":"006.***.***.21","nm_gestor":"199.***.***.04","email_gestor":"","cpf_gestor":"199.***.***.04","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1288372,25,62100&cs=1yEl9Plca94k_TLVtPNg-Mt2ShRc","st":"Vigente"},{"num":"7/2026","obj":"PREGÃO ELETRÔNICO Nº 28/2025 - REGISTRO DE PREÇOS PARA AQUISIÇÃO DE PNEUS.","forn":"nan","cnpj":"nan","venc":"29/01/2027","inicio":"29/01/2026","dias":319,"val":47680.0,"modal":"PCE","nm_fiscal":"006.***.***.21","email_fiscal":"","cpf_fiscal":"006.***.***.21","nm_gestor":"199.***.***.04","email_gestor":"","cpf_gestor":"199.***.***.04","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1288371,25,62100&cs=1LGsTVb1bCsvCLOoBLrdqqIlfSgA","st":"Vigente"},{"num":"9/2026","obj":"PREGÃO ELETRÔNICO Nº 28/2025 - REGISTRO DE PREÇOS PARA AQUISIÇÃO DE PNEUS.","forn":"nan","cnpj":"nan","venc":"29/01/2027","inicio":"29/01/2026","dias":319,"val":264858.0,"modal":"PCE","nm_fiscal":"006.***.***.21","email_fiscal":"","cpf_fiscal":"006.***.***.21","nm_gestor":"199.***.***.04","email_gestor":"","cpf_gestor":"199.***.***.04","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1288373,25,62100&cs=1vHEpLw3O9Flhwe0QTjb2b2mA_MQ","st":"Vigente"},{"num":"11/2026","obj":"PREGÃO ELETRÔNICO Nº 01/2026 - REGISTRO DE PREÇOS PARA EVENTUAL AQUISIÇÃO DE TUBOS DE CONCRETO, ADUE","forn":"nan","cnpj":"nan","venc":"03/02/2027","inicio":"03/02/2026","dias":324,"val":318859.3,"modal":"PCE","nm_fiscal":"003.***.***.20","email_fiscal":"","cpf_fiscal":"003.***.***.20","nm_gestor":"199.***.***.04","email_gestor":"","cpf_gestor":"199.***.***.04","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1290115,25,62100&cs=1ixHw7yVitY66tCKjKACqK-kP7ac","st":"Vigente"},{"num":"13/2026","obj":"PREGÃO ELETRÔNICO Nº 01/2026 - REGISTRO DE PREÇOS PARA EVENTUAL AQUISIÇÃO DE TUBOS DE CONCRETO, ADUE","forn":"nan","cnpj":"nan","venc":"03/02/2027","inicio":"03/02/2026","dias":324,"val":91290.0,"modal":"PCE","nm_fiscal":"003.***.***.20","email_fiscal":"","cpf_fiscal":"003.***.***.20","nm_gestor":"199.***.***.04","email_gestor":"","cpf_gestor":"199.***.***.04","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1290117,25,62100&cs=1sS9jDtnpVN7T2UIYwiUVcoJVk2k","st":"Vigente"},{"num":"12/2026","obj":"PREGÃO ELETRÔNICO Nº 01/2026 - REGISTRO DE PREÇOS PARA EVENTUAL AQUISIÇÃO DE TUBOS DE CONCRETO, ADUE","forn":"nan","cnpj":"nan","venc":"03/02/2027","inicio":"03/02/2026","dias":324,"val":216582.5,"modal":"PCE","nm_fiscal":"003.***.***.20","email_fiscal":"","cpf_fiscal":"003.***.***.20","nm_gestor":"199.***.***.04","email_gestor":"","cpf_gestor":"199.***.***.04","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1290116,25,62100&cs=1sMVJvjQ3bv1aPpW8pfmRH5SOqyE","st":"Vigente"},{"num":"3/2026","obj":"Inexigibilidade de Licitação nº 03/2026 - Contratação da Associação Hospitalar Santa Rosa para prest","forn":"ASSOCIAÇAO HOSPITALAR SANTA ROSA","cnpj":"95815668000101","venc":"03/02/2027","inicio":"03/02/2026","dias":324,"val":28800.0,"modal":"Pregão","nm_fiscal":"030.***.***.66","email_fiscal":"","cpf_fiscal":"030.***.***.66","nm_gestor":"474.***.***.34","email_gestor":"","cpf_gestor":"474.***.***.34","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1293221,25,62100&cs=1IW1Lb6_IPiFlofqnKzTvh8lVav8","st":"Vigente"},{"num":"6/2025","obj":"Aquisição de vaga para idoso em lar de acolhimento Marlene Pires Hamerski, nos termos do artigo 74, ","forn":"MARLENE PIRES HAMERSKI - ME","cnpj":"19821387000175","venc":"05/02/2027","inicio":"05/02/2025","dias":326,"val":33496.8,"modal":"Pregão","nm_fiscal":"003.***.***.43","email_fiscal":"","cpf_fiscal":"003.***.***.43","nm_gestor":"474.***.***.34","email_gestor":"","cpf_gestor":"474.***.***.34","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1167896,25,62100&cs=1pjmR063K5e86Trin34pB4Uh-N5U","st":"Vigente"},{"num":"8/2024","obj":"CONTRATAÇÃO DE EMPRESA SEGURADORA PARA PRESTAÇÃO DE SERVIÇOS DE SEGUROS DE PARTE DA FROTA DO MUNICÍP","forn":"PORTO SEGURO COMPANHIA DE SEGUROS GERAIS","cnpj":"61198164000160","venc":"08/02/2027","inicio":"08/02/2024","dias":329,"val":3850.0,"modal":"Pregão Eletr.","nm_fiscal":"924.***.***.49","email_fiscal":"","cpf_fiscal":"924.***.***.49","nm_gestor":"","email_gestor":"","cpf_gestor":"","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1067896,25,62100&cs=1cwHDOLwg-A-5nSCu44lqJeIUuyE","st":"Vigente"},{"num":"12/2025","obj":"Compra de 1 (uma) vaga na educação especial na escola Apada, pelo período de 12 (doze) meses, por me","forn":"ASSOCIACAO DE PAIS E AMIGOS DOS DEFICIENTES AUDITIVOS.","cnpj":"90479106000102","venc":"13/02/2027","inicio":"13/02/2025","dias":334,"val":29364.0,"modal":"Pregão","nm_fiscal":"009.***.***.22","email_fiscal":"","cpf_fiscal":"009.***.***.22","nm_gestor":"587.***.***.49","email_gestor":"","cpf_gestor":"587.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1170444,25,62100&cs=1I4_MAAejUFdjRG5rH0eXxazl-wU","st":"Vigente"},{"num":"7/2026","obj":"Inexigibilidade de Licitação nº 04/2026 - Aquisição de licenças e assinatura do software OrçaFascio,","forn":"3F LTDA","cnpj":"23484444000145","venc":"16/02/2027","inicio":"16/02/2026","dias":337,"val":2198.0,"modal":"Pregão","nm_fiscal":"028.***.***.30","email_fiscal":"","cpf_fiscal":"028.***.***.30","nm_gestor":"031.***.***.79","email_gestor":"","cpf_gestor":"031.***.***.79","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1295308,25,62100&cs=1Wttgi1m9XnZNp-IUvGLQLUF-hE0","st":"Vigente"},{"num":"21/2025","obj":"Contratação, nos termos do artigo 74, inciso I, da lei 14.133/2021, da empresa CESPRO para fazer a g","forn":"CESPRO PROCESSAMENTO DE DADOS LTDA","cnpj":"17875435000182","venc":"22/02/2027","inicio":"25/02/2025","dias":343,"val":2400.0,"modal":"Pregão","nm_fiscal":"018.***.***.99","email_fiscal":"","cpf_fiscal":"018.***.***.99","nm_gestor":"031.***.***.79","email_gestor":"","cpf_gestor":"031.***.***.79","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1176499,25,62100&cs=11VhjvxPAYFVCJl3QJQR09IGU1qw","st":"Vigente"},{"num":"14/2026","obj":"PREGÃO ELETRÔNICO Nº 03/2025 - REGISTRO DE PREÇOS PARA CONTRATAÇÃO DE HORA-MÁQUINA PARA ESCAVADEIRA ","forn":"nan","cnpj":"nan","venc":"25/02/2027","inicio":"25/02/2026","dias":346,"val":280655.0,"modal":"PCE","nm_fiscal":"199.***.***.04","email_fiscal":"","cpf_fiscal":"199.***.***.04","nm_gestor":"003.***.***.20","email_gestor":"","cpf_gestor":"003.***.***.20","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1298568,25,62100&cs=1fc6MOK-GNMG7KW7Q2X6d7oz_Hm0","st":"Vigente"},{"num":"17/2026","obj":"Inexigibilidade de Licitação nº 08/2026 -  Contratação da Instituição Educacional Obra Missionária S","forn":"ASSOCIACAO EDUCACIONAL OBRAMIS","cnpj":"89501381000104","venc":"27/02/2027","inicio":"27/02/2026","dias":348,"val":192266.77,"modal":"Pregão","nm_fiscal":"636.***.***.04","email_fiscal":"","cpf_fiscal":"636.***.***.04","nm_gestor":"587.***.***.49","email_gestor":"","cpf_gestor":"587.***.***.49","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1298569,25,62100&cs=1uZWl4iidSX_TOtV6OkgALrgqfFQ","st":"Vigente"},{"num":"12/2024","obj":"O objeto do presente processo de inexigibilidade de licitação é a contratação de empresa especializa","forn":"PAUSE E PERIN ADVOGADOS ASSOCIADOS","cnpj":"92885888000105","venc":"02/03/2027","inicio":"04/03/2024","dias":351,"val":36864.0,"modal":"Pregão","nm_fiscal":"332.***.***.68","email_fiscal":"","cpf_fiscal":"332.***.***.68","nm_gestor":"031.***.***.79","email_gestor":"","cpf_gestor":"031.***.***.79","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1071258,25,62100&cs=1UZwXe-zt0bqyAxVMPMWiIPNyp_I","st":"Vigente"},{"num":"13/2024","obj":"prestação de serviços de sobreaviso médico 24 (vinte e quatro) horas ininterruptas todos os dias da ","forn":"ASSOCIAÇÃO BENEFICENTE OSWALDO CRUZ DE HORIZONTINA","cnpj":"21194889000165","venc":"04/03/2027","inicio":"04/03/2024","dias":353,"val":162269.76,"modal":"Pregão","nm_fiscal":"020.***.***.55","email_fiscal":"","cpf_fiscal":"020.***.***.55","nm_gestor":"","email_gestor":"","cpf_gestor":"","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1071259,25,62100&cs=1OwVFn-NKKpeerfAjsJc4f0wlxrs","st":"Vigente"},{"num":"28/2025","obj":"Contratação de empresa especializada em consultoria de investimentos ao Regime Próprio de Previdênci","forn":"GESTOR UM - CONSULTORIA FINANCEIRA","cnpj":"27298119000149","venc":"14/03/2027","inicio":"14/03/2025","dias":363,"val":7427.4,"modal":"Pregão","nm_fiscal":"883.***.***.87","email_fiscal":"","cpf_fiscal":"883.***.***.87","nm_gestor":"598.***.***.34","email_gestor":"","cpf_gestor":"598.***.***.34","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1181341,25,62100&cs=1oVS-_cNPratLX5RGy5K2FZ0BkwU","st":"Vigente"},{"num":"29/2025","obj":"Contratação de empresa especializada em consultoria tributária, nos termos do artigo 75, II, da Lei ","forn":"BUSCAR ASSESSORIA LTDA.","cnpj":"23890638000140","venc":"18/03/2027","inicio":"18/03/2025","dias":367,"val":10800.0,"modal":"PRD","nm_fiscal":"033.***.***.47","email_fiscal":"","cpf_fiscal":"033.***.***.47","nm_gestor":"598.***.***.34","email_gestor":"","cpf_gestor":"598.***.***.34","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1181342,25,62100&cs=1PvpTQZTowb0S6uK_wz52-TcTCUw","st":"Vigente"},{"num":"199/2022","obj":"CESSÃO ONEROSA DO DIREITO DE EFETUAR O PAGAMENTO DA FOLHA DOS SERVIDORES PÚBLICOS DO MUNICÍPIO DE TU","forn":"BANCO DO ESTADO DO RIO GRANDE DO SUL S. A.","cnpj":"92702067000196","venc":"17/08/2027","inicio":"17/08/2022","dias":519,"val":508054.8,"modal":"CNC","nm_fiscal":"018.***.***.99","email_fiscal":"","cpf_fiscal":"018.***.***.99","nm_gestor":"","email_gestor":"","cpf_gestor":"","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:915013,21,62100&cs=1L5gB9s9WtYvWcyav8CjUw_51jro","st":"Vigente"},{"num":"121/2023","obj":"CONCORRÊNCIA PÚBLICA, PARA A CONCESSÃO DE USO DE ESPAÇO PARA INSTALAÇÃO DE 01 (UM) RELÓGIO DIGITAL C","forn":"COOPERATIVA DE CREDITO, POUPANCA E INVESTIMENTO UNIAO - SICREDI UNIAO RS/ES","cnpj":"88894548000173","venc":"27/06/2028","inicio":"22/06/2023","dias":834,"val":150.0,"modal":"CNC","nm_fiscal":"003.***.***.20","email_fiscal":"","cpf_fiscal":"003.***.***.20","nm_gestor":"","email_gestor":"","cpf_gestor":"","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1001627,25,62100&cs=1OEgzyePi-ZYQPjrcokP3hbybctk","st":"Vigente"},{"num":"90/2025","obj":"Prestação de Serviços de abastecimento de água, e/ou coleta, afastamento e tratamento de esgoto sani","forn":"COMPANHIA RIOGRANDENSE DE SANEAMENTO - CORSAN","cnpj":"92802784000190","venc":"31/12/2062","inicio":"26/09/2025","dias":13439,"val":0.0,"modal":"nan","nm_fiscal":"377.***.***.34","email_fiscal":"","cpf_fiscal":"377.***.***.34","nm_gestor":"","email_gestor":"","cpf_gestor":"","link":"https://portal.tce.rs.gov.br/aplicprod/f?p=50500:23:::NO:23:P23_ID_CONTRATO,P23_PAG_RETORNO,F50500_CD_ORGAO:1247655,25,62100&cs=1Z3YVj7lJ46d3C0Rweh3OjH-wGe0","st":"Vigente"}];
 const ULTIMA_ATUALIZACAO = '16/03/2026 00:00';
-const CPF_CARGO = {"009.***.***.22": "Fiscal", "587.***.***.49": "Gestor", "003.***.***.20": "Fiscal", "006.***.***.02": "Gestor", "028.***.***.30": "Fiscal", "003.***.***.43": "Fiscal", "018.***.***.40": "Fiscal", "007.***.***.00": "Fiscal", "031.***.***.79": "Gestor", "005.***.***.20": "Fiscal", "649.***.***.49": "Fiscal", "979.***.***.72": "Fiscal", "005.***.***.92": "Fiscal", "022.***.***.38": "Fiscal", "010.***.***.32": "Fiscal", "012.***.***.02": "Fiscal", "474.***.***.34": "Gestor", "956.***.***.49": "Fiscal", "712.***.***.49": "Gestor", "649.***.***.20": "Fiscal", "018.***.***.99": "Fiscal", "669.***.***.34": "Fiscal", "020.***.***.55": "Fiscal", "025.***.***.22": "Fiscal", "031.***.***.50": "Fiscal", "653.***.***.49": "Fiscal", "000.***.***.90": "Fiscal", "982.***.***.91": "Fiscal", "029.***.***.21": "Fiscal", "024.***.***.07": "Fiscal", "018.***.***.57": "Fiscal", "038.***.***.50": "Fiscal", "005.***.***.03": "Fiscal", "753.***.***.49": "Fiscal", "035.***.***.16": "Fiscal", "045.***.***.41": "Fiscal", "636.***.***.04": "Fiscal", "005.***.***.10": "Fiscal", "598.***.***.20": "Fiscal", "610.***.***.59": "Fiscal", "014.***.***.30": "Fiscal", "574.***.***.15": "Fiscal", "006.***.***.21": "Fiscal", "199.***.***.04": "Gestor", "377.***.***.34": "Gestor", "838.***.***.15": "Fiscal", "044.***.***.81": "Gestor", "883.***.***.87": "Fiscal", "598.***.***.34": "Gestor", "030.***.***.66": "Fiscal", "924.***.***.49": "Fiscal", "332.***.***.68": "Fiscal", "033.***.***.47": "Fiscal"};
+const CPF_CARGO = {"009.***.***.22": "F", "587.***.***.49": "G", "003.***.***.20": "F", "006.***.***.02": "G", "028.***.***.30": "F", "003.***.***.43": "F", "018.***.***.40": "F", "007.***.***.00": "F", "031.***.***.79": "G", "005.***.***.20": "F", "649.***.***.49": "G", "979.***.***.72": "F", "005.***.***.92": "F", "022.***.***.38": "F", "010.***.***.32": "F", "012.***.***.02": "F", "474.***.***.34": "G", "956.***.***.49": "F", "712.***.***.49": "F", "649.***.***.20": "F", "018.***.***.99": "F", "669.***.***.34": "F", "020.***.***.55": "F", "025.***.***.22": "G", "031.***.***.50": "F", "653.***.***.49": "F", "000.***.***.90": "F", "982.***.***.91": "F", "029.***.***.21": "F", "024.***.***.07": "F", "018.***.***.57": "F", "038.***.***.50": "F", "005.***.***.03": "F", "753.***.***.49": "F", "035.***.***.16": "F", "045.***.***.41": "F", "636.***.***.04": "F", "005.***.***.10": "F", "598.***.***.20": "F", "610.***.***.59": "F", "014.***.***.30": "F", "574.***.***.15": "F", "006.***.***.21": "F", "199.***.***.04": "F", "377.***.***.34": "F", "838.***.***.15": "G", "044.***.***.81": "F", "883.***.***.87": "F", "598.***.***.34": "G", "030.***.***.66": "F", "924.***.***.49": "F", "332.***.***.68": "F", "033.***.***.47": "F"};
+const ULTIMA_ATUALIZACAO = "16/03/2026 às 07:00";
+const DATA_TCE = "16/03/2026 às 04:12";
 
-// ── Storage: salva/carrega responsáveis no navegador ─────────
-const STORE_KEY = 'resp_tucunduva_v1';
+// ══════════════════════════════════════════════════════════════
+//  LOGIN
+//  ⚠ Troque as senhas antes de publicar!
+// ══════════════════════════════════════════════════════════════
+const USUARIOS = [
+  {usuario:'admin',  senha:'tucunduva@2026', nome:'Administrador'},
+  {usuario:'gestor', senha:'gestor@2026',    nome:'Gestor de Contratos'},
+  {usuario:'fiscal', senha:'fiscal@2026',    nome:'Fiscal de Contratos'},
+];
+const SESS_KEY   = 'sessao_pmt_v2';
+const HORAS_SESS = 8;
 
-function carregarResponsaveis() {
+function login() {
+  const u = document.getElementById('lu').value.trim().toLowerCase();
+  const s = document.getElementById('ls').value;
+  setTimeout(() => {
+    const f = USUARIOS.find(x => x.usuario===u && x.senha===s);
+    if (f) {
+      sessionStorage.setItem(SESS_KEY, JSON.stringify({nome:f.nome, t:Date.now()}));
+      document.getElementById('lerro').classList.remove('on');
+      mostrarSistema(f.nome);
+    } else {
+      document.getElementById('lerro').classList.add('on');
+      document.getElementById('ls').value='';
+      document.getElementById('ls').focus();
+    }
+  }, 250);
+}
+
+function mostrarSistema(nome) {
+  document.getElementById('login-wrap').classList.remove('on');
+  document.getElementById('sb-user').textContent = '👤 ' + nome;
+}
+
+function logout() {
+  if (!confirm('Deseja sair do sistema?')) return;
+  sessionStorage.removeItem(SESS_KEY);
+  document.getElementById('lu').value='';
+  document.getElementById('ls').value='';
+  document.getElementById('login-wrap').classList.add('on');
+  setTimeout(()=>document.getElementById('lu').focus(),100);
+}
+
+(function verificarSessao() {
   try {
-    const raw = localStorage.getItem(STORE_KEY);
-    if (raw) return JSON.parse(raw);
+    const s = JSON.parse(sessionStorage.getItem(SESS_KEY)||'null');
+    if (s && Date.now()-s.t < HORAS_SESS*3600*1000) { mostrarSistema(s.nome); return; }
   } catch(e) {}
-  // Primeira vez: pré-popula com CPFs dos contratos sem nome
-  const cpfs = {};
+  setTimeout(()=>document.getElementById('lu').focus(),100);
+})();
+
+// ══════════════════════════════════════════════════════════════
+//  STORAGE — responsáveis e secretarias salvos no navegador
+// ══════════════════════════════════════════════════════════════
+const RESP_KEY = 'resp_pmt_v2';
+const SECR_KEY = 'secr_pmt_v2';
+
+function loadResp() {
+  try { const r=JSON.parse(localStorage.getItem(RESP_KEY)||'null'); if(r) return r; } catch(e){}
+  // Pré-popula com CPFs dos contratos
+  const m = {};
   CONTRATOS.forEach(c => {
-    if (c.cpf_fiscal && !cpfs[c.cpf_fiscal])
-      cpfs[c.cpf_fiscal] = { cpf: c.cpf_fiscal, nome: '', email: '', cargo: 'Fiscal', tel: '', setor: '' };
-    if (c.cpf_gestor && !cpfs[c.cpf_gestor])
-      cpfs[c.cpf_gestor] = { cpf: c.cpf_gestor, nome: '', email: '', cargo: 'Gestor', tel: '', setor: '' };
+    if(c.cpf_fiscal && !m[c.cpf_fiscal]) m[c.cpf_fiscal]={cpf:c.cpf_fiscal,nome:'',email:'',cargo:'Fiscal',tel:'',setor:'',secretaria:''};
+    if(c.cpf_gestor && !m[c.cpf_gestor]) m[c.cpf_gestor]={cpf:c.cpf_gestor,nome:'',email:'',cargo:'Gestor',tel:'',setor:'',secretaria:''};
   });
-  // Usa CPF_CARGO para definir o cargo correto
   Object.keys(CPF_CARGO).forEach(cpf => {
     const mask = cpf.length===11 ? cpf.substring(0,3)+'.***.***-'+cpf.slice(-2) : cpf;
-    if (cpfs[mask]) cpfs[mask].cargo = CPF_CARGO[cpf]==='F'?'Fiscal':'Gestor';
+    if(m[mask]) m[mask].cargo = CPF_CARGO[cpf]==='F'?'Fiscal':'Gestor';
   });
-  return Object.values(cpfs);
+  return Object.values(m);
 }
 
-function salvarStorage(lista) {
-  localStorage.setItem(STORE_KEY, JSON.stringify(lista));
+function loadSecr() {
+  try { const s=JSON.parse(localStorage.getItem(SECR_KEY)||'null'); if(s) return s; } catch(e){}
+  return [
+    {id:'s1',nome:'Secretaria Municipal de Administração',   sigla:'SMA', email:'administracao@tucunduva.rs.gov.br',resp:'',obs:''},
+    {id:'s2',nome:'Secretaria Municipal de Saúde',            sigla:'SMS', email:'saude@tucunduva.rs.gov.br',        resp:'',obs:''},
+    {id:'s3',nome:'Secretaria Municipal de Educação',         sigla:'SME', email:'educacao@tucunduva.rs.gov.br',     resp:'',obs:''},
+    {id:'s4',nome:'Secretaria Municipal de Obras',            sigla:'SMO', email:'obras@tucunduva.rs.gov.br',        resp:'',obs:''},
+    {id:'s5',nome:'Secretaria de Assistência Social',         sigla:'SMAS',email:'assistencia@tucunduva.rs.gov.br',  resp:'',obs:''},
+    {id:'s6',nome:'Secretaria Municipal de Agricultura',      sigla:'SMAg',email:'agricultura@tucunduva.rs.gov.br',  resp:'',obs:''},
+    {id:'s7',nome:'Gabinete do Prefeito',                     sigla:'GAB', email:'gabinete@tucunduva.rs.gov.br',     resp:'',obs:''},
+  ];
 }
 
-let RESP = carregarResponsaveis();
+let RESP = loadResp();
+let SECR = loadSecr();
 
-// ── Cruza nome com contratos ──────────────────────────────────
-function getNome(cpfMask) {
-  const r = RESP.find(x => x.cpf === cpfMask);
-  return r && r.nome ? r.nome : cpfMask || '—';
-}
-function getEmail(cpfMask) {
-  const r = RESP.find(x => x.cpf === cpfMask);
-  return r ? r.email || '' : '';
-}
+function saveResp() { localStorage.setItem(RESP_KEY, JSON.stringify(RESP)); }
+function saveSecr() { localStorage.setItem(SECR_KEY, JSON.stringify(SECR)); }
 
-// Injeta nomes nos contratos em tempo real
-function contratosComNomes() {
-  return CONTRATOS.map(c => ({
-    ...c,
-    nm_fiscal:    getNome(c.cpf_fiscal),
-    email_fiscal: getEmail(c.cpf_fiscal),
-    nm_gestor:    getNome(c.cpf_gestor),
-    email_gestor: getEmail(c.cpf_gestor),
-  }));
-}
-
-// ── Navegação ─────────────────────────────────────────────────
-const TITULOS = {dash:'Dashboard',alertas:'Alertas',contratos:'Contratos',responsaveis:'Gestores e Fiscais',notif:'Notificações',relat:'Relatórios'};
-function ir(id, el) {
-  document.querySelectorAll('.view').forEach(v=>v.classList.remove('on'));
-  document.getElementById('v-'+id).classList.add('on');
-  document.querySelectorAll('.ni').forEach(n=>n.classList.remove('on'));
-  if(el) el.classList.add('on');
-  document.getElementById('pgt').textContent = TITULOS[id]||id;
-  const C = contratosComNomes();
-  if(id==='contratos')    { popularFiltros(C); renderTabela(C); }
-  if(id==='responsaveis') renderResponsaveis();
-  if(id==='relat')        renderResumo(C);
-  if(id==='notif')        renderNotifStats(C);
-  if(id==='alertas')      renderAlertas(C);
-}
-
-// ── Formatação ────────────────────────────────────────────────
-const fv = v => 'R$ ' + v.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});
-const pillSt = s => ({Crítico:'pR',Atenção:'pO',Vigente:'pG',Vencido:'pR'}[s]||'pN');
-function diasLabel(d) {
+// ══════════════════════════════════════════════════════════════
+//  UTILITÁRIOS
+// ══════════════════════════════════════════════════════════════
+const fv   = v => 'R$ '+v.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});
+const pSt  = s => ({Crítico:'pR',Atenção:'pO',Vigente:'pG',Vencido:'pR'}[s]||'pN');
+const dcor = d => d<0?'dR':d<=30?'dR':d<=90?'dO':'dG';
+function dLabel(d){
   if(d<0)   return `<span class="dcR">Vencido</span>`;
   if(d<=30) return `<span class="dcR">${d}d</span>`;
   if(d<=90) return `<span class="dcO">${d}d</span>`;
   return `<span class="dcG">${d}d</span>`;
 }
-function dotCor(d){ return d<=0?'dR':d<=30?'dR':d<=90?'dO':'dG'; }
-function iniciais(nome) {
-  if(!nome || nome.includes('*')) return '?';
-  const p = nome.trim().split(' ');
+function iniciais(n){
+  if(!n||n.includes('*')) return '?';
+  const p=n.trim().split(' ');
   return (p[0][0]+(p.length>1?p[p.length-1][0]:'')).toUpperCase();
 }
+function getNome(cpf){ const r=RESP.find(x=>x.cpf===cpf); return r&&r.nome?r.nome:cpf||'—'; }
+function getEmail(cpf){ const r=RESP.find(x=>x.cpf===cpf); return r?r.email||'':''; }
 
-// ── Dashboard ─────────────────────────────────────────────────
-function renderDashboard() {
-  const C    = contratosComNomes();
-  const tot  = C.length;
-  const crit = C.filter(c=>c.dias<=30).length;
-  const ate  = C.filter(c=>c.dias>30&&c.dias<=90).length;
-  const vig  = C.filter(c=>c.dias>90).length;
-  const val  = C.reduce((s,c)=>s+c.val,0);
+function contratosComNomes(){
+  return CONTRATOS.map(c=>({...c,
+    nm_fiscal:getNome(c.cpf_fiscal), email_fiscal:getEmail(c.cpf_fiscal),
+    nm_gestor:getNome(c.cpf_gestor), email_gestor:getEmail(c.cpf_gestor),
+  }));
+}
 
-  document.getElementById('m-tot').textContent = tot;
-  document.getElementById('m-cri').textContent = crit;
-  document.getElementById('m-ate').textContent = ate;
-  document.getElementById('m-val').textContent = fv(val).replace('R$ ','R$\u00a0');
-  document.getElementById('nb-a').textContent  = crit;
-  document.getElementById('alerta-cnt').textContent = crit+' críticos';
-  document.getElementById('np-cnt').textContent = crit+' novas';
+function toast(msg){
+  const t=document.getElementById('toast-el');
+  t.textContent=msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2500);
+}
+function abrirOvl(id){ document.getElementById(id).classList.add('on'); }
+function fecharOvl(id,e){ if(e.target===document.getElementById(id)) document.getElementById(id).classList.remove('on'); }
+function fecharOvl2(id){ document.getElementById(id).classList.remove('on'); }
+function toggleNP(){ document.getElementById('npainel').classList.toggle('on'); }
 
-  // Críticos
-  document.getElementById('dash-crit').innerHTML =
+// ══════════════════════════════════════════════════════════════
+//  NAVEGAÇÃO
+// ══════════════════════════════════════════════════════════════
+const TITULOS={dash:'Dashboard',alertas:'Alertas',contratos:'Contratos',
+  responsaveis:'Gestores e Fiscais',secretarias:'Secretarias',
+  notif:'Notificações',relat:'Relatórios'};
+
+function ir(id,el){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('on'));
+  document.getElementById('v-'+id).classList.add('on');
+  document.querySelectorAll('.ni').forEach(n=>n.classList.remove('on'));
+  if(el) el.classList.add('on');
+  document.getElementById('pgt').textContent=TITULOS[id]||id;
+  const C=contratosComNomes();
+  if(id==='contratos')   { popularFiltros(C); renderTabela(C); }
+  if(id==='responsaveis') renderResp();
+  if(id==='secretarias')  renderSecr();
+  if(id==='relat')        renderResumo(C);
+  if(id==='notif')        renderNotifStats(C);
+  if(id==='alertas')      renderAlertas(C);
+}
+
+// ══════════════════════════════════════════════════════════════
+//  DASHBOARD
+// ══════════════════════════════════════════════════════════════
+function renderDashboard(){
+  const C=contratosComNomes();
+  const tot=C.length, crit=C.filter(c=>c.dias<=30).length;
+  const ate=C.filter(c=>c.dias>30&&c.dias<=90).length;
+  const vig=C.filter(c=>c.dias>90).length;
+  const val=C.reduce((s,c)=>s+c.val,0);
+  document.getElementById('m-tot').textContent=tot;
+  document.getElementById('m-cri').textContent=crit;
+  document.getElementById('m-ate').textContent=ate;
+  document.getElementById('m-val').textContent=fv(val);
+  document.getElementById('nb-a').textContent=crit;
+  document.getElementById('alerta-cnt').textContent=crit+' críticos';
+  document.getElementById('np-cnt').textContent=crit+' novas';
+  document.getElementById('dash-crit').innerHTML=
     C.filter(c=>c.dias<=30).slice(0,5).map(c=>`
       <div class="ar click" onclick="ir('contratos',document.querySelectorAll('.ni')[3])">
-        <div class="dot ${dotCor(c.dias)}"></div>
+        <div class="dot ${dcor(c.dias)}"></div>
         <div class="ai">
           <div class="at">${c.num} — ${c.obj.substring(0,60)}
             ${c.link?`<a href="${c.link}" target="_blank" class="lnk" onclick="event.stopPropagation()"> ↗ TCE</a>`:''}
           </div>
-          <div class="as">${c.forn.substring(0,35)} · ${c.dias<0?`<b>Vencido há ${Math.abs(c.dias)}d</b>`:`Vence em <b>${c.dias} dias</b>`} · ${c.venc}
+          <div class="as">${c.forn.substring(0,40)} · ${c.dias<0?`<b>Vencido há ${Math.abs(c.dias)}d</b>`:`Vence em <b>${c.dias} dias</b>`} · ${c.venc}
             ${c.nm_fiscal&&!c.nm_fiscal.includes('*')?' · Fiscal: <b>'+c.nm_fiscal+'</b>':''}
             ${c.nm_gestor&&!c.nm_gestor.includes('*')?' · Gestor: <b>'+c.nm_gestor+'</b>':''}
           </div>
         </div>
-        <div class="am">${c.dias<=0?'VENCIDO':c.dias<=7?'URGENTE':'ATENÇÃO'}</div>
-      </div>`).join('') || `<div class="ar"><div class="ai" style="color:var(--tx3)">Nenhum contrato crítico.</div></div>`;
-
-  // Progresso
-  const pct = n => tot>0?Math.round(n/tot*100)+'%':'0%';
-  document.getElementById('dash-prog').innerHTML = [
+        <div class="am">${c.dias<=0?'VENCIDO':c.dias<=7?'URGENTE':'CRÍTICO'}</div>
+      </div>`).join('')||`<div class="ar"><div class="ai" style="color:var(--tx3)">Nenhum contrato crítico.</div></div>`;
+  const pct=n=>tot>0?Math.round(n/tot*100)+'%':'0%';
+  document.getElementById('dash-prog').innerHTML=[
     ['Vigentes em dia',vig,'#2d6a3f'],
     ['Atenção (31–90d)',ate,'#b85c00'],
-    ['Críticos (≤ 30d)',crit,'#b83030'],
-  ].map(([l,q,c])=>`
-    <div class="pb-r">
-      <div class="pb-l"><span>${l}</span><span style="color:${c}">${q}</span></div>
-      <div class="pb-b"><div class="pb-f" style="width:${pct(q)};background:${c}"></div></div>
-    </div>`).join('');
-
-  // Sem e-mail
-  const semEmail = RESP.filter(r=>!r.email).slice(0,5);
-  document.getElementById('dash-semmail').innerHTML = semEmail.length===0
-    ? `<div class="ar"><div class="ai" style="color:var(--grn);font-size:13px;padding:4px 0">✓ Todos os responsáveis têm e-mail cadastrado.</div></div>`
-    : semEmail.map(r=>`
-        <div class="ar click" onclick="abrirModalResp('${r.cpf}')">
-          <div class="dot dO"></div>
-          <div class="ai">
-            <div class="at">${r.nome||r.cpf} <span class="pill pO" style="font-size:10px">${r.cargo}</span></div>
-            <div class="as" style="color:var(--ora)">E-mail não cadastrado — clique para preencher</div>
-          </div>
-        </div>`).join('');
-
-  renderNP(C);
-}
-
-// ── Alertas ───────────────────────────────────────────────────
-function renderAlertas(C) {
-  C = C || contratosComNomes();
-  const lista = C.filter(c=>c.dias<=90).sort((a,b)=>a.dias-b.dias);
-  document.getElementById('lst-alertas').innerHTML = lista.map(c=>`
-    <div class="ar">
-      <div class="dot ${dotCor(c.dias)}"></div>
-      <div class="ai">
-        <div class="at">
-          ${c.dias<0?'VENCIDO':c.dias<=7?'URGENTE':c.dias<=30?'ATENÇÃO':'AVISO'} —
-          ${c.num} · ${c.obj.substring(0,55)}
-          ${c.link?`<a href="${c.link}" target="_blank" class="lnk" onclick="event.stopPropagation()"> ↗ TCE</a>`:''}
-        </div>
-        <div class="as">
-          ${c.forn.substring(0,40)} · ${c.dias<0?`Vencido há ${Math.abs(c.dias)}d`:`Vence em ${c.dias}d`} (${c.venc}) · ${fv(c.val)}
-          ${c.nm_fiscal&&!c.nm_fiscal.includes('*')?`<br>Fiscal: <b>${c.nm_fiscal}</b>${c.email_fiscal?' &lt;'+c.email_fiscal+'&gt;':''}` :''}
-          ${c.nm_gestor&&!c.nm_gestor.includes('*')?`<br>Gestor: <b>${c.nm_gestor}</b>${c.email_gestor?' &lt;'+c.email_gestor+'&gt;':''}` :''}
-        </div>
-      </div>
-      <div class="am">${c.dias}d</div>
-    </div>`).join('') || `<div class="ar"><div class="ai" style="color:var(--tx3)">Nenhum alerta ativo.</div></div>`;
-}
-
-// ── Tabela de contratos ───────────────────────────────────────
-function renderTabela(lista) {
-  document.getElementById('t-body').innerHTML = lista.map(c=>`
-    <tr>
-      <td><div class="tdm">${c.num}</div><div class="tds">${c.obj.substring(0,50)}${c.obj.length>50?'...':''}</div></td>
-      <td style="max-width:150px"><div style="font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:150px" title="${c.forn}">${c.forn}</div><div class="tdno">${c.cnpj}</div></td>
-      <td><span class="pill pN">${c.modal}</span></td>
-      <td class="tdno">${c.venc}</td>
-      <td>${diasLabel(c.dias)}</td>
-      <td class="tdno">${fv(c.val)}</td>
-      <td>
-        <div style="font-weight:500;font-size:12px">${c.nm_fiscal&&!c.nm_fiscal.includes('*')?c.nm_fiscal:'<span style="color:var(--tx3)">'+c.cpf_fiscal+'</span>'}</div>
-        ${c.email_fiscal?`<div class="tdno" style="color:var(--tx3)">${c.email_fiscal}</div>`:''}
-      </td>
-      <td>
-        <div style="font-weight:500;font-size:12px">${c.nm_gestor&&!c.nm_gestor.includes('*')?c.nm_gestor:'<span style="color:var(--tx3)">'+c.cpf_gestor+'</span>'}</div>
-        ${c.email_gestor?`<div class="tdno" style="color:var(--tx3)">${c.email_gestor}</div>`:''}
-      </td>
-      <td><span class="pill ${pillSt(c.st)}">${c.st}</span></td>
-      <td>${c.link?`<a href="${c.link}" target="_blank" class="btn btn-s" style="text-decoration:none">↗</a>`:''}</td>
-    </tr>`).join('');
-  document.getElementById('f-cnt').textContent = lista.length+' contrato'+(lista.length!==1?'s':'');
-}
-
-function filtrar() {
-  const C   = contratosComNomes();
-  const q   = document.getElementById('f-txt').value.toLowerCase();
-  const st  = document.getElementById('f-st').value;
-  const fis = document.getElementById('f-fiscal').value;
-  const ges = document.getElementById('f-gestor').value;
-  const ano = document.getElementById('f-ano').value;
-  renderTabela(C.filter(c=>
-    (!q||c.num.toLowerCase().includes(q)||c.obj.toLowerCase().includes(q)||c.forn.toLowerCase().includes(q)||c.nm_fiscal.toLowerCase().includes(q)||c.nm_gestor.toLowerCase().includes(q))&&
-    (!st||c.st===st)&&
-    (!fis||c.nm_fiscal===fis)&&
-    (!ges||c.nm_gestor===ges)&&
-    (!ano||c.num.endsWith('/'+ano))
-  ));
-}
-
-function popularFiltros(C) {
-  const set = (id, vals) => {
-    const s = document.getElementById(id);
-    const cur = s.value;
-    while(s.options.length>1) s.remove(1);
-    vals.forEach(v=>{ if(v){ const o=document.createElement('option'); o.value=v; o.textContent=v; s.appendChild(o); }});
-    s.value = cur;
-  };
-  set('f-fiscal', [...new Set(C.map(c=>c.nm_fiscal).filter(n=>n&&!n.includes('*')))].sort());
-  set('f-gestor', [...new Set(C.map(c=>c.nm_gestor).filter(n=>n&&!n.includes('*')))].sort());
-  set('f-ano',    [...new Set(C.map(c=>c.num.split('/')[1]))].sort((a,b)=>b-a));
-}
-
-// ── Gestores e Fiscais ────────────────────────────────────────
-function renderResponsaveis() {
-  const q    = (document.getElementById('f-resp').value||'').toLowerCase();
-  const carg = document.getElementById('f-cargo').value;
-  const st   = document.getElementById('f-resp-st').value;
-
-  const lista = RESP.filter(r=>
-    (!q||(r.nome||'').toLowerCase().includes(q)||(r.cpf||'').includes(q)||(r.email||'').toLowerCase().includes(q))&&
-    (!carg||r.cargo===carg)&&
-    (!st||(st==='ok'?r.email:!r.email))
-  );
-
-  // Conta contratos de cada responsável
-  const C = contratosComNomes();
-  const contsResp = r => C.filter(c=>c.cpf_fiscal===r.cpf||c.cpf_gestor===r.cpf);
-  const critsResp = r => contsResp(r).filter(c=>c.dias<=30).length;
-
-  document.getElementById('f-resp-cnt').textContent = lista.length+' responsável'+(lista.length!==1?'s':'');
-  document.getElementById('resp-lista').innerHTML = lista.map(r => {
-    const conts  = contsResp(r);
-    const crits  = critsResp(r);
-    return `
-      <div class="rc">
-        <div class="rc-av ${r.cargo==='Fiscal'?'F':'G'}">${iniciais(r.nome)}</div>
-        <div class="rc-info">
-          <div class="rc-nome">${r.nome||'<span style="color:var(--tx3)">Nome não preenchido</span>'}</div>
-          <div class="rc-email">${r.email||'<span style="color:var(--ora)">E-mail não cadastrado</span>'}</div>
-          <div class="rc-cpf">${r.cpf}${r.setor?' · '+r.setor:''}</div>
-        </div>
-        <div class="rc-stats">
-          <span class="pill ${r.cargo==='Fiscal'?'pN':'pB'}">${r.cargo}</span>
-          <span class="pill pN" title="Contratos ativos">${conts.length} contrato${conts.length!==1?'s':''}</span>
-          ${crits>0?`<span class="pill pR">${crits} crítico${crits>1?'s':''}</span>`:''}
-        </div>
-        <div class="rc-actions">
-          <button class="btn-ghost" onclick="abrirModalResp('${r.cpf}')" title="Editar">✏️</button>
-          <button class="btn-ghost btn-danger" onclick="confirmarDel('${r.cpf}')" title="Remover">🗑️</button>
-        </div>
-      </div>`;
-  }).join('') || `<div style="padding:24px;text-align:center;color:var(--tx3);font-size:13px">Nenhum responsável encontrado.</div>`;
-}
-
-// ── Modal responsável: abrir/salvar/excluir ───────────────────
-let _editCpf = null;
-let _delCpf  = null;
-
-function abrirModalResp(cpf) {
-  _editCpf = cpf;
-  const r = cpf ? RESP.find(x=>x.cpf===cpf) : null;
-  document.getElementById('resp-modal-titulo').textContent = r ? 'Editar responsável' : 'Cadastrar responsável';
-  document.getElementById('resp-nome').value  = r?.nome  || '';
-  document.getElementById('resp-cargo').value = r?.cargo || 'Fiscal';
-  document.getElementById('resp-cpf').value   = r?.cpf   || '';
-  document.getElementById('resp-email').value = r?.email || '';
-  document.getElementById('resp-tel').value   = r?.tel   || '';
-  document.getElementById('resp-setor').value = r?.setor || '';
-  // CPF não editável se for edição
-  document.getElementById('resp-cpf').disabled = !!r;
-  abrirOvl('ovl-resp');
-}
-
-function salvarResponsavel() {
-  const nome  = document.getElementById('resp-nome').value.trim();
-  const cargo = document.getElementById('resp-cargo').value;
-  const cpf   = document.getElementById('resp-cpf').value.replace(/\D/g,'').trim();
-  const email = document.getElementById('resp-email').value.trim();
-  const tel   = document.getElementById('resp-tel').value.trim();
-  const setor = document.getElementById('resp-setor').value.trim();
-
-  if(!nome)  { alert('Informe o nome do responsável.'); return; }
-  if(!cpf)   { alert('Informe o CPF (somente números).'); return; }
-  if(cpf.length!==11){ alert('CPF deve ter 11 dígitos.'); return; }
-
-  // Formata CPF como máscara
-  const mask = cpf.substring(0,3)+'.***.***-'+cpf.slice(-2);
-
-  if(_editCpf) {
-    // Edição
-    const idx = RESP.findIndex(x=>x.cpf===_editCpf);
-    if(idx>=0) RESP[idx] = {...RESP[idx], nome, cargo, email, tel, setor};
-  } else {
-    // Novo: verifica se CPF já existe
-    if(RESP.find(x=>x.cpf===mask||x.cpf===cpf)) {
-      alert('Este CPF já está cadastrado. Use o botão ✏️ para editar.');
-      return;
-    }
-    RESP.push({cpf: mask, nome, cargo, email, tel, setor});
-  }
-
-  salvarStorage(RESP);
-  fecharModal('ovl-resp');
-  renderResponsaveis();
-  renderDashboard();
-  popularFiltros(contratosComNomes());
-  toast('Responsável salvo com sucesso!');
-}
-
-function confirmarDel(cpf) {
-  _delCpf = cpf;
-  const r = RESP.find(x=>x.cpf===cpf);
-  document.getElementById('del-nome').textContent = r?.nome || cpf;
-  abrirOvl('ovl-del');
-}
-
-function confirmarExclusao() {
-  RESP = RESP.filter(x=>x.cpf!==_delCpf);
-  salvarStorage(RESP);
-  fecharModal('ovl-del');
-  renderResponsaveis();
-  renderDashboard();
-  toast('Responsável removido.');
-}
-
-// ── Novo contrato ─────────────────────────────────────────────
-function abrirNovoContrato() {
-  // Popula selects de gestor e fiscal com responsáveis cadastrados
-  ['nc-gestor','nc-fiscal'].forEach(id=>{
-    const s = document.getElementById(id);
-    while(s.options.length>1) s.remove(1);
-    RESP.filter(r=>r.nome).forEach(r=>{
-      const o = document.createElement('option');
-      o.value = r.cpf;
-      o.textContent = r.nome + ' ('+r.cargo+')';
-      s.appendChild(o);
-    });
-  });
-  abrirOvl('ovl-cont');
-}
-
-function salvarContrato() {
-  fecharModal('ovl-cont');
-  toast('Contrato salvo! Alertas ativados para gestor e fiscal.');
-}
-
-// ── Resumo / stats ────────────────────────────────────────────
-function renderResumo(C) {
-  C = C || contratosComNomes();
-  const tot  = C.length;
-  const val  = C.reduce((s,c)=>s+c.val,0);
-  const sfis = C.filter(c=>!c.email_fiscal).length;
-  const sges = C.filter(c=>!c.email_gestor).length;
-  document.getElementById('rel-res').innerHTML=`
-    <div class="rr"><span class="rl">Total vigentes</span><span class="rv">${tot}</span></div>
-    <div class="rr"><span class="rl">Vigentes em dia</span><span class="rv" style="color:var(--grn)">${C.filter(c=>c.dias>90).length}</span></div>
-    <div class="rr"><span class="rl">Atenção (31–90d)</span><span class="rv" style="color:var(--ora)">${C.filter(c=>c.dias>30&&c.dias<=90).length}</span></div>
-    <div class="rr"><span class="rl">Críticos (≤ 30d)</span><span class="rv" style="color:var(--red)">${C.filter(c=>c.dias<=30).length}</span></div>
-    <div class="rr"><span class="rl">Sem e-mail fiscal</span><span class="rv" style="color:var(--ora)">${sfis}</span></div>
-    <div class="rr"><span class="rl">Sem e-mail gestor</span><span class="rv" style="color:var(--ora)">${sges}</span></div>
-    <div class="rr"><span class="rl">Valor total vigente</span><span class="rv">${fv(val)}</span></div>`;
-}
-
-function renderNotifStats(C) {
-  C = C || contratosComNomes();
-  document.getElementById('notif-stats').innerHTML=`
-    <div class="rr"><span class="rl">Sem e-mail de fiscal</span><span class="rv" style="color:var(--ora)">${C.filter(c=>!c.email_fiscal).length}</span></div>
-    <div class="rr"><span class="rl">Sem e-mail de gestor</span><span class="rv" style="color:var(--ora)">${C.filter(c=>!c.email_gestor).length}</span></div>
-    <div class="rr"><span class="rl">Alertas urgentes hoje</span><span class="rv" style="color:var(--red)">${C.filter(c=>c.dias<=7).length}</span></div>
-    <div class="rr"><span class="rl">Responsáveis cadastrados</span><span class="rv">${RESP.length}</span></div>
-    <div class="rr"><span class="rl">Com e-mail preenchido</span><span class="rv" style="color:var(--grn)">${RESP.filter(r=>r.email).length}</span></div>`;
-}
-
-// ── Painel notificações ───────────────────────────────────────
-function renderNP(C) {
-  C = C || contratosComNomes();
-  document.getElementById('np-lista').innerHTML = C.filter(c=>c.dias<=30).slice(0,8).map(c=>`
+    ['Críticos (≤30d)',crit,'#b83030'],
+  ].map(([l,q,c])=>`<div class="pb-r"><div class="pb-l"><span>${l}</span><span style="color:${c}">${q}</span></div><div class="pb-b"><div class="pb-f" style="width:${pct(q)};background:${c}"></div></div></div>`).join('');
+  const sem=RESP.filter(r=>!r.email).slice(0,5);
+  document.getElementById('dash-semmail').innerHTML=sem.length===0
+    ?`<div class="ar"><div class="ai" style="color:var(--grn);font-size:13px">✓ Todos os responsáveis têm e-mail cadastrado.</div></div>`
+    :sem.map(r=>`<div class="ar click" onclick="abrirModalResp('${r.cpf}')"><div class="dot dO"></div><div class="ai"><div class="at">${r.nome||r.cpf} <span class="pill pO" style="font-size:10px">${r.cargo}</span></div><div class="as" style="color:var(--ora)">E-mail não cadastrado — clique para preencher</div></div></div>`).join('');
+  // Notif panel
+  document.getElementById('np-lista').innerHTML=C.filter(c=>c.dias<=30).slice(0,8).map(c=>`
     <div class="npi" style="${c.dias<=7?'background:var(--red-bg)':''}">
       <div class="npt" style="${c.dias<=7?'color:var(--red)':'color:var(--ora)'}">${c.num} — ${c.dias<0?'VENCIDO':'Vence em '+c.dias+'d'}</div>
       <div class="npd">${c.obj.substring(0,50)}</div>
@@ -877,112 +652,282 @@ function renderNP(C) {
     </div>`).join('');
 }
 
-// ── Utilitários modais ────────────────────────────────────────
-function abrirOvl(id)  { document.getElementById(id).classList.add('on'); }
-function fecharModal(id) { document.getElementById(id).classList.remove('on'); }
-function fecharOvl(id,e){ if(e.target===document.getElementById(id)) fecharModal(id); }
-function toggleNP()    { document.getElementById('npainel').classList.toggle('on'); }
-
-function toast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'), 2500);
+// ══════════════════════════════════════════════════════════════
+//  ALERTAS
+// ══════════════════════════════════════════════════════════════
+function renderAlertas(C){
+  C=C||contratosComNomes();
+  document.getElementById('lst-alertas').innerHTML=C.filter(c=>c.dias<=90).sort((a,b)=>a.dias-b.dias).map(c=>`
+    <div class="ar">
+      <div class="dot ${dcor(c.dias)}"></div>
+      <div class="ai">
+        <div class="at">${c.dias<0?'VENCIDO':c.dias<=7?'URGENTE':c.dias<=30?'CRÍTICO':'AVISO'} — ${c.num} · ${c.obj.substring(0,55)}
+          ${c.link?`<a href="${c.link}" target="_blank" class="lnk"> ↗ TCE</a>`:''}
+        </div>
+        <div class="as">${c.forn.substring(0,40)} · ${c.dias<0?`Vencido há ${Math.abs(c.dias)}d`:`Vence em ${c.dias}d`} (${c.venc}) · ${fv(c.val)}
+          ${c.nm_fiscal&&!c.nm_fiscal.includes('*')?`<br>Fiscal: <b>${c.nm_fiscal}</b>${c.email_fiscal?' &lt;'+c.email_fiscal+'&gt;':''}` :''}
+          ${c.nm_gestor&&!c.nm_gestor.includes('*')?`<br>Gestor: <b>${c.nm_gestor}</b>${c.email_gestor?' &lt;'+c.email_gestor+'&gt;':''}` :''}
+        </div>
+      </div>
+      <div class="am">${c.dias}d</div>
+    </div>`).join('')||`<div class="ar"><div class="ai" style="color:var(--tx3)">Nenhum alerta ativo.</div></div>`;
 }
-
-// ── Init ──────────────────────────────────────────────────────
-const C0 = contratosComNomes();
-popularFiltros(C0);
-renderDashboard();
-renderAlertas(C0);
-renderTabela(C0);
-renderResponsaveis();
-renderResumo(C0);
-renderNotifStats(C0);
-document.getElementById('dt-ref').textContent = 'Ref.: ' + new Date().toLocaleDateString('pt-BR');
 
 // ══════════════════════════════════════════════════════════════
-//  SISTEMA DE LOGIN
-//  ⚠ ATENÇÃO: Para trocar a senha, edite os usuários abaixo.
-//  Cada usuário tem: usuario, senha e nome (exibido no sistema).
+//  CONTRATOS — TABELA
 // ══════════════════════════════════════════════════════════════
-
-const USUARIOS = [
-  { usuario: 'admin',    senha: 'tucunduva@2026', nome: 'Administrador'         },
-  { usuario: 'gestor',   senha: 'gestor@2026',    nome: 'Gestor de Contratos'   },
-  { usuario: 'fiscal',   senha: 'fiscal@2026',    nome: 'Fiscal de Contratos'   },
-];
-
-// Tempo de sessão em horas (após esse tempo o login expira automaticamente)
-const HORAS_SESSAO = 8;
-const SESS_KEY     = 'sessao_contratos_pmt';
-
-function verificarSessao() {
-  try {
-    const s = JSON.parse(sessionStorage.getItem(SESS_KEY) || 'null');
-    if (!s) return false;
-    // Verifica se a sessão não expirou
-    if (Date.now() - s.inicio > HORAS_SESSAO * 3600 * 1000) {
-      sessionStorage.removeItem(SESS_KEY);
-      return false;
-    }
-    return s;
-  } catch(e) { return false; }
+function renderTabela(lista){
+  document.getElementById('t-body').innerHTML=lista.map(c=>`
+    <tr>
+      <td><div class="tdm">${c.num}</div><div class="tds">${c.obj.substring(0,50)}${c.obj.length>50?'...':''}</div></td>
+      <td style="max-width:150px"><div style="font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:150px" title="${c.forn}">${c.forn}</div><div class="tdno">${c.cnpj}</div></td>
+      <td><span class="pill pN">${c.modal}</span></td>
+      <td class="tdno">${c.venc}</td>
+      <td>${dLabel(c.dias)}</td>
+      <td class="tdno">${fv(c.val)}</td>
+      <td><div style="font-weight:500;font-size:12px">${c.nm_fiscal&&!c.nm_fiscal.includes('*')?c.nm_fiscal:'<span style="color:var(--tx3)">'+c.cpf_fiscal+'</span>'}</div>${c.email_fiscal?`<div class="tdno" style="color:var(--tx3)">${c.email_fiscal}</div>`:''}</td>
+      <td><div style="font-weight:500;font-size:12px">${c.nm_gestor&&!c.nm_gestor.includes('*')?c.nm_gestor:'<span style="color:var(--tx3)">'+c.cpf_gestor+'</span>'}</div>${c.email_gestor?`<div class="tdno" style="color:var(--tx3)">${c.email_gestor}</div>`:''}</td>
+      <td><span class="pill ${pSt(c.st)}">${c.st}</span></td>
+      <td>${c.link?`<a href="${c.link}" target="_blank" class="btn btn-s" style="text-decoration:none">↗</a>`:''}</td>
+    </tr>`).join('');
+  document.getElementById('f-cnt').textContent=lista.length+' contrato'+(lista.length!==1?'s':'');
 }
 
-function fazerLogin() {
-  const usuario = document.getElementById('login-usuario').value.trim().toLowerCase();
-  const senha   = document.getElementById('login-senha').value;
-  const erro    = document.getElementById('login-erro');
-
-  // Pequeno delay para não dar brecha a força bruta muito rápida
-  setTimeout(() => {
-    const found = USUARIOS.find(u => u.usuario === usuario && u.senha === senha);
-
-    if (found) {
-      // Salva sessão no sessionStorage (some ao fechar o navegador)
-      sessionStorage.setItem(SESS_KEY, JSON.stringify({
-        usuario: found.usuario,
-        nome:    found.nome,
-        inicio:  Date.now(),
-      }));
-      erro.classList.remove('vis');
-      mostrarSistema(found.nome);
-    } else {
-      erro.classList.add('vis');
-      document.getElementById('login-senha').value = '';
-      document.getElementById('login-senha').focus();
-    }
-  }, 300);
+function popularFiltros(C){
+  const set=(id,vals)=>{
+    const s=document.getElementById(id); const cur=s.value;
+    while(s.options.length>1) s.remove(1);
+    vals.forEach(v=>{ if(v&&!v.includes('*')){ const o=document.createElement('option'); o.value=v; o.textContent=v; s.appendChild(o); }}); s.value=cur;
+  };
+  set('f-fiscal',[...new Set(C.map(c=>c.nm_fiscal))].sort());
+  set('f-gestor',[...new Set(C.map(c=>c.nm_gestor))].sort());
+  set('f-ano',[...new Set(C.map(c=>c.num.split('/')[1]))].sort((a,b)=>b-a));
 }
 
-function mostrarSistema(nome) {
-  document.getElementById('login-screen').classList.remove('ativo');
-  // Exibe o nome do usuário logado na sidebar
-  const el = document.getElementById('login-nome-sidebar');
-  if (el) el.textContent = '👤 ' + nome;
+function filtrar(){
+  const C=contratosComNomes();
+  const q=document.getElementById('f-txt').value.toLowerCase();
+  const st=document.getElementById('f-st').value;
+  const fis=document.getElementById('f-fiscal').value;
+  const ges=document.getElementById('f-gestor').value;
+  const ano=document.getElementById('f-ano').value;
+  renderTabela(C.filter(c=>
+    (!q||c.num.toLowerCase().includes(q)||c.obj.toLowerCase().includes(q)||c.forn.toLowerCase().includes(q)||c.nm_fiscal.toLowerCase().includes(q)||c.nm_gestor.toLowerCase().includes(q))&&
+    (!st||c.st===st)&&(!fis||c.nm_fiscal===fis)&&(!ges||c.nm_gestor===ges)&&(!ano||c.num.endsWith('/'+ano))
+  ));
 }
 
-function fazerLogout() {
-  if (!confirm('Deseja sair do sistema?')) return;
-  sessionStorage.removeItem(SESS_KEY);
-  // Limpa campos e mostra tela de login
-  document.getElementById('login-usuario').value = '';
-  document.getElementById('login-senha').value   = '';
-  document.getElementById('login-erro').classList.remove('vis');
-  document.getElementById('login-screen').classList.add('ativo');
-  document.getElementById('login-usuario').focus();
+// ══════════════════════════════════════════════════════════════
+//  RESPONSÁVEIS
+// ══════════════════════════════════════════════════════════════
+function renderResp(){
+  const q=(document.getElementById('f-resp').value||'').toLowerCase();
+  const cg=document.getElementById('f-cargo').value;
+  const st=document.getElementById('f-resp-st').value;
+  const C=contratosComNomes();
+  const lista=RESP.filter(r=>
+    (!q||(r.nome||'').toLowerCase().includes(q)||(r.cpf||'').includes(q)||(r.email||'').toLowerCase().includes(q))&&
+    (!cg||r.cargo===cg)&&(!st||(st==='ok'?r.email:!r.email))
+  );
+  const conts=r=>C.filter(c=>c.cpf_fiscal===r.cpf||c.cpf_gestor===r.cpf);
+  const crits=r=>conts(r).filter(c=>c.dias<=30).length;
+  document.getElementById('f-resp-cnt').textContent=lista.length+' responsável'+(lista.length!==1?'s':'');
+  document.getElementById('resp-lista').innerHTML=lista.map(r=>`
+    <div class="rc">
+      <div class="rc-av ${r.cargo==='Fiscal'?'F':'G'}">${iniciais(r.nome)}</div>
+      <div class="rc-info">
+        <div class="rc-nome">${r.nome||'<span style="color:var(--tx3)">Nome não preenchido</span>'}</div>
+        <div class="rc-email">${r.email||'<span style="color:var(--ora)">E-mail não cadastrado</span>'}</div>
+        <div class="rc-cpf">${r.cpf}${r.setor?' · '+r.setor:''}</div>
+      </div>
+      <div class="rc-stats">
+        <span class="pill ${r.cargo==='Fiscal'?'pN':'pB'}">${r.cargo}</span>
+        <span class="pill pN">${conts(r).length} contrato${conts(r).length!==1?'s':''}</span>
+        ${crits(r)>0?`<span class="pill pR">${crits(r)} crítico${crits(r)>1?'s':''}</span>`:''}
+      </div>
+      <div class="rc-actions">
+        <button class="btn-ghost" onclick="abrirModalResp('${r.cpf}')" title="Editar">✏️</button>
+        <button class="btn-ghost btn-danger" onclick="pedirDel('${r.cpf}')" title="Remover">🗑️</button>
+      </div>
+    </div>`).join('')||`<div style="padding:24px;text-align:center;color:var(--tx3);font-size:13px">Nenhum responsável encontrado.</div>`;
 }
 
-// Verifica sessão ao carregar a página
-(function() {
-  const s = verificarSessao();
-  if (s) {
-    mostrarSistema(s.nome);
+let _editCpf=null, _delCpf=null;
+
+function abrirModalResp(cpf){
+  _editCpf=cpf;
+  const r=cpf?RESP.find(x=>x.cpf===cpf):null;
+  document.getElementById('resp-tit').textContent=r?'Editar responsável':'Cadastrar responsável';
+  document.getElementById('r-nome').value  =r?.nome||'';
+  document.getElementById('r-cargo').value =r?.cargo||'Fiscal';
+  document.getElementById('r-cpf').value   =r?.cpf||'';
+  document.getElementById('r-cpf').disabled=!!r;
+  document.getElementById('r-email').value =r?.email||'';
+  document.getElementById('r-tel').value   =r?.tel||'';
+  document.getElementById('r-setor').value =r?.setor||'';
+  // Popular select de secretarias
+  const sel=document.getElementById('r-secretaria');
+  while(sel.options.length>1) sel.remove(1);
+  SECR.forEach(s=>{ const o=document.createElement('option'); o.value=s.id; o.textContent=(s.sigla?s.sigla+' — ':'')+s.nome; sel.appendChild(o); });
+  sel.value=r?.secretaria||'';
+  abrirOvl('ovl-resp');
+}
+
+function salvarResp(){
+  const nome =document.getElementById('r-nome').value.trim();
+  const cargo=document.getElementById('r-cargo').value;
+  const email=document.getElementById('r-email').value.trim();
+  const tel  =document.getElementById('r-tel').value.trim();
+  const setor=document.getElementById('r-setor').value.trim();
+  const secr =document.getElementById('r-secretaria').value;
+  if(!nome){ alert('Informe o nome do responsável.'); return; }
+  // CPF só valida em cadastro novo
+  let mask=_editCpf;
+  if(!_editCpf){
+    const cpf=document.getElementById('r-cpf').value.replace(/\D/g,'').trim();
+    if(!cpf||cpf.length!==11){ alert('Informe o CPF com 11 dígitos.'); return; }
+    mask=cpf.substring(0,3)+'.***.***-'+cpf.slice(-2);
+    if(RESP.find(x=>x.cpf===mask)){ alert('CPF já cadastrado. Use ✏️ para editar.'); return; }
+    RESP.push({cpf:mask,nome,cargo,email,tel,setor,secretaria:secr});
   } else {
-    document.getElementById('login-screen').classList.add('ativo');
-    setTimeout(() => document.getElementById('login-usuario').focus(), 100);
+    const idx=RESP.findIndex(x=>x.cpf===_editCpf);
+    if(idx>=0) RESP[idx]={...RESP[idx],nome,cargo,email,tel,setor,secretaria:secr};
   }
+  saveResp(); fecharOvl2('ovl-resp'); renderResp(); renderDashboard();
+  popularFiltros(contratosComNomes()); toast('Responsável salvo!');
+}
+
+function pedirDel(cpf){
+  _delCpf=cpf;
+  const r=RESP.find(x=>x.cpf===cpf);
+  document.getElementById('del-nome').textContent=r?.nome||cpf;
+  abrirOvl('ovl-del');
+}
+
+function confirmarDel(){
+  RESP=RESP.filter(x=>x.cpf!==_delCpf);
+  saveResp(); fecharOvl2('ovl-del'); renderResp(); renderDashboard(); toast('Responsável removido.');
+}
+
+// ══════════════════════════════════════════════════════════════
+//  SECRETARIAS
+// ══════════════════════════════════════════════════════════════
+function renderSecr(){
+  const q=(document.getElementById('f-secr').value||'').toLowerCase();
+  const lista=SECR.filter(s=>!q||s.nome.toLowerCase().includes(q)||(s.sigla||'').toLowerCase().includes(q)||(s.email||'').toLowerCase().includes(q));
+  const vinc=s=>RESP.filter(r=>r.secretaria===s.id);
+  document.getElementById('f-secr-cnt').textContent=lista.length+' secretaria'+(lista.length!==1?'s':'');
+  document.getElementById('secr-lista').innerHTML=lista.map(s=>`
+    <div class="rc">
+      <div class="rc-av" style="background:var(--ac-bg);color:var(--ac);font-size:11px;font-weight:700;border-radius:8px;width:44px;height:44px">${s.sigla||s.nome.substring(0,3).toUpperCase()}</div>
+      <div class="rc-info">
+        <div class="rc-nome">${s.nome}</div>
+        <div class="rc-email">${s.email||'<span style="color:var(--ora)">E-mail não cadastrado</span>'}</div>
+        <div class="rc-cpf">${vinc(s).length} responsável(is) vinculado(s)${vinc(s).length?' — '+vinc(s).map(r=>r.nome||r.cpf).join(', '):''}</div>
+      </div>
+      <div class="rc-actions">
+        <button class="btn-ghost" onclick="abrirModalSecr('${s.id}')" title="Editar">✏️</button>
+        <button class="btn-ghost btn-danger" onclick="excluirSecr('${s.id}')" title="Remover">🗑️</button>
+      </div>
+    </div>`).join('')||`<div style="padding:24px;text-align:center;color:var(--tx3);font-size:13px">Nenhuma secretaria encontrada.</div>`;
+}
+
+let _editSecrId=null;
+
+function abrirModalSecr(id){
+  _editSecrId=id;
+  const s=id?SECR.find(x=>x.id===id):null;
+  document.getElementById('secr-tit').textContent=s?'Editar secretaria':'Nova Secretaria';
+  document.getElementById('s-nome').value =s?.nome||'';
+  document.getElementById('s-sigla').value=s?.sigla||'';
+  document.getElementById('s-email').value=s?.email||'';
+  document.getElementById('s-resp').value =s?.resp||'';
+  document.getElementById('s-obs').value  =s?.obs||'';
+  abrirOvl('ovl-secr');
+}
+
+function salvarSecr(){
+  const nome =document.getElementById('s-nome').value.trim();
+  const sigla=document.getElementById('s-sigla').value.trim();
+  const email=document.getElementById('s-email').value.trim();
+  const resp =document.getElementById('s-resp').value.trim();
+  const obs  =document.getElementById('s-obs').value.trim();
+  if(!nome){ alert('Informe o nome da secretaria.'); return; }
+  if(_editSecrId){
+    const idx=SECR.findIndex(x=>x.id===_editSecrId);
+    if(idx>=0) SECR[idx]={...SECR[idx],nome,sigla,email,resp,obs};
+  } else {
+    SECR.push({id:'s'+Date.now(),nome,sigla,email,resp,obs});
+  }
+  saveSecr(); fecharOvl2('ovl-secr'); renderSecr();
+  // Atualiza select no modal de responsável
+  const sel=document.getElementById('r-secretaria');
+  while(sel.options.length>1) sel.remove(1);
+  SECR.forEach(s=>{ const o=document.createElement('option'); o.value=s.id; o.textContent=(s.sigla?s.sigla+' — ':'')+s.nome; sel.appendChild(o); });
+  toast('Secretaria salva!');
+}
+
+function excluirSecr(id){
+  const s=SECR.find(x=>x.id===id);
+  if(!s||!confirm(`Remover "${s.nome}"?`)) return;
+  SECR=SECR.filter(x=>x.id!==id);
+  RESP.forEach(r=>{ if(r.secretaria===id) r.secretaria=''; });
+  saveSecr(); saveResp(); renderSecr(); toast('Secretaria removida.');
+}
+
+// ══════════════════════════════════════════════════════════════
+//  NOVO CONTRATO
+// ══════════════════════════════════════════════════════════════
+function abrirNovoContrato(){
+  ['nc-gestor','nc-fiscal'].forEach(id=>{
+    const s=document.getElementById(id); while(s.options.length>1) s.remove(1);
+    RESP.filter(r=>r.nome).forEach(r=>{ const o=document.createElement('option'); o.value=r.cpf; o.textContent=r.nome+' ('+r.cargo+')'; s.appendChild(o); });
+  });
+  abrirOvl('ovl-cont');
+}
+
+// ══════════════════════════════════════════════════════════════
+//  RESUMO / STATS
+// ══════════════════════════════════════════════════════════════
+function renderResumo(C){
+  C=C||contratosComNomes();
+  const val=C.reduce((s,c)=>s+c.val,0);
+  document.getElementById('rel-res').innerHTML=`
+    <div class="rr"><span class="rl">Total vigentes</span><span class="rv">${C.length}</span></div>
+    <div class="rr"><span class="rl">Vigentes em dia</span><span class="rv" style="color:var(--grn)">${C.filter(c=>c.dias>90).length}</span></div>
+    <div class="rr"><span class="rl">Atenção (31–90d)</span><span class="rv" style="color:var(--ora)">${C.filter(c=>c.dias>30&&c.dias<=90).length}</span></div>
+    <div class="rr"><span class="rl">Críticos (≤ 30d)</span><span class="rv" style="color:var(--red)">${C.filter(c=>c.dias<=30).length}</span></div>
+    <div class="rr"><span class="rl">Sem e-mail fiscal</span><span class="rv" style="color:var(--ora)">${C.filter(c=>!c.email_fiscal).length}</span></div>
+    <div class="rr"><span class="rl">Sem e-mail gestor</span><span class="rv" style="color:var(--ora)">${C.filter(c=>!c.email_gestor).length}</span></div>
+    <div class="rr"><span class="rl">Valor total vigente</span><span class="rv">${fv(val)}</span></div>
+    <div class="rr"><span class="rl">Dados do TCE/RS</span><span class="rv" style="font-size:10px">${DATA_TCE}</span></div>`;
+}
+
+function renderNotifStats(C){
+  C=C||contratosComNomes();
+  document.getElementById('notif-stats').innerHTML=`
+    <div class="rr"><span class="rl">Sem e-mail de fiscal</span><span class="rv" style="color:var(--ora)">${C.filter(c=>!c.email_fiscal).length}</span></div>
+    <div class="rr"><span class="rl">Sem e-mail de gestor</span><span class="rv" style="color:var(--ora)">${C.filter(c=>!c.email_gestor).length}</span></div>
+    <div class="rr"><span class="rl">Alertas urgentes hoje</span><span class="rv" style="color:var(--red)">${C.filter(c=>c.dias<=7).length}</span></div>
+    <div class="rr"><span class="rl">Responsáveis cadastrados</span><span class="rv">${RESP.length}</span></div>
+    <div class="rr"><span class="rl">Com e-mail preenchido</span><span class="rv" style="color:var(--grn)">${RESP.filter(r=>r.email).length}</span></div>
+    <div class="rr"><span class="rl">Secretarias cadastradas</span><span class="rv">${SECR.length}</span></div>`;
+}
+
+// ══════════════════════════════════════════════════════════════
+//  INIT
+// ══════════════════════════════════════════════════════════════
+(function init(){
+  const C=contratosComNomes();
+  popularFiltros(C);
+  renderDashboard();
+  renderAlertas(C);
+  renderTabela(C);
+  renderResp();
+  renderSecr();
+  renderResumo(C);
+  renderNotifStats(C);
+  document.getElementById('dt-ref').textContent='Ref.: '+new Date().toLocaleDateString('pt-BR');
 })();
 </script>
 </body>
